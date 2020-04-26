@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
+
 <?php 
 	require_once("function/arrays.php");
 	require_once("function/config.php");
@@ -20,6 +21,7 @@
     <title>Home</title>
 </head>
 <body>
+	<h1> Pirulote </h1>
 	<header>
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
