@@ -21,7 +21,6 @@
     <title>Home</title>
 </head>
 <body>
-	<h1> Pirulote x2 </h1>
 	<header>
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">

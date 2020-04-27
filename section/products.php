@@ -43,7 +43,6 @@
                 </div>
                 <div id="sportswear"  >
                 <div class="panel-body">
-                        <h2>Pirulin</h2>
                         <ul> 
                         
 
