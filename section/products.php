@@ -11,8 +11,7 @@
     <div class="row">
 
       <?php
-
-
+      
       // sin signo "!" ambas vacias
       if (!empty($_GET['marca'])) {
         function printProduct($con)

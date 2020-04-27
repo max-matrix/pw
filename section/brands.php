@@ -14,9 +14,11 @@
               {
                 $sql2 = 'SELECT * FROM marca WHERE id_marca';
                 $resultadoMarca = $con->query($sql2);
-
+                
+                $c = isset($_GET['cat']) ? $_GET['cat'] : '';
+                
                 foreach ($resultadoMarca as $row) {
-                  echo '<li><a href="index.php?section=products&marca=' . $row['id_marca'] . '">' . $row['nom_marca'] . '</a></li>';
+                  echo '<li><a href="index.php?section=products&cat='. $c . '&marca=' . $row['id_marca'] . '">' . $row['nom_marca'] . '</a></li>';
                 }
               }
               echo printMarca($con);
