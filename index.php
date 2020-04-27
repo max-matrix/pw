@@ -7,7 +7,7 @@ require_once("function/config.php");
 require_once("class/product.php");
 
 require_once 'mysql-login.php';
-$con = new PDO('mysql:host=' . $hostname . ';port=' . $port . ';dbname=' . $database, $username, $password);
+$con = new PDO('mysql:host=' . $hostname . ';port=' . $port . ';dbname=' . $database, $username, $password, $charset);
 
 $section = $_GET["section"] ?? "home";
 ?>
