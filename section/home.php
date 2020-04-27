@@ -1,14 +1,16 @@
 <div class="row">
 	<div class="col-12">
 		<h2 class="text-center">Destacados</h2>
+		<hr class="mb-5">
 		<div class="row">
+
 			<?php
 			$sql = 'SELECT * FROM producto ORDER BY ranking DESC LIMIT 6';
 			$resultado = $con->query($sql);
-
+		
 			foreach ($resultado as $row) {
 
-				echo '<div class="col-4">
+				echo '<div class="col-4 mb-5">
 				<div class="card" >
 					<img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
 						<div class="card-body text-center">

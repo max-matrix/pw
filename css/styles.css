@@ -3,6 +3,19 @@
     padding: 0;
 }
 
+.mb-4 {
+  margin-bottom: 40px;
+}
+
+.mb-5 {
+  margin-bottom: 50px;
+}
+
+.h-fix {
+  display: inline-block;
+  height: 50px;
+}
+
 .navbar-light .navbar-brand {
     color: red;
 }

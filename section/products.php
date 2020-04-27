@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-3">
     <h2 class="text-center">Filtros</h2>
+    <hr class="mb-5">
     <div class="panel-group category-products" id="accordian">
       <div class="panel panel-default">
         <div class="panel-heading panel pl-0">
@@ -70,6 +71,7 @@
   </div>
   <div class="col-9">
     <h2 class="text-center">Productos</h2>
+    <hr class="mb-5">
     <div class="row">
 
       <?php
@@ -86,20 +88,18 @@
             foreach ($resultadoProduct as $row) {
 
               $salidaProduct .= '
-
-                                <div class="col-4">
-                                    <div class="card">
-                                        <img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body text-center">                                     
-                                            <h5 class="card-title">' . $row['nombre'] . '</h5>
-                                            <p class="card-text">' . $row['descripcion'] . '</p>
-                                        </div>
-                                        <div class="card-body text-center text-center">
-                                            <a href="index.php?section=detail&id=' . $row['id_producto'] . '" class="card-link ">Detalle</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                    ';
+                  <div class="col-4 mb-4">
+                      <div class="card">
+                          <img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
+                          <div class="card-body text-center">                                     
+                              <h5 class="card-title">' . $row['nombre'] . '</h5>
+                              <p class="card-text h-fix">' . $row['descripcion'] . '</p>
+                          </div>
+                          <div class="card-body text-center text-center">
+                              <a href="index.php?section=detail&id=' . $row['id_producto'] . '" class="card-link ">Detalle</a>
+                          </div>
+                      </div>
+                  </div>';
             }
             $salidaProduct .= '';
           }
@@ -117,19 +117,19 @@
 
               $salidaProduct .= '
 
-                                <div class="col-4">
-                                    <div class="card">
-                                        <img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body text-center">                                     
-                                            <h5 class="card-title">' . $row['nombre'] . '</h5>
-                                            <p class="card-text">' . $row['descripcion'] . '</p>
-                                        </div>
-                                        <div class="card-body text-center text-center">
-                                            <a href="index.php?section=detail&id=' . $row['id_producto'] . '" class="card-link ">Detalle</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                    ';
+                <div class="col-4 mb-4">
+                    <div class="card">
+                        <img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
+                        <div class="card-body text-center">                                     
+                            <h5 class="card-title">' . $row['nombre'] . '</h5>
+                            <p class="card-text h-fix">' . $row['descripcion'] . '</p>
+                        </div>
+                        <div class="card-body text-center text-center">
+                            <a href="index.php?section=detail&id=' . $row['id_producto'] . '" class="card-link ">Detalle</a>
+                        </div>
+                    </div>
+                </div>
+                    ';
             }
             $salidaProduct .= '';
           }
@@ -146,20 +146,19 @@
             foreach ($resultadoProduct as $row) {
 
               $salidaProduct .= '
-
-                                <div class="col-4">
-                                    <div class="card">
-                                        <img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body text-center">                                     
-                                            <h5 class="card-title">' . $row['nombre'] . '</h5>
-                                            <p class="card-text">' . $row['descripcion'] . '</p>
-                                        </div>
-                                        <div class="card-body text-center text-center">
-                                            <a href="index.php?section=detail&id=' . $row['id_producto'] . '" class="card-link ">Detalle</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                    ';
+                <div class="col-4 mb-4">
+                      <div class="card">
+                          <img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
+                          <div class="card-body text-center">                                     
+                              <h5 class="card-title">' . $row['nombre'] . '</h5>
+                              <p class="card-text h-fix">' . $row['descripcion'] . '</p>
+                          </div>
+                          <div class="card-body text-center text-center">
+                              <a href="index.php?section=detail&id=' . $row['id_producto'] . '" class="card-link ">Detalle</a>
+                          </div>
+                      </div>
+                  </div>
+                      ';
             }
             $salidaProduct .= '';
           }
