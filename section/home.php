@@ -14,7 +14,7 @@
 				<div class="card" >
 					<img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
 						<div class="card-body text-center">
-							<h5 class="card-title">' . $row['precio'] . '</h5>
+							<h5 class="card-title">$ ' . $row['precio'] . '</h5>
 							<p class="card-text">' . $row['nombre'] . '</p>
 						</div>
 						<div class="card-body text-center text-center">
