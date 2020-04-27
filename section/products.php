@@ -1,74 +1,10 @@
 <div class="row">
   <div class="col-3">
-    <h2 class="text-center">Filtros</h2>
-    <hr class="mb-5">
-    <div class="panel-group category-products" id="accordian">
-      <div class="panel panel-default">
-        <div class="panel-heading panel pl-0">
-          <h4 class="panel-title text-left">
-
-            <?php
-            function printCategoria($con, $id_padre = 0)
-            {
-              $sql = 'SELECT * FROM categoria WHERE id_padre = ' . $id_padre;
-              $resultado = $con->query($sql);
-              if (!empty($resultado)) {
-                $salida = '<div class="panel-body text-left"><ul class="pl-3">';
-                foreach ($resultado as $row) {
-                  $salida .= '
-                                            <li>
-                                                <a href="index.php?section=products&cat=' . $row['id_categoria'] . '">' . $row['nombre'] . '</a>' .
-                    printCategoria($con, $row['id_categoria']) . '
-                                            </li>
-                                        ';
-                }
-                $salida .= '</ul></div>';
-              }
-              return $salida;
-            }
-            echo printCategoria($con);
-            ?>
-
-        </div>
-      </div>
-    </div>
-
-
+    <?php require_once("section/categories.php"); ?>
     <hr>
-
-    <div class="panel-group category-products" id="accordian">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a href="#">Marcas</a>
-          </h4>
-        </div>
-        <div id="sportswear">
-          <div class="panel-body">
-            <ul>
-              <?php
-
-              function printMarca($con)
-              {
-                $sql2 = 'SELECT * FROM marca WHERE id_marca';
-                $resultadoMarca = $con->query($sql2);
-
-                foreach ($resultadoMarca as $row) {
-                  echo '<li><a href="index.php?section=products&marca=' . $row['id_marca'] . '">' . $row['nombre'] . '</a></li>';
-                }
-              }
-              echo printMarca($con);
-              ?>
-
-            </ul>
-          </div>
-
-
-        </div>
-      </div>
-    </div>
-
+    <?php require_once("section/brands.php"); ?>
   </div>
+
   <div class="col-9">
     <h2 class="text-center">Productos</h2>
     <hr class="mb-5">
