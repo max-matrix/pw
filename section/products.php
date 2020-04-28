@@ -4,16 +4,21 @@
       <hr class="mb-5">
       <h4>Destacados</h4>
       <li>
-        <a href="index.php?section=products&rankeo=desc">Mayor a Menor</a>
+        <a href="index.php?section=products&dest=1">Nuestra selección</a>
       </li>
-
       <hr>
       <h4>Ordenamiento</h4>
       <li>
-        <a href="index.php?section=products&order=desc">A > Z</a>
+        <?php
+          $orden = isset($_GET['orden']) ? $_GET['orden'] : '';
+          $_SESSION['orden'] = $orden;
+          $marca = isset($_GET['marca']) ? $_GET['marca'] : '';
+          $categoria = isset($_GET['cat']) ? $_GET['cat'] : '';
+        ?>
+          <a href="index.php?section=products&cat=<?=$categoria?>&marca=<?=$marca?>&orden=asc">A - Z</a>
       </li>
       <li>
-        <a href="index.php?section=products&order=asc">Z > A</a>
+        <a href="index.php?section=products&cat=<?=$categoria?>&marca=<?=$marca?>&orden=desc">Z - A</a>
       </li>
       <hr>
       <h4>Cartegorías</h4>
@@ -30,10 +35,15 @@
 
     <?php
       
-      if (empty($_GET['marca']) && empty($_GET['cat'])) {
+      if (empty($_GET['marca']) && empty($_GET['cat']) && empty($_GET['dest'])) {
 
         $product = new Product($con);
-        echo printProduct($product->getProduct());
+        echo printProduct($product->getProduct());               
+
+      }elseif (!empty($_GET['dest'])){
+
+        $product = new Product($con);
+        echo printProduct($product->getProductImportant());
 
       } elseif (!empty($_GET['cat']) && empty($_GET['marca'])) {
         
