@@ -79,4 +79,11 @@ function printProductByOutstanding($prodByOutstanding) {
   }
   return $salidaProduct;
 }
+
+function printBrand($brands, $category) {
+  foreach ($brands as $row) {
+    echo '<li><a href="index.php?section=products&cat='. $category . '&marca=' . $row['id_marca'] . '">' . $row['nom_marca'] . '</a></li>';
+  }
+}
+
 ?>

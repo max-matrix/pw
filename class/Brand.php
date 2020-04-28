@@ -1,15 +1,14 @@
 <?php
-
 class Brand{
 
     private $con;
 
-    function setBrand($con){
+    function __construct($con){
         $this->con = $con;
     }
 
-    public function getProductName(){
-        $sql = 'SELECT nombre FROM product';
+    public function getBrands(){
+        $sql = 'SELECT * FROM marca WHERE id_marca';
         return $this->con->query($sql);
     }
 
