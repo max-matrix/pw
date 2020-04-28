@@ -6,3 +6,5 @@ error_reporting($config["ERRORS"]["types"]);
 ini_set("display_errors",$config["ERRORS"]["display"]);
 
 date_default_timezone_set($config["TIMEZONE"]["zone"]);
+
+session_start();
