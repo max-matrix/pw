@@ -1,5 +1,5 @@
-/* $('.panel-body ul.cat').hide();
+$('.panel-body ul.cat');
 
-$('h2 > ul').click(function() {
-  $(this).parent().find('ul').slideToggle();
-}); */
+/* $('.panel-body ul.cat > li').click(function() {
+  $(this).parent().find('li').slideToggle();
+});  */

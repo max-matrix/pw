@@ -30,7 +30,7 @@
 
     <?php
       
-      if (empty($_GET['marca']) && empty($_GET['cat']) ) {
+      if (empty($_GET['marca']) && empty($_GET['cat'])) {
 
         $product = new Product($con);
         echo printProduct($product->getProduct());

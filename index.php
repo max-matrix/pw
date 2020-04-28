@@ -5,6 +5,7 @@
 require_once("function/arrays.php");
 require_once("function/config.php");
 require_once("function/function.php");
+require_once("function/helpers.php");
 require_once("class/Product.php");
 require_once("class/Category.php");
 require_once("class/Brand.php");

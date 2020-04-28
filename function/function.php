@@ -27,6 +27,31 @@ function printProduct($prod) {
   return $salidaProduct;
 }
 
+function printProductByID($prod) {
+
+  if (!empty($prod)) {
+
+    $salidaProduct = '<div class="col-6">
+    <div class="card">
+      <img src="img/' . $prod['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
+    </div> 
+    </div>
+      <div class="col-4">
+        <div class="card-description">
+          <h5 class="card-title">' . $prod['nombre'] . '</h5>
+          <p class="card-text">' . $prod['descripcion'] . '</p>
+          <p>Disponibilidad:' . $prod['disponibilidad'] . '</p>
+          <p>Condición:' . $prod['condicion'] . '</p>
+          <p>Marca:' . $prod['nom_marca'] . '</p>
+          <p>Precio: $' . number_format($prod['precio'], 2, ',', '.') . '</p>
+          <a href="#" class="btn btn-danger">Comprar</a>
+      </div>
+    </div>'
+      ;
+  }
+  return $salidaProduct;
+}
+
 function printProductByOutstanding($prodByOutstanding) {
 
   if (!empty($prodByOutstanding)) {

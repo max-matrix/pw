@@ -13,6 +13,12 @@ class Product{
         return $this->con->query($sql);
     }
 
+    public function getProductByID($id){
+        $sql = $this->con->prepare('SELECT * FROM producto INNER JOIN marca ON producto.id_marca = marca.id_marca WHERE id_producto='. $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function getProductByOutstanding(){
         $sql = 'SELECT * FROM producto ORDER BY ranking DESC LIMIT 6';
         return $this->con->query($sql);

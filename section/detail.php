@@ -4,7 +4,27 @@ $idP = $_GET['id'];
 
 <div class="row">
   <div class="col-3">
-    <?php require_once("section/categories.php"); ?>
+    <h2 class="text-center">Filtros</h2>
+      <hr class="mb-5">
+      <h4>Destacados</h4>
+      <li>
+        <a href="index.php?section=products&rankeo=desc">Mayor a Menor</a>
+      </li>
+
+      <hr>
+      <h4>Ordenamiento</h4>
+      <li>
+        <a href="index.php?section=products&order=desc">A > Z</a>
+      </li>
+      <li>
+        <a href="index.php?section=products&order=asc">Z > A</a>
+      </li>
+      <hr>
+      <h4>Cartegorías</h4>
+      <?php require_once("section/categories.php"); ?>
+      <hr>
+      <h4>Marcas</h4>
+      <?php require_once("section/brands.php"); ?>
   </div>
   
   <div class="col-9">
@@ -12,27 +32,10 @@ $idP = $_GET['id'];
 
       <?php
 
-        $sql = $con->prepare('SELECT * FROM producto INNER JOIN marca ON producto.id_marca = marca.id_marca WHERE id_producto='. $idP);
-        $sql->execute();
-        $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+      $product = new Product($con);
+      echo printProductByID($product->getProductByID($idP));
 
-       echo '<div class="col-6">
-          <div class="card">
-            <img src="img/' . $resultado['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
-          </div> 
-        </div>
-        <div class="col-4">
-          <div class="card-description">
-            <h5 class="card-title">' . $resultado['nombre'] . '</h5>
-            <p class="card-text">' . $resultado['descripcion'] . '</p>
-            <p>Disponibilidad:' . $resultado['disponibilidad'] . '</p>
-            <p>Condición:' . $resultado['condicion'] . '</p>
-            <p>Marca:' . $resultado['nom_marca'] . '</p>
-            <p>Precio: $' . number_format($resultado['precio'], 2, ',', '.') . '</p>
-            <a href="#" class="btn btn-danger">Comprar</a>
-          </div>
-        </div>'; 
-      ?>
+      ?> 
 
     </div>
   </div>
