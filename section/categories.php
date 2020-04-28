@@ -1,5 +1,3 @@
-<h2 class="text-center">Filtros</h2>
-    <hr class="mb-5">
     <div class="panel-group category-products" id="accordian">
       <div class="panel panel-default">
         <div class="panel-heading panel pl-0">
