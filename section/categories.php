@@ -12,7 +12,7 @@
               $resultado = $con->query($sql);
               
               if (!empty($resultado)) {
-                $salida = '<div class="panel-body text-left"><ul class="pl-3">';
+                $salida = '<div class="panel-body text-left"><ul class="pl-3 cat">';
     
                 foreach ($resultado as $row) {
                   $salida .= '
