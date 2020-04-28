@@ -4,9 +4,10 @@
       <hr class="mb-5">
       <h4>Destacados</h4>
       <li>
-        <a href="index.php?section=products&rankeo=desc">Mayor a Menor</a>
+      <?php
+        echo '<a href="index.php?section=products&dest=1">Nuestra selección</a>'
+      ?>
       </li>
-
       <hr>
       <h4>Ordenamiento</h4>
       <li>
@@ -30,10 +31,15 @@
 
     <?php
       
-      if (empty($_GET['marca']) && empty($_GET['cat']) ) {
+      if (empty($_GET['marca']) && empty($_GET['cat']) && empty($_GET['dest'])) {
 
         $product = new Product($con);
         echo printProduct($product->getProduct());
+
+      }elseif (!empty($_GET['dest'])){
+
+        $product = new Product($con);
+        echo printProduct($product->getProductImportant());
 
       } elseif (!empty($_GET['cat']) && empty($_GET['marca'])) {
         
