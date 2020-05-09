@@ -1,0 +1,36 @@
+Hola profe, le acabo de compartir el tp que entregamos para producción, 
+
+1. la duda puntualmente es que tenemos un menú de productos padre con categorías informática, celulares y videojuegos. Tenemos que filtrar para que al tocar uno de esos ítems, se vea solamente los productos que pertenecen a esa categoría. 
+Tienen que modificar el SELECT para traer los productos de categorías hijas de esa categoria también
+(select producto.*  from producto  where producto.id_categoria = 6)
+union
+(select producto.*  from producto inner join categoria 
+on producto.id_categoria = categoria.id_categoria
+where categoria.id_padre = 6);
+
+select producto.*  from producto inner join categoria 
+on producto.id_categoria = categoria.id_categoria
+where producto.id_categoria = 6
+or categoria.id_padre = 6;
+
+2. También tenemos que ver cómo hacer que en el index se vean productos al azar.
+
+public function getProductByRandom(){
+        $sql = 'SELECT * FROM producto ORDER BY RAND() LIMIT 6';
+        return $this->con->query($sql);
+    }
+
+
+                echo "<p><h3>productos obtenidos de la base primera vez </h3><br/>";
+                foreach ($product->getProductByRandom() as $row) {
+                    echo print_r($row)."<p><p>";
+                }
+                
+                $productArray = $product->getProductByRandom();
+                echo "<p><h3>productos obtenidos por segunda vez</h3> <p>";
+                foreach ($product->getProductByRandom() as $row) {
+                    echo print_r($row)."<p><p>";
+                }
+
+
+Quiza algun compañero también tenga alguna duda parecida. Si no le llegó compartido nuestro tp por favor le pido que me avise. Muchas gracias y  hasta mañana!
