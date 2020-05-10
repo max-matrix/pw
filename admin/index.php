@@ -2,17 +2,17 @@
 <html lang="es">
 
 <?php
-require_once("function/arrays.php");
-require_once("function/config.php");
-require_once("function/function.php");
-require_once("function/helpers.php");
-require_once("class/Product.php");
-require_once("class/Category.php");
-require_once("class/Brand.php");
-require_once("class/Comment.php");
+require_once("../function/arrays.php");
+require_once("../function/config.php");
+require_once("../function/function.php");
+require_once("../function/helpers.php");
+require_once("../class/Product.php");
+require_once("../class/Category.php");
+require_once("../class/Brand.php");
+require_once("../class/Comment.php");
 
 
-require_once 'mysql-login.php';
+require_once '../mysql-login.php';
 $con = new PDO('mysql:host=' . $hostname . ';port=' . $port . ';dbname=' . $database, $username, $password, $charset);
 
 $section = $_GET["section"] ?? "home";
@@ -22,7 +22,7 @@ $section = $_GET["section"] ?? "home";
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="../css/styles.css">
 	<title>Home</title>
 </head>
 
@@ -38,7 +38,7 @@ $section = $_GET["section"] ?? "home";
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<?php
-						foreach ($navitem as $navname => $link) :
+						foreach ($navadmin as $navname => $link) :
 						?>
 							<li class="nav-item <?= $section == strtolower($navname) ? "active" : "" ?> ">
 								<a class="nav-link" href="<?php echo $link; ?>"><?php echo $navname; ?></a>
@@ -48,43 +48,13 @@ $section = $_GET["section"] ?? "home";
 						?>
 					</ul>
 
-					<ul class="navbar-nav mt-2 mt-lg-0 col-4 justify-content-end">
-						<?php
-							if(logueado()):
-							$usuario = $_SESSION["usuario"];
-							if(is_admin()):
-						?>
-							<li class="nav-item">
-							<span class="navbar-text">Hola <?= strtoupper($_SESSION["usuario"]["usuario"]); ?> - </span>
-							</li>
-
-							<li class="nav-item">
-							<a href="admin/index.php" class="nav-link">Registros</a>
-							</li>
-						<?php
-							else:
-						?>
-							<li class="nav-item">
-							<span class="navbar-text">Hola <?= $_SESSION["usuario"]["usuario"]; ?> - </span>
-							</li>
-						<?php
-							endif;
-						?>
-							<li class="nav-item">
-							<a href="function/logout.php" class="nav-link">Salir</a>
-							</li>
-						<?php
-							else:
-						?>
-							<li class="nav-item">
-							<a href="index.php?section=login" class="nav-link">Ingresar</a>
-							</li>    
-							<li class="nav-item">
-							<a href="index.php?section=register" class="nav-link">Registrarse</a>
-							</li>
-						<?php
-							endif;
-						?>
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0 col-4 justify-content-end">
+						<li class="nav-item">
+						<span class="navbar-text">Hola <?= strtoupper($_SESSION["usuario"]["usuario"]); ?> - </span>
+						</li>
+						<li class="nav-item">
+							<a href="../function/logout.php" class="nav-link">Salir</a>
+						</li> 
 					</ul>
 
 					<form class="form-inline my-2 my-lg-0">
@@ -103,7 +73,7 @@ $section = $_GET["section"] ?? "home";
 			if (file_exists("section/$section.php")) :
 				require_once("section/$section.php");
 			else :
-				require_once("section/404.php");
+				require_once("../section/404.php");
 			endif;
 			?>
 
