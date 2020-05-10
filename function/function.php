@@ -86,4 +86,39 @@ function printBrand($brands, $category) {
   }
 }
 
+function logueado(){
+  return isset($_SESSION["usuario"]);
+}
+
+function is_admin(){
+  if(!logueado())
+      return false;
+  return $_SESSION["usuario"]["perfil"] == "admin";
+}
+
+function mensajes(){
+  return isset($_SESSION["estado"]);
+}
+
+function notificacion(){
+  if(mensajes()):
+      $clase = $_SESSION["estado"] == "error" ? "danger" : "success";
+
+      $respuesta = "<div class='container'><div class='row my-4'><div class='col-12'>
+      <div class='alert alert-$clase alert-dismissible fade show' role='alert'>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+              <span class='sr-only'>Close</span>
+          </button>
+          $_SESSION[mensaje]
+      </div></div></div></div>";
+
+      unset($_SESSION["estado"]);
+  else:
+      $respuesta = false;
+  endif;
+
+  echo $respuesta;
+}
+
 ?>
