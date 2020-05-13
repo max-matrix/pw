@@ -1,4 +1,9 @@
 <?php
+
+require_once("../function/config.php");
+require_once("../function/function.php");
+require_once '../mysql-login.php';
+
         try {        
 		    $con = new PDO('mysql:host='.$hostname.';port='.$port.';dbname='.$database, $username, $password);
             /* print "Conexión exitosa!"; */
@@ -23,26 +28,12 @@ $sql = "INSERT INTO dato(nombre,apellido,email,telefono,area,comentario)
 			print($count." Filas afectadas");
 	   else
             print('ERROR'); */
-            
-?>
 
-<div class="container">
-        <div class="row justify-content-center my-5">
-            <div class="col-6">
-                 <h1 class="text-center">Contacto</h1>
+// Mensaje de confirmación:
+$_SESSION["estado"] = "ok";
+$_SESSION["mensaje"] = "Muchas gracias por contactarte con nosotros, sus datos han sido enviado correctamente y en breve recibirás novedades de tu interés.";
 
-                <div class="card">
-                    <div class="card-body">
-                        <p>Muchas gracias por contactarte con nosotros, sus datos han sido enviado correctamente y en breve recibirá novedades de su interés.<br>Atte: staff de Technology.</p>
-                        <button type="submit" class="btn btn-light btn-block">   
-                <a href="index.php">Volver al index</a>
-            </button>             
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+// Envío al login:
+header("Location: ../index.php?section=home");
 
 
