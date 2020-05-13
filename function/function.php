@@ -121,4 +121,18 @@ function notificacion(){
   echo $respuesta;
 }
 
+// Esto tiene que ir en Class Usuarios
+function encrypt($clave,$salt){
+		
+  /* concateno el salt con la clave */
+  $clave .= $salt;
+  
+  /* pongo el salt al medio de la contraseña */
+  //$clave = substr($clave,0,strlen($clave)/2).$salt.substr($clave,strlen($clave)/2,strlen($clave));
+  
+  /* para obtener la lista de algoritmos de hash usar hash_algos()*/
+  //return md5($clave);
+  return hash('md5',$clave);
+}
+
 ?>
