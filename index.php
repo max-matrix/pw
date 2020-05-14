@@ -100,6 +100,7 @@ $section = $_GET["section"] ?? "home";
 		<div class="wrapper container">
 
 			<?php
+			notificacion();
 			if (file_exists("section/$section.php")) :
 				require_once("section/$section.php");
 			else :

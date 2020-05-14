@@ -7,7 +7,7 @@
       <div class="form card-body">
 
           <div class="form-group">
-               <form action="index.php?section=guardar" method="post">
+               <form action="function/saveComent.php" method="post">
                    <div class="form-group">
                      <label for="inputName">Nombre</label>
                      <input type="text" class="form-control" id="inputName" name="nombre" placeholder="Escribí tu nombre">
