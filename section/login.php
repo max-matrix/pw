@@ -15,7 +15,7 @@
     <div class="col-12 col-md-6">
         <div class="card mb-4">
             <div class="card-body">
-                <form action="#" method="post">
+                <form action="admin/index.php" method="post">
                 <!-- ACTIVAR CUANDO ESTÉ HECHO LOGIN.PHP (FUNCTION)
                 <form action="function/login.php" method="post">
                 -->
