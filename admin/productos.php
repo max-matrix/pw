@@ -1,15 +1,36 @@
 <?php 
-require('inc/header.php');
+require('barras_navegacion/header.php');
 ?> 
 
 <div class="container-fluid">
       
-      <?php $productsMenu = 'Productos';
-	include('inc/side_bar.php');
+	  <?php $productsMenu = 'Productos';
+	  
+	  $productos = new Producto($con);
+	include('barras_navegacion/side_bar.php');
+
+
+	if(isset($_POST['formulario_productos'])){ 
+	    if($_POST['id'] > 0){
+                $productos->edit($_POST);                
+	    }else{			
+                $productos->save($_POST); 
+        }
+		
+		header('Location: productos.php');
+	}	
+	 
+	if(isset($_GET['del'])){
+			$resp = $productos->del($_GET['del']) 	;
+            if($resp == 1){
+				header('Location: productos.php');	
+			}
+			echo '<script>alert("'.$resp.'");</script>';
+
+	}
+
         ?>
-	  
-	  
-        
+	          
         <div class="col-sm-9 col-md-10 main">
           
           <!--toggle sidebar button-->
@@ -18,54 +39,42 @@ require('inc/header.php');
           </p>
           
 		  <h1 class="page-header">
-            <?php echo $productsMenu?>
+            Productos
           </h1>
  
+          <h2 class="sub-header">Listado <a href="productos_abm"><button type="button" class="btn btn-success btn-lg" title="Agregar">Agregar</button></a></h2>
+		
 
-          <h2 class="sub-header">Listado <a href="#"><button type="button" class="btn btn-success" title="Agregar">Agregar</button></a></h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Nombre</th>
-                  <th>Fecha</th>
-                  <th>Activa</th> 
-				  <th>Acciones</th>
+				  <th>Precio</th>
+				  <th>Descripcion</th>
+				  <th>Disponibilidad</th>
+				  <th>Ranking</th>
+                  <th>Acciones</th>                  
                 </tr>
               </thead>
-			  <tbody> 
+			  <tbody>       
+			    <?php  	 
+					foreach($productos->getList() as $producto){?>
               
 						<tr>
-						  <td>1</td>
-						  <td>SSD</td>
-						  <td>26/04/2018</td>
-						  <td>Sí</td> 
+						  <td><?php echo $producto['id_producto'];?></td>
+						  <td><?php echo $producto['nombre'];?></td> 
+						  <td><?php echo $producto['precio'];?></td>
+						  <td><?php echo $producto['descripcion'];?></td>
+						  <td><?php echo $producto['disponibilidad'];?></td>
+						  <td><?php echo $producto['ranking'];?></td>
 						  <td>
-						      <a href="#"><button type="button" class="btn btn-info" title="Modificar">Modificar</button></a>
-							  <a href="#"><button type="button" class="btn btn-danger" title="Borrar">Eliminar</button></a>
+						      <a href="productos_abm.php?edit=<?php echo $perfil['id']?>"><button type="button" class="btn btn-info btn-lg" title="Modificar">Modificar</button></a>
+							  <a href="productos.php?del=<?php echo $perfil['id']?>"><button type="button" class="btn btn-danger btn-lg" title="Borrar">Eliminar</button></a>
 					      </td>
 						</tr>
-						<tr>
-						  <td>1</td>
-						  <td>SSD</td>
-						  <td>26/04/2018</td>
-						  <td>Sí</td> 
-						  <td>
-						      <a href="#"><button type="button" class="btn btn-info" title="Modificar">Modificar</button></a>
-							  <a href="#"><button type="button" class="btn btn-danger" title="Borrar">Eliminar</button></a>
-					      </td>
-						</tr>
-						<tr>
-						  <td>1</td>
-						  <td>SSD</td>
-						  <td>26/04/2018</td>
-						  <td>Sí</td> 
-						  <td>
-						      <a href="#"><button type="button" class="btn btn-info" title="Modificar">Modificar</button></a>
-							  <a href="#"><button type="button" class="btn btn-danger" title="Borrar">Eliminar</button></a>
-					      </td>
-						</tr>         
+				    <?php }?>                
               </tbody>
             </table>
           </div>
@@ -75,4 +84,4 @@ require('inc/header.php');
 	</div>
 </div><!--/.container-->
 
-<?php include('inc/footer.php');?>
+<?php include('barras_navegacion/footer.php');?>

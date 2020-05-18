@@ -1,8 +1,8 @@
-<?php include('inc/header.php')?>
+<?php include('barras_navegacion/header.php')?>
 
 <div class="container-fluid">
       
-      <?php include('inc/side_bar.php');?>
+      <?php include('barras_navegacion/side_bar.php');?>
 	  
       
         
@@ -12,7 +12,7 @@
             Home
           </h1>
 
-          <h2 class="sub-header">Usted se encuentra en el Home, aquì puede ver si desea los Usuarios y Perfiles.<br> Ademàs podrà agregar, modificar o eliminar. </h2>
+          <h2 class="sub-header">Usted se encuentra en el Home, aquì puede ver si desea los Usuarios, Perfiles, Productos y Marcas.<br> Ademàs podrà agregar, modificar o eliminar. </h2>
 
 
           <!--toggle sidebar button-->
@@ -26,4 +26,4 @@
 	</div>
 </div><!--/.container-->
 
-<?php include('inc/footer.php');?>
+<?php include('barras_navegacion/footer.php');?>

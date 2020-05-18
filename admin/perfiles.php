@@ -1,5 +1,5 @@
 <?php 
-require('inc/header.php'); 
+require('barras_navegacion/header.php'); 
 ?> 
 
 <div class="container-fluid">
@@ -7,7 +7,7 @@ require('inc/header.php');
       <?php $perfilMenu = 'Perfiles';
 	  
 	 $perfiles = new Perfil($con);
-	include('inc/side_bar.php');
+	include('barras_navegacion/side_bar.php');
 	 
 	 
 	if(isset($_POST['formulario_perfiles'])){ 
@@ -42,7 +42,7 @@ require('inc/header.php');
             Perfiles
           </h1> 
 
-		  <h2 class="sub-header">Listado <a href="perfiles_ae.php"><button type="button" class="btn btn-success btn-lg" title="Agregar">Agregar</button></a></h2>
+		  <h2 class="sub-header">Listado <a href="perfiles_abm.php"><button type="button" class="btn btn-success btn-lg" title="Agregar">Agregar</button></a></h2>
 		  
 		  
           <div class="table-responsive">
@@ -62,7 +62,7 @@ require('inc/header.php');
 						  <td><?php echo $perfil['id'];?></td>
 						  <td><?php echo $perfil['nombre'];?></td> 
 						  <td>
-						      <a href="perfiles_ae.php?edit=<?php echo $perfil['id']?>"><button type="button" class="btn btn-info btn-lg" title="Modificar">Modificar</button></a>
+						      <a href="perfiles_abm.php?edit=<?php echo $perfil['id']?>"><button type="button" class="btn btn-info btn-lg" title="Modificar">Modificar</button></a>
 							  <a href="perfiles.php?del=<?php echo $perfil['id']?>"><button type="button" class="btn btn-danger btn-lg" title="Borrar">Eliminar</button></a>
 					      </td>
 						</tr>
@@ -76,4 +76,4 @@ require('inc/header.php');
 	</div>
 </div><!--/.container-->
 
-<?php include('inc/footer.php');?>
+<?php include('barras_navegacion/footer.php');?>

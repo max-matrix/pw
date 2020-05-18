@@ -1,5 +1,5 @@
 <?php 
-require('inc/header.php');
+require('barras_navegacion/header.php');
 //include('clases/usuarios.php');
 ?> 
 
@@ -16,7 +16,7 @@ require('inc/header.php');
 			}
 			
 			
-	include('inc/side_bar.php');
+	include('barras_navegacion/side_bar.php');
 	 
 	if(isset($_POST['submit'])){ 
 	    if($_POST['id_usuario'] > 0){
@@ -55,7 +55,7 @@ require('inc/header.php');
 
           <h2 class="sub-header">Listado 
 		  <?php if(in_array('user.add',$_SESSION['usuario']['permisos'])){?>
-				<a href="usuarios_ae.php"><button type="button" class="btn btn-success btn-lg" title="Agregar">Agregar</button></a>
+				<a href="usuarios_abm.php"><button type="button" class="btn btn-success btn-lg" title="Agregar">Agregar</button></a>
 		  <?php }?>	
 		  </h2>
 		   <?php if(in_array('user.see',$_SESSION['usuario']['permisos'])){?>
@@ -87,7 +87,7 @@ require('inc/header.php');
 							  <td><?php echo ($usuario['activo'])?'si':'no';?></td>
 							  <td>
 								  <?php if(in_array('user.edit',$_SESSION['usuario']['permisos'])){?>
-										<a href="usuarios_ae.php?edit=<?php echo $usuario['id_usuario']?>"><button type="button" class="btn btn-info btn-lg" title="Modificar">Modificar</button></a>
+										<a href="usuarios_abm.php?edit=<?php echo $usuario['id_usuario']?>"><button type="button" class="btn btn-info btn-lg" title="Modificar">Modificar</button></a>
 								  <?php }?>
 								   <?php if(in_array('user.del',$_SESSION['usuario']['permisos'])){?>
 										<a href="usuarios.php?del=<?php echo $usuario['id_usuario']?>"><button type="button" class="btn btn-danger btn-lg" title="Borrar">X</button></a>
@@ -104,4 +104,4 @@ require('inc/header.php');
 	</div>
 </div><!--/.container-->
 
-<?php include('inc/footer.php');?>
+<?php include('barras_navegacion/footer.php');?>

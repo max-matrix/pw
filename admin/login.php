@@ -56,4 +56,4 @@
 	-->
 </div>
 
-<?php include('inc/footer.php');?>
+<?php include('barras_navegacion/footer.php');?>

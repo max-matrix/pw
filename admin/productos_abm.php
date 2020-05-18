@@ -1,20 +1,20 @@
 <?php 
-require('inc/header.php');
+require('barras_navegacion/header.php');
  
 ?> 
 
 <div class="container-fluid">
       
-      <?php $perfilMenu = 'Perfiles';
-	include('inc/side_bar.php');
+      <?php $productoMenu = 'Productos';
+	include('barras_navegacion/side_bar.php');
 	
-	$perfil = new Perfil($con); 
+	$producto = new Producto($con); 
 	
 	$query = 'SELECT * FROM permisos';
 	$permisos = $con->query($query);
 	
 	if(isset($_GET['edit'])){
-            $perfiles = $perfil->get($_GET['edit']); 
+            $productos = $producto->get($_GET['edit']); 
 	} 
 	?>
 	  
@@ -28,15 +28,15 @@ require('inc/header.php');
           </p>
           
 	  <h1 class="page-header">
-                    Nuevo Perfil
+                    Nuevo Producto
           </h1>
   
           <div class="col-md-2"></div>
-            <form action="perfiles.php" method="post" class="col-md-6 from-horizontal">
+            <form action="productos.php" method="post" class="col-md-6 from-horizontal">
                 <div class="form-group">
                     <label for="nombre" class="col-sm-2 control-label">Nombre</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<?php echo (isset($perfiles->nombre)?$perfiles->nombre:'');?>">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<?php echo (isset($productos->nombre)?$productos->nombre:'');?>">
                     </div>
                 </div> 
                  
@@ -74,4 +74,4 @@ require('inc/header.php');
 	</div>
 </div><!--/.container-->
 
-<?php include('inc/footer.php');?>
+<?php include('barras_navegacion/footer.php');?>

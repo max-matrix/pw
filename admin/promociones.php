@@ -1,11 +1,11 @@
 <?php 
-require('inc/header.php');
+require('barras_navegacion/header.php');
 ?> 
 
 <div class="container-fluid">
       
       <?php $promoMenu = 'Promociones';
-	include('inc/side_bar.php');
+	include('barras_navegacion/side_bar.php');
 	 
 
         ?>
@@ -77,4 +77,4 @@ require('inc/header.php');
 	</div>
 </div><!--/.container-->
 
-<?php include('inc/footer.php');?>
+<?php include('barras_navegacion/footer.php');?>

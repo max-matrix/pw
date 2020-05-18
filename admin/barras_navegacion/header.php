@@ -2,8 +2,10 @@
 <?php  session_start();
 include('../mysql-login.php');
 
-include('clases/usuarios.php');
-include('clases/perfil.php');
+include('clases/clase_usuario.php');
+include('clases/clase_perfil.php');
+include('clases/clase_producto.php');
+include('clases/clase_marca.php');
 
 
 try {
