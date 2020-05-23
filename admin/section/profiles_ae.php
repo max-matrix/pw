@@ -1,12 +1,8 @@
-<?php 
-require('inc/header.php');
- 
-?> 
+
 
 <div class="container-fluid">
       
       <?php $perfilMenu = 'Perfiles';
-	include('inc/side_bar.php');
 	
 	$perfil = new Perfil($con); 
 	
@@ -22,17 +18,12 @@ require('inc/header.php');
         
         <div class="col-sm-9 col-md-10 main">
           
-          <!--toggle sidebar button-->
-          <p class="visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
-          </p>
           
-	  <h1 class="page-header">
-                    Nuevo Perfil
-          </h1>
+          
+	  <h1 class="page-header">Nuevo Perfil</h1>
   
           <div class="col-md-2"></div>
-            <form action="perfiles.php" method="post" class="col-md-6 from-horizontal">
+            <form action="index.php?section=profiles" method="post" class="col-md-6 from-horizontal">
                 <div class="form-group">
                     <label for="nombre" class="col-sm-2 control-label">Nombre</label>
                     <div class="col-sm-10">
@@ -70,8 +61,6 @@ require('inc/header.php');
           </div>
  
           
-      </div><!--/row-->
+      </div>
 	</div>
-</div><!--/.container-->
-
-<?php include('inc/footer.php');?>
+</div>

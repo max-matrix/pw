@@ -1,6 +1,4 @@
-<?php 
-require('inc/header.php');
-?> 
+
 
 <div class="container-fluid">
       

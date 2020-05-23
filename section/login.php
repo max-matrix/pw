@@ -16,18 +16,16 @@
         <div class="card mb-4">
             <div class="card-body">
                 <form action="admin/index.php" method="post">
-                <!-- ACTIVAR CUANDO ESTÉ HECHO LOGIN.PHP (FUNCTION)
-                <form action="function/login.php" method="post">
-                -->
                     <div class="form-group">
-                        <label for="usuario">Usuario o Email</label>
-                        <input type="text" class="form-control" name="usuario" id="usuario"  placeholder="Ingrese su usuario o email">
+                        <label for="usuario">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="" value="<?php echo isset($usuario->usuario)?$usuario->usuario:'';?>">  
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="************">
+                        <input type="password" class="form-control" id="clave" name="clave" placeholder="**********"> 
                     </div>
-                    <button type="submit" class="btn btn-info btn-block">Ingresar</button>
+                    <button type="submit" class="btn btn-info btn-block" name="login">Ingresar</button>
+
                 </form>
             </div>
         </div>    
