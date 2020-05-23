@@ -54,7 +54,7 @@ if($user->notLogged()){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Bienvenido <?php echo $_SESSION['usuario']['nombre']?></a>
+          <a class="navbar-brand" href="#">Bienvenido <?php echo $_SESSION['usuario']['nombre']?> a TECHNOLOGY</a>
         </div>
         <div class="navbar-collapse collapse">
           <!--<ul class="nav navbar-nav navbar-right">

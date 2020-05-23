@@ -98,7 +98,7 @@ require('barras_navegacion/header.php');
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" name="submit" >Guardar</button>
+                    <button type="submit" class="btn btn-warning" name="submit" >Guardar</button>
                     </div>
                 </div> 
                 <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" placeholder="" value="<?php echo isset($usuario->id_usuario)?$usuario->id_usuario:'';?>">

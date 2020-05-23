@@ -61,7 +61,7 @@ require('barras_navegacion/header.php');
                  
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" name="formulario_perfiles" >Guardar</button>
+                    <button type="submit" class="btn btn-warning" name="formulario_perfiles" >Guardar</button>
                     </div>
                 </div> 
                 <input type="hidden" class="form-control" id="id" name="id" placeholder="" value="<?php echo (isset($perfiles->id)?$perfiles->id:'');?>">

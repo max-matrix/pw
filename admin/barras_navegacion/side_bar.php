@@ -4,7 +4,7 @@
            
             <ul class="nav nav-sidebar">
               <li><a href="index.php">Home</a></li>
-              <li class="<?php echo isset($productsMenu)?'active':''?>"><a href="productos.php">Productos</a></li>
+              <li class="<?php echo isset($productosMenu)?'active':''?>"><a href="productos.php">Productos</a></li>
 			  <li class="<?php echo isset($marcasMenu)?'active':''?>"><a href="marcas.php">Marcas</a></li>
 			  <!--<li class="<?php echo isset($newsMenu)?'active':''?>"><a href="noticias.php">Noticias</a></li>-->
 			  <?php if(in_array(array('pedido.add','pedido.del','pedido.edit','pedido.see'),$_SESSION['usuario']['permisos'])){?>

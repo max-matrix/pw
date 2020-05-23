@@ -14,9 +14,9 @@ Class Producto{
         return $this->con->query($query); 
 	}
 	
-	public function get($id){
+	public function get($id_producto){
 	    $query = "SELECT id_producto,nombre,precio,descripcion,disponibilidad, ranking
-		           FROM producto WHERE id_producto = ".$id;
+		           FROM producto WHERE id_producto = ".$id_producto;
         $query = $this->con->query($query); 
 			
 		$producto = $query->fetch(PDO::FETCH_OBJ);
@@ -30,26 +30,26 @@ Class Producto{
 			}
 			/*echo '<pre>';
 			var_dump($perfil);echo '</pre>'; */
+
             return $producto;
 	}
 
-	public function del($id){
-		$query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id;
+	public function del($id_producto){
+		$query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id_producto;
 		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
 		if($consulta->cantidad == 0){
-			$query = "DELETE FROM perfil WHERE id = ".$id."; 
-					  DELETE FROM perfil_permisos WHERE perfil_id = ".$id.";";
+			$query = "DELETE FROM producto WHERE id_producto = ".$id_producto."; 
+					  DELETE FROM producto WHERE id_producto = ".$id_producto.";";
 
 			return $this->con->exec($query); 
 		}
-		return 'Perfil asignado a un usuario';
+		return 'Perfil asignado a un producto';
 	}
 	
 	/**
 	* Guardo los datos en la base de datos
     */
-    
-    
+        
 	public function save($data){
 		
             foreach($data as $key => $value){
@@ -66,24 +66,24 @@ Class Producto{
 			//echo $sql;die();
 			
             $this->con->exec($sql);
-			$id = $this->con->lastInsertId();
+			$id_producto = $this->con->lastInsertId();
 			   			
-			$sql = '';
-			foreach($data['permisos'] as $permisos){
-				$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-							VALUES ('.$id.','.$permisos.');';
-			}
+			//$sql = '';
+			//foreach($data['permisos'] as $permisos){
+			//	$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
+			//				VALUES ('.$id.','.$permisos.');';
+			//}
 			//echo $sql;die();
 
- 			$this->con->exec($sql);
+ 			//$this->con->exec($sql);
 	} 
 	
 	
 
 	
 	public function edit($data){
-			$id = $data['id'];
-			unset($data['id']);
+			$id_producto = $data['id_producto'];
+			unset($data['id_producto']);
             
             foreach($data as $key => $value){
 				if(!is_array($value)){
@@ -92,21 +92,21 @@ Class Producto{
 					}
 				}
             }
-            $sql = "UPDATE producto SET ".implode(',',$columns)." WHERE id = ".$id;
+            $sql = "UPDATE producto SET ".implode(',',$columns)." WHERE id_producto = ".$id_producto;
             //echo $sql; die();
             $this->con->exec($sql);
 			
 			 
 			 
-			$sql = 'DELETE FROM perfil_permisos WHERE perfil_id= '.$id;
-			$this->con->exec($sql);
+			//$sql = 'DELETE FROM perfil_permisos WHERE perfil_id= '.$id;
+			//$this->con->exec($sql);
 			
-			$sql = '';
-			foreach($data['permisos'] as $permisos){
-				$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-							VALUES ('.$id.','.$permisos.');';
-			}
-			$this->con->exec($sql);
+			//$sql = '';
+			//foreach($data['permisos'] as $permisos){
+			//	$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
+			//				VALUES ('.$id.','.$permisos.');';
+			//}
+			//$this->con->exec($sql);
 			 
 	} 
 }

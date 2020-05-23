@@ -1,12 +1,13 @@
 <?php 
-require('barras_navegacion/header.php');
- 
+
+require_once('barras_navegacion/header.php'); 
 ?> 
 
 <div class="container-fluid">
       
-      <?php $productoMenu = 'Productos';
-	include('barras_navegacion/side_bar.php');
+      <?php $productosMenu = 'Productos';
+
+	require_once('barras_navegacion/side_bar.php');
 	
 	$producto = new Producto($con); 
 	
@@ -14,11 +15,15 @@ require('barras_navegacion/header.php');
 	$permisos = $con->query($query);
 	
 	if(isset($_GET['edit'])){
-            $productos = $producto->get($_GET['edit']); 
-	} 
+            $productos = $producto->get($_GET['edit']);
+            $titulo = 'Modificar Producto'; 
+    } 
+    else
+    {
+            $titulo = 'Nuevo Producto';
+    }
 	?>
-	  
-	  
+	  	  
         
         <div class="col-sm-9 col-md-10 main">
           
@@ -28,43 +33,60 @@ require('barras_navegacion/header.php');
           </p>
           
 	  <h1 class="page-header">
-                    Nuevo Producto
-          </h1>
+          <? echo $titulo ?>
+      </h1>
   
           <div class="col-md-2"></div>
+
             <form action="productos.php" method="post" class="col-md-6 from-horizontal">
+
                 <div class="form-group">
                     <label for="nombre" class="col-sm-2 control-label">Nombre</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<?php echo (isset($productos->nombre)?$productos->nombre:'');?>">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" 
+                        value="<?php echo (isset($productos->nombre)?$productos->nombre:'');?>">
                     </div>
                 </div> 
+                         
+                <div class="form-group">
+                    <label for="precio" class="col-sm-2 control-label">Precio</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="precio" name="precio" placeholder="" 
+                        value="<?php echo (isset($productos->precio)?$productos->precio:'');?>">
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label for="nombre" class="col-sm-2 control-label">Descripciòn</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="" 
+                        value="<?php echo (isset($productos->descripcion)?$productos->descripcion:'');?>">
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label for="nombre" class="col-sm-2 control-label">Disponibilidad</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="disponibilidad" name="disponibilidad" placeholder="" 
+                        value="<?php echo (isset($productos->disponibilidad)?$productos->disponibilidad:'');?>">
+                    </div>
+                </div>               
                  
                 <div class="form-group">
-                    <label for="tipo" class="col-sm-2 control-label">Permisos</label>
+                    <label for="nombre" class="col-sm-2 control-label">Ranking</label>
                     <div class="col-sm-10">
-                        <select name="permisos[]" id="permisos" multiple='multiple' >
-                            <?php  foreach($permisos as $t){?>
-                                <option value="<?php echo $t['id']?>"
-								<?php 
-									if(isset($perfiles->permisos)){
-										if(in_array($t['id'],$perfiles->permisos)){
-											echo ' selected="selected" ';
-										}
-									}
-								
-								?>><?php echo $t['nombre']?></option>
-                            <?php }?>
-                        </select>
+                        <input type="text" class="form-control" id="ranking" name="ranking" placeholder="" 
+                        value="<?php echo (isset($productos->ranking)?$productos->ranking:'');?>">
                     </div>
                 </div> 
-                 
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" name="formulario_perfiles" >Guardar</button>
+                    <button type="submit" class="btn btn-warning" name="formulario_productos" >Guardar</button>
                     </div>
                 </div> 
-                <input type="hidden" class="form-control" id="id" name="id" placeholder="" value="<?php echo (isset($perfiles->id)?$perfiles->id:'');?>">
+                <input type="hidden" class="form-control" id="id" name="id_producto" placeholder="" 
+                value="<?php echo (isset($productos->id_producto)?$productos->id_producto:'');?>">
 
             </form>
           </div>

@@ -4,14 +4,13 @@ require('barras_navegacion/header.php');
 
 <div class="container-fluid">
       
-	  <?php $productsMenu = 'Productos';
-	  
+	  <?php 
+	  $productosMenu = 'Productos';	  
 	  $productos = new Producto($con);
 	include('barras_navegacion/side_bar.php');
 
-
-	if(isset($_POST['formulario_productos'])){ 
-	    if($_POST['id'] > 0){
+	if (isset($_POST['formulario_productos'])){ 
+	    if($_POST['id_producto'] > 0){
                 $productos->edit($_POST);                
 	    }else{			
                 $productos->save($_POST); 
@@ -26,9 +25,7 @@ require('barras_navegacion/header.php');
 				header('Location: productos.php');	
 			}
 			echo '<script>alert("'.$resp.'");</script>';
-
 	}
-
         ?>
 	          
         <div class="col-sm-9 col-md-10 main">
@@ -42,7 +39,7 @@ require('barras_navegacion/header.php');
             Productos
           </h1>
  
-          <h2 class="sub-header">Listado <a href="productos_abm"><button type="button" class="btn btn-success btn-lg" title="Agregar">Agregar</button></a></h2>
+          <h2 class="sub-header">Listado <a href="productos_abm.php"><button type="button" class="btn btn-success btn-lg" title="Agregar">Agregar</button></a></h2>
 		
 
           <div class="table-responsive">
@@ -70,8 +67,11 @@ require('barras_navegacion/header.php');
 						  <td><?php echo $producto['disponibilidad'];?></td>
 						  <td><?php echo $producto['ranking'];?></td>
 						  <td>
-						      <a href="productos_abm.php?edit=<?php echo $perfil['id']?>"><button type="button" class="btn btn-info btn-lg" title="Modificar">Modificar</button></a>
-							  <a href="productos.php?del=<?php echo $perfil['id']?>"><button type="button" class="btn btn-danger btn-lg" title="Borrar">Eliminar</button></a>
+						      <a href="productos_abm.php?edit=<?php echo $producto['id_producto']?>"><button 
+							     type="button" class="btn btn-info btn-lg" title="Modificar">Modificar</button></a>
+
+							  <a href="productos.php?del=<?php echo $producto['id_producto']?>"><button 
+							     type="button" class="btn btn-danger btn-lg" title="Borrar">Eliminar</button></a>
 					      </td>
 						</tr>
 				    <?php }?>                

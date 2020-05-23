@@ -14,42 +14,42 @@ Class Marca{
         return $this->con->query($query); 
 	}
 	
-	public function get($id){
+	public function get($id_marca){
 	    $query = "SELECT id_marca,nom_marca
-		           FROM marca WHERE id_marca = ".$id;
+		           FROM marca WHERE id_marca = ".$id_marca;
         $query = $this->con->query($query); 
 			
 		$marca = $query->fetch(PDO::FETCH_OBJ);
-			/*
-			$sql = 'SELECT perfil_id, permiso_id
-					  FROM perfil_permisos  
-					  WHERE perfil_id = '.$perfil->id;
+			
+			// $sql = 'SELECT id_marca, nom_marca
+			// 		  FROM marca  
+			// 		  WHERE id_marca = '.$marca->id_marca;
 					  
-			foreach($this->con->query($sql) as $permiso){
-				$perfil->permisos[] = $permiso['permiso_id'];
-			}
-			/*echo '<pre>';
-			var_dump($perfil);echo '</pre>'; */
-            return $marca;
+			// foreach($this->con->query($sql) as $permiso){
+			// 	$perfil->permisos[] = $permiso['permiso_id'];
+			// }
+			// echo '<pre>';
+			// var_dump($perfil);echo '</pre>'; 
+
+        return $marca;
 	}
 
-	public function del($id){
-		$query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id;
+	public function del($id_marca){
+		$query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id_marca;
 		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
 		if($consulta->cantidad == 0){
-			$query = "DELETE FROM perfil WHERE id = ".$id."; 
-					  DELETE FROM perfil_permisos WHERE perfil_id = ".$id.";";
+			$query = "DELETE FROM marca WHERE id_marca = ".$id_marca."; 
+					  DELETE FROM marca WHERE id_marca = ".$id_marca.";";
 
 			return $this->con->exec($query); 
 		}
-		return 'Perfil asignado a un usuario';
+		return 'Marca asignada a un producto';
 	}
 	
 	/**
 	* Guardo los datos en la base de datos
-    */
-    
-    
+	*/    
+	
 	public function save($data){
 		
             foreach($data as $key => $value){
@@ -61,29 +61,35 @@ Class Marca{
 					}
 				}
 			}
-			//var_dump($datos);die();
-            $sql = "INSERT INTO marca(".implode(',',$columns).") VALUES('".implode("','",$datos)."')";
-			//echo $sql;die();
+            // echo "<pre>"; var_dump($data);echo "</pre>";
+			// echo "<pre>";var_dump($columns);echo "</pre>";
+			// echo "<pre>";var_dump($datos);echo "</pre>";
 			
+            $sql = "INSERT INTO marca(".implode(',',$columns).") VALUES('".implode("','",$datos)."')";
+			// echo "<pre>";var_dump($sql);echo "</pre>";
+			
+
             $this->con->exec($sql);
-			$id = $this->con->lastInsertId();
-			   			
-			$sql = '';
-			foreach($data['permisos'] as $permisos){
-				$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-							VALUES ('.$id.','.$permisos.');';
-			}
+			$id_marca = $this->con->lastInsertId();
+			//echo "<pre>";var_dump($id_marca);echo "</pre>";
+			
+			// $sql = '';
+			// foreach($data['marcas'] as $marcas){
+			// 	$sql .= 'INSERT INTO marca(id_marca,nom_marca) 
+			// 				VALUES ('.$id_marca.','.$nom_marca.');';
+			// }
 			//echo $sql;die();
 
- 			$this->con->exec($sql);
+ 			// $this->con->exec($sql);
 	} 
 	
 	
 
 	
 	public function edit($data){
-			$id = $data['id'];
-			unset($data['id']);
+			$id_marca = $data['id_marca'];
+			//echo "<pre>";  var_dump($data); "</pre>"; die();
+			unset($data['id_marca']);
             
             foreach($data as $key => $value){
 				if(!is_array($value)){
@@ -91,22 +97,21 @@ Class Marca{
 						$columns[]=$key." = '".$value."'"; 
 					}
 				}
-            }
-            $sql = "UPDATE marca SET ".implode(',',$columns)." WHERE id = ".$id;
+			}
+            //echo "<pre>";  var_dump($data); "</pre>"; 
+            $sql = "UPDATE marca SET ".implode(',',$columns)." WHERE id_marca = ".$id_marca;
             //echo $sql; die();
             $this->con->exec($sql);
+		 
+			// $sql = 'DELETE FROM marca WHERE id_marca= '.$id_marca;
+			// $this->con->exec($sql);
 			
-			 
-			 
-			$sql = 'DELETE FROM perfil_permisos WHERE perfil_id= '.$id;
-			$this->con->exec($sql);
-			
-			$sql = '';
-			foreach($data['permisos'] as $permisos){
-				$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-							VALUES ('.$id.','.$permisos.');';
-			}
-			$this->con->exec($sql);
+			// $sql = '';
+			// foreach($data['marcas'] as $marcas){
+			// 	$sql .= 'INSERT INTO marca(id_marca,nom_marca) 
+			// 				VALUES ('.$id_marca.','.$nom_marca.');';
+			// }
+			// $this->con->exec($sql);
 			 
 	} 
 }
