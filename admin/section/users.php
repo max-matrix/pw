@@ -1,7 +1,7 @@
 <?php
-require_once('../class/user.php');
-require_once('../class/profile.php');
-require_once('../class/user_type.php');
+require_once('class/user.php');
+require_once('class/profile.php');
+require_once('class/user_type.php');
 ?>
 
 <div class="container-fluid">

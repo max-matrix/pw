@@ -10,8 +10,8 @@ require_once("../class/Product.php");
 require_once("../class/Category.php");
 require_once("../class/Brand.php");
 require_once("../class/Comment.php");
-require_once('../class/user.php');
-require_once('../class/profile.php');
+require_once('class/user.php');
+require_once('class/profile.php');
 
 require_once('../mysql-login.php');
 
