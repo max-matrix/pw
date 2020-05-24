@@ -27,6 +27,21 @@ $salt = $_POST["salt"];
 
 // Verifico que el usuario no exista:
 
+    /*
+function comprueboSiExiste($email) {
+
+    //Acá hago otra consulta
+      'Select COUNT(email) from usuarios WHERE email = "$email" ';
+    El select debería tener la fn count. No recuerdo como es.
+    count(). perfecto.
+    Obvio que hay que crear la conexión. blabla
+    Eso te devuelve un 1 o un 0. Puede devolverte 2 o 3. No debería
+    porque se supone que stás registrado como campo único mail
+   
+};
+
+*/
+
 // Creo el nuevo usuario:
 $sql = "INSERT INTO usuarios(nombre,apellido,usuario,clave,email,tipo,activo,salt) 
                VALUES ('$nombre','$apellido','$usuario','$clave','$email','4','1','$salt');";
