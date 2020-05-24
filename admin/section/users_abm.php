@@ -1,6 +1,3 @@
-<?php 
-   // session_start();
-?>
 <div class="container-fluid">
       
     <?php $userMenu = 'Usuarios';
@@ -15,8 +12,9 @@
                 header('Location: ../../index.php'); 
             }
 	
-	    $perfil = new Perfil($con); 
-            var_dump($_GET);
+            seeInfo($con);
+        $perfil = new Perfil($con); 
+            seeInfo($_GET);
         if(isset($_GET['edit'])){
             $usuario = $user->get($_GET['edit']); 
         } 

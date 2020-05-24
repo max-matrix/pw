@@ -15,7 +15,7 @@
     <div class="col-12 col-md-6">
         <div class="card mb-4">
             <div class="card-body">
-                <form action="admin/index.php" method="post">
+                <form action="admin/index.php?section=products" method="post">
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
                         <input type="text" class="form-control" id="usuario" name="usuario" placeholder="" value="<?php echo isset($usuario->usuario)?$usuario->usuario:'';?>">  

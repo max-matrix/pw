@@ -12,6 +12,8 @@ require_once("../class/Brand.php");
 require_once("../class/Comment.php");
 require_once('class/user.php');
 require_once('class/profile.php');
+require_once('class/product.php');
+require_once('class/brands.php');
 
 require_once('../mysql-login.php');
 
@@ -65,7 +67,8 @@ if($user->notLogged()){
 					
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
-						<!--<li class="<?php echo isset($productsMenu)?'active':''?>"><a class="nav-link" href="productos.php">Productos</a></li>-->
+						<li class="nav-item"><a class="nav-link" href="index.php?section=products">Productos</a></li>
+			  			<li class="nav-item"><a class="nav-link" href="index.php?section=brands">Marcas</a></li>
 						<!--<li class="<?php echo isset($promoMenu)?'active':''?>"><a class="nav-link" href="promociones.php">Promociones</a></li>-->
 						<!--<li class="<?php echo isset($newsMenu)?'active':''?>"><a class="nav-link" href="noticias.php">Noticias</a></li>-->
 						<?php if(in_array(array('pedido.add','pedido.del','pedido.edit','pedido.see'),$_SESSION['usuario']['permisos'])){?>
@@ -91,6 +94,7 @@ if($user->notLogged()){
 		<div class="wrapper container">
 
 			<?php
+			notificacion();
 			if (file_exists("section/$section.php")) :
 				require_once("section/$section.php");
 			else :

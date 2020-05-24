@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid">
       
       <?php $perfilMenu = 'Perfiles';
@@ -12,13 +10,8 @@
 	if(isset($_GET['edit'])){
             $perfiles = $perfil->get($_GET['edit']); 
 	} 
-	?>
-	  
-	  
-        
+	?>        
         <div class="col-sm-9 col-md-10 main">
-          
-          
           
 	  <h1 class="page-header">Nuevo Perfil</h1>
   
