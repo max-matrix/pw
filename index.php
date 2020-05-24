@@ -50,41 +50,39 @@ $section = $_GET["section"] ?? "home";
 
 					<ul class="navbar-nav mt-2 mt-lg-0 col-4 justify-content-end">
 						<?php
+						/*
 							if(logueado()):
 							$usuario = $_SESSION["usuario"];
 							if(is_admin()):
+								*/
 						?>
-							<li class="nav-item">
-							<span class="navbar-text">Hola <?= strtoupper($_SESSION["usuario"]["usuario"]); ?> - </span>
-							</li>
+						
 
-							<li class="nav-item">
-							<a href="admin/index.php" class="nav-link">Registros</a>
-							</li>
 						<?php
-							else:
+							if(logueado()):
+							$usuario = $_SESSION["usuario"];
 						?>
 							<li class="nav-item">
-							<span class="navbar-text">Hola <?= $_SESSION["usuario"]["usuario"]; ?> - </span>
+								<span class="navbar-text font-weight-bold">Hola <?= strtoupper($_SESSION["usuario"]["usuario"]); ?> - </span>
 							</li>
-						<?php
-							endif;
-						?>
 							<li class="nav-item">
-							<a href="function/logout.php" class="nav-link">Salir</a>
-							</li>
-						<?php
-							else:
-						?>
-							<li class="nav-item">
-							<a href="index.php?section=login" class="nav-link">Ingresar</a>
+								<a href="admin/index.php" class="nav-link">Control Panel</a>
 							</li>    
 							<li class="nav-item">
-							<a href="index.php?section=register" class="nav-link">Registrarse</a>
+								<a href="function/logout.php" class="nav-link">Logout</a>
+							</li>
+						<?php
+							else:
+						?>
+							<li class="nav-item">
+								<a href="index.php?section=login" class="nav-link">Ingresar</a>
+							</li>    
+							<li class="nav-item">
+								<a href="index.php?section=register" class="nav-link">Registrarse</a>
 							</li>
 						<?php
 							endif;
-						?>
+						?>		
 					</ul>
 
 					<form class="form-inline my-2 my-lg-0">

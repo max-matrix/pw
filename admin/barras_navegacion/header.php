@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<?php  session_start();
-include('../mysql-login.php');
+<?php
 
 include('clases/clase_usuario.php');
 include('clases/clase_perfil.php');
@@ -28,7 +27,9 @@ if(isset($_GET['logout'])){
 }
 	
 if($user->notLogged()){
-	 header('Location: login.php');
+  header('Location: ../index.php?section=login');
+  $_SESSION["estado"] = "error";
+  $_SESSION["mensaje"] = "Podrás ingresar colocando tu nombre de usuario y contraseña. <br> Si no estás registrado ponte en contacto con el administrador del sitio.";
 }
 ?>
 <html lang="en">

@@ -104,14 +104,19 @@ function notificacion(){
   if(mensajes()):
       $clase = $_SESSION["estado"] == "error" ? "danger" : "success";
 
-      $respuesta = "<div class='container'><div class='row my-4'><div class='col-12'>
-      <div class='alert alert-$clase alert-dismissible fade show' role='alert'>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-              <span aria-hidden='true'>&times;</span>
-              <span class='sr-only'>Close</span>
-          </button>
-          $_SESSION[mensaje]
-      </div></div></div></div>";
+      $respuesta = "<div class='container text-center col-8'>
+                      <div class='row my-4'>
+                        <div class='col-12'>
+                          <div class='alert alert-$clase alert-dismissible fade show' role='alert'>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                              <span aria-hidden='true'>&times;</span>
+                              <span class='sr-only'>Close</span>
+                            </button>
+                            $_SESSION[mensaje]
+                          </div>
+                        </div>
+                      </div> 
+                    </div>";
 
       unset($_SESSION["estado"]);
   else:

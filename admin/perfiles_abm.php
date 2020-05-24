@@ -1,3 +1,4 @@
+<<<<<<< HEAD:admin/perfiles_abm.php
 <?php 
 require('barras_navegacion/header.php');
  
@@ -7,6 +8,11 @@ require('barras_navegacion/header.php');
       
       <?php $perfilMenu = 'Perfiles';
 	include('barras_navegacion/side_bar.php');
+=======
+<div class="container-fluid">
+      
+      <?php $perfilMenu = 'Perfiles';
+>>>>>>> 772ff38a5d1aa466a03c13685df3aac9b5e3565a:admin/section/profiles_abm.php
 	
 	$perfil = new Perfil($con); 
 	
@@ -16,23 +22,13 @@ require('barras_navegacion/header.php');
 	if(isset($_GET['edit'])){
             $perfiles = $perfil->get($_GET['edit']); 
 	} 
-	?>
-	  
-	  
-        
+	?>        
         <div class="col-sm-9 col-md-10 main">
           
-          <!--toggle sidebar button-->
-          <p class="visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
-          </p>
-          
-	  <h1 class="page-header">
-                    Nuevo Perfil
-          </h1>
+	  <h1 class="page-header">Nuevo Perfil</h1>
   
           <div class="col-md-2"></div>
-            <form action="perfiles.php" method="post" class="col-md-6 from-horizontal">
+            <form action="index.php?section=profiles" method="post" class="col-md-6 from-horizontal">
                 <div class="form-group">
                     <label for="nombre" class="col-sm-2 control-label">Nombre</label>
                     <div class="col-sm-10">
@@ -70,8 +66,12 @@ require('barras_navegacion/header.php');
           </div>
  
           
-      </div><!--/row-->
+      </div>
 	</div>
+<<<<<<< HEAD:admin/perfiles_abm.php
 </div><!--/.container-->
 
 <?php include('barras_navegacion/footer.php');?>
+=======
+</div>
+>>>>>>> 772ff38a5d1aa466a03c13685df3aac9b5e3565a:admin/section/profiles_abm.php
