@@ -1,13 +1,7 @@
-<?php
-require_once('class/user.php');
-require_once('class/profile.php');
-require_once('class/user_type.php');
-?>
-
 <div class="container my-5 text-center">
     <div class="row justify-content-center">
         <div class="col-12"> 
-            <h1 class="text-left">Usuarios</h1>
+            <h1 class="text-center">Usuarios</h1>
         </div>      
     </div>
 

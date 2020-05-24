@@ -66,7 +66,7 @@ $section = $_GET["section"] ?? "home";
 								<span class="navbar-text font-weight-bold">Hola <?= strtoupper($_SESSION["usuario"]["usuario"]); ?> - </span>
 							</li>
 							<li class="nav-item">
-								<a href="admin/index.php" class="nav-link">Control Panel</a>
+								<a href="admin/index.php?section=products" class="nav-link">Control Panel</a>
 							</li>    
 							<li class="nav-item">
 								<a href="function/logout.php" class="nav-link">Logout</a>
