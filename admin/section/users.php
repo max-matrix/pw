@@ -69,7 +69,7 @@ require_once('class/user_type.php');
 							<td><?php echo ($usuario['activo'])?'si':'no';?></td>
 							<td>
 								<?php if(in_array('user.edit',$_SESSION['usuario']['permisos'])){?>
-										<a href="index.php?section=users_ae&edit=<?php echo $usuario['id_usuario']?>"><button type="button" class="btn btn-info btn-md" title="Modificar">M</button></a>
+										<a href="index.php?section=users_abm&edit=<?php echo $usuario['id_usuario']?>"><button type="button" class="btn btn-info btn-md" title="Modificar">M</button></a>
 								<?php }?>
 								<?php if(in_array('user.del',$_SESSION['usuario']['permisos'])){?>
 										<a href="index.php?section=users&del=<?php echo $usuario['id_usuario']?>"><button type="button" class="btn btn-danger btn-md" title="Borrar">B</button></a>
