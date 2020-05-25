@@ -1,17 +1,9 @@
 <div class="container my-5 text-center">
-<<<<<<< HEAD
 	<div class="row justify-content-center">
 		<div class="col-12">
-			<h1 class="text-left">Usuarios</h1>
+			<h1 class="text-center">Usuarios</h1>
 		</div>
 	</div>
-=======
-    <div class="row justify-content-center">
-        <div class="col-12"> 
-            <h1 class="text-center">Usuarios</h1>
-        </div>      
-    </div>
->>>>>>> 9828495e851ff8d21b2e05a42c9150c90d6173de
 
 	<div class="row justify-content-center">
 
@@ -59,7 +51,6 @@
 						<th>Acciones</th>
 					</tr>
 				</thead>
-<<<<<<< HEAD
 				<tbody>
 					<?php
                     foreach ($user->getList() as $usuario) {?>
@@ -80,7 +71,7 @@
 						</td>
 						<td>
 							<?php if (in_array('user.edit', $_SESSION['usuario']['permisos'])) {?>
-							<a <a
+							<a
 								href="index.php?section=users_abm&edit=<?php echo $usuario['id_usuario']?>"><button
 									type="button" class="btn btn-info btn-md" title="Modificar">M</button></a>
 							<?php }?>
@@ -92,29 +83,6 @@
 						</td>
 					</tr>
 					<?php }?>
-=======
-				<tbody> 
-				<?php  	 
-					foreach($user->getList() as $usuario){?>
-						<tr>
-							<td class="font-weight-bold"><?php echo $usuario['id_usuario'];?></td>
-							<td><?php echo $usuario['nombre'];?></td>
-							<td><?php echo $usuario['apellido'];?></td>
-							<td><?php echo $usuario['usuario'];?></td>
-							<td><?php echo $usuario['email'];?></td>
-							<td><?php echo isset($usuario['perfiles'])?implode(', ',$usuario['perfiles']):'No tiene perfiles asignados';?></td>
-							<td><?php echo ($usuario['activo'])?'si':'no';?></td>
-							<td>
-								<?php if(in_array('user.edit',$_SESSION['usuario']['permisos'])){?>
-										<a href="index.php?section=users_abm&edit=<?php echo $usuario['id_usuario']?>"><button type="button" class="btn btn-info btn-md" title="Modificar">M</button></a>
-								<?php }?>
-								<?php if(in_array('user.del',$_SESSION['usuario']['permisos'])){?>
-										<a href="index.php?section=users&del=<?php echo $usuario['id_usuario']?>"><button type="button" class="btn btn-danger btn-md" title="Borrar">B</button></a>
-								<?php }?>
-							</td>
-						</tr>
-				<?php }?>      
->>>>>>> 9828495e851ff8d21b2e05a42c9150c90d6173de
 				</tbody>
 			</table>
 		</div>
