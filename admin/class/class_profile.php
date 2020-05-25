@@ -76,9 +76,6 @@ Class Perfil{
  			$this->con->exec($sql);
 	} 
 	
-	
-
-	
 	public function edit($data){
 			$id = $data['id'];
 			unset($data['id']);
@@ -104,8 +101,7 @@ Class Perfil{
 				$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
 							VALUES ('.$id.','.$permisos.');';
 			}
-			$this->con->exec($sql);
-			 
+			$this->con->exec($sql);	 
 	} 
 }
 ?>

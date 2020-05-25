@@ -1,5 +1,5 @@
 <?php 
-Class Marca{
+Class Categoria{
 
     /*conexion a la base*/
 	private $con;
@@ -9,21 +9,21 @@ Class Marca{
 	}
 
 	public function getList(){
-		$query = "SELECT id_marca, nom_marca
-		           FROM marca";
+		$query = "SELECT id_categoria, nombre, id_padre
+		           FROM categoria";
         return $this->con->query($query); 
 	}
 	
-	public function get($id_marca){
-	    $query = "SELECT id_marca,nom_marca
-		           FROM marca WHERE id_marca = ".$id_marca;
+	public function get($id_categoria){
+	    $query = "SELECT id_categoria,nombre,id_padre
+		           FROM categoria WHERE id_categoria = ".$id_categoria;
         $query = $this->con->query($query); 
 			
-		$marca = $query->fetch(PDO::FETCH_OBJ);
+		$categoria = $query->fetch(PDO::FETCH_OBJ);
 			
-			// $sql = 'SELECT id_marca, nom_marca
-			// 		  FROM marca  
-			// 		  WHERE id_marca = '.$marca->id_marca;
+			// $sql = 'SELECT id_categoria, nombre
+			// 		  FROM categoria  
+			// 		  WHERE id_categoria = '.$categoria->id_categoria;
 					  
 			// foreach($this->con->query($sql) as $permiso){
 			// 	$perfil->permisos[] = $permiso['permiso_id'];
@@ -31,19 +31,19 @@ Class Marca{
 			// echo '<pre>';
 			// var_dump($perfil);echo '</pre>'; 
 
-        return $marca;
+        return $categoria;
 	}
 
-	public function del($id_marca){
-		$query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id_marca;
+	public function del($id_categoria){
+		$query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id_categoria;
 		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
 		if($consulta->cantidad == 0){
-			$query = "DELETE FROM marca WHERE id_marca = ".$id_marca."; 
-					  DELETE FROM marca WHERE id_marca = ".$id_marca.";";
+			$query = "DELETE FROM categoria WHERE id_categoria = ".$id_categoria."; 
+					  DELETE FROM categoria WHERE id_categoria = ".$id_categoria.";";
 
 			return $this->con->exec($query); 
 		}
-		return 'Marca asignada a un producto';
+		return 'Categoria asignada a un producto';
 	}
 	
 	/**
@@ -65,18 +65,18 @@ Class Marca{
 			// echo "<pre>";var_dump($columns);echo "</pre>";
 			// echo "<pre>";var_dump($datos);echo "</pre>";
 			
-            $sql = "INSERT INTO marca(".implode(',',$columns).") VALUES('".implode("','",$datos)."')";
+            $sql = "INSERT INTO categoria(".implode(',',$columns).") VALUES('".implode("','",$datos)."')";
 			// echo "<pre>";var_dump($sql);echo "</pre>";
 			
 
             $this->con->exec($sql);
-			$id_marca = $this->con->lastInsertId();
-			//echo "<pre>";var_dump($id_marca);echo "</pre>";
+			$id_categoria = $this->con->lastInsertId();
+			//echo "<pre>";var_dump($id_categoria);echo "</pre>";
 			
 			// $sql = '';
-			// foreach($data['marcas'] as $marcas){
-			// 	$sql .= 'INSERT INTO marca(id_marca,nom_marca) 
-			// 				VALUES ('.$id_marca.','.$nom_marca.');';
+			// foreach($data['categorias'] as $categorias){
+			// 	$sql .= 'INSERT INTO categoria(id_categoria,nombre) 
+			// 				VALUES ('.$id_categoria.','.$nombre.');';
 			// }
 			//echo $sql;die();
 
@@ -87,9 +87,9 @@ Class Marca{
 
 	
 	public function edit($data){
-			$id_marca = $data['id_marca'];
+			$id_categoria = $data['id_categoria'];
 			//echo "<pre>";  var_dump($data); "</pre>"; die();
-			unset($data['id_marca']);
+			unset($data['id_categoria']);
             
             foreach($data as $key => $value){
 				if(!is_array($value)){
@@ -99,17 +99,17 @@ Class Marca{
 				}
 			}
             //echo "<pre>";  var_dump($data); "</pre>"; 
-            $sql = "UPDATE marca SET ".implode(',',$columns)." WHERE id_marca = ".$id_marca;
+            $sql = "UPDATE categoria SET ".implode(',',$columns)." WHERE id_categoria = ".$id_categoria;
             //echo $sql; die();
             $this->con->exec($sql);
 		 
-			// $sql = 'DELETE FROM marca WHERE id_marca= '.$id_marca;
+			// $sql = 'DELETE FROM categoria WHERE id_categoria= '.$id_categoria;
 			// $this->con->exec($sql);
 			
 			// $sql = '';
-			// foreach($data['marcas'] as $marcas){
-			// 	$sql .= 'INSERT INTO marca(id_marca,nom_marca) 
-			// 				VALUES ('.$id_marca.','.$nom_marca.');';
+			// foreach($data['categorias'] as $categorias){
+			// 	$sql .= 'INSERT INTO categoria(id_categoria,nombre) 
+			// 				VALUES ('.$id_categoria.','.$nombre.');';
 			// }
 			// $this->con->exec($sql);
 			 
