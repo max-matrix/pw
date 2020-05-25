@@ -7,14 +7,10 @@
 			!in_array('user.edit',$_SESSION['usuario']['permisos']) &&
             !in_array('user.see',$_SESSION['usuario']['permisos']))
             { 
-                //require_once("../../function/config.php");
-                //session_destroy();
                 header('Location: ../../index.php'); 
             }
 	
-            seeInfo($con);
-        $perfil = new Perfil($con); 
-            seeInfo($_GET);
+        $perfil = new Perfil($con);
         if(isset($_GET['edit'])){
             $usuario = $user->get($_GET['edit']); 
         } 
