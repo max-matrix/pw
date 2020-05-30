@@ -2,9 +2,6 @@
 require_once("../../function/config.php");
 require_once("../../function/function.php");
 
-$rename = $_POST["rename"];
-$delete = $_POST["delete"];
-
 if(empty($_POST["id"])):
     $_SESSION["estado"] = "error";
     $_SESSION["mensaje"] = "La imágen <b>$_POST[id]</b> no existe.";
