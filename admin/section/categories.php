@@ -31,7 +31,8 @@
 
 		<div class="col-12">
 			<h2 class="sub-header text-left"> 
-				<a href="index.php?section=categories_abm"><button type="button" class="btn btn-success btn-md" title="Agregar">Agregar Categoría</button></a></h2>
+				<a href="index.php?section=categories_abm"><button type="button" class="btn btn-success btn-md" title="Agregar">Agregar Categoría</button></a>
+			</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr class="font-weight-bold h5 text-center">

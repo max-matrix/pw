@@ -77,6 +77,7 @@
 							<li class="<?php echo isset($userMenu)?'active':''?>"><a class="nav-link" href="index.php?section=users">Usuarios</a></li>
 							<?php }?>
 							<li class="nav-item"><a class="nav-link" href="index.php?section=profiles">Perfiles</a></li>
+							<li class="nav-item"><a class="nav-link" href="index.php?section=pictures">Imágenes</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">Export</a></li>
 							<li class="nav-item"><a class="nav-link" href="../function/logout.php">Logout</a></li>
 						</ul>

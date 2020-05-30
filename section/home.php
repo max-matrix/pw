@@ -6,19 +6,7 @@
 
 			<?php
 
-                $product = new Product($con);
-                // echo "<p><h3>productos obtenidos de la base primera vez </h3><br/>";
-                // foreach ($product->getProductByRandom() as $row) {
-                //     echo print_r($row)."<p><p>";
-                // }
-
-                // $productArray = $product->getProductByRandom();
-                // echo "<p><h3>productos obtenidos por segunda vez</h3> <p>";
-                // foreach ($product->getProductByRandom() as $row) {
-                //     echo print_r($row)."<p><p>";
-                // }
-                // exit ;
-                
+                $product = new Product($con);                
                 echo printProductByOutstanding($product->getProductByRandom());
 
             ?>
