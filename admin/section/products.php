@@ -10,11 +10,14 @@
 		<?php 
 			$productosMenu = 'Productos';	  
 			$productos = new Producto($con);
-
+			//var_dump($productos);
+			
 			if (isset($_POST['formulario_productos'])){ 
 				if($_POST['id_producto'] > 0){
+					//var_dump($_POST);
 						$productos->edit($_POST);                
 				}else{			
+					//var_dump($_POST);
 						$productos->save($_POST); 
 				}
 				
@@ -31,7 +34,8 @@
         ?> 
 
 		<div class="col-12">
-			<h2 class="sub-header text-left"><a href="index.php?section=products_abm"><button type="button" class="btn btn-success btn-md" title="Agregar">Agregar Producto</button></a></h2>
+			<h2 class="sub-header text-left">
+				<a href="index.php?section=products_abm"><button type="button" class="btn btn-success btn-md" title="Agregar">Agregar Producto</button></a></h2>
 			<table class="table table-striped">
 				<thead>
 					<tr class="h5 font-weight-bold text-center">
@@ -41,6 +45,7 @@
 						<th>Descripcion</th>
 						<th>Disponibilidad</th>
 						<th>Ranking</th>
+						<th>Imagen</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -54,12 +59,13 @@
 						  <td><?php echo $producto['descripcion'];?></td>
 						  <td><?php echo $producto['disponibilidad'];?></td>
 						  <td><?php echo $producto['ranking'];?></td>
+						  <td><img class="img-fluid" src="../img/<?php echo $producto['nombre_imagen'].'.jpg'; ?>" alt="..."></td>						  
 						  <td>
 						      <a href="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>"><button 
-							     type="button" class="btn btn-info btn-md" title="Modificar">M</button></a>
+							     type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
 
 							  <a href="index.php?section=products&del=<?php echo $producto['id_producto']?>"><button 
-							     type="button" class="btn btn-danger btn-md" title="Borrar">B</button></a>
+							     type="button" class="btn btn-danger btn-md" title="Borrar">Eliminar</button></a>
 					      </td>
 						</tr>
 				    <?php }?>

@@ -11,22 +11,23 @@
 			$marcasMenu = 'Marcas';
 			$marcas = new Marca($con);
 
+
 			if (isset($_POST['formulario_marcas'])) {
 				if ($_POST['id_marca'] > 0) {
+
 					$marcas->edit($_POST);
 				} else {
+					
 					$marcas->save($_POST);
-				}
-				
-				header('index.php?section=brands');
+				}				
+				header('Location: index.php?section=brands');
 			}
 			
 			if (isset($_GET['del'])) {
 				$resp = $marcas->del($_GET['del']) 	;
 				if ($resp == 1) {
-					header('index.php?section=brands');
-				}
-				
+					header('Location: index.php?section=brands');
+				}				
 				echo '<script>alert("'.$resp.'");</script>';
 			}
         ?>	 
@@ -51,6 +52,7 @@
 							<td>
 								<a	href="index.php?section=brands_abm&edit=<?php echo $marca['id_marca']?>"><button
 									type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
+
 								<a	href="index.php?section=brands&del=<?php echo $marca['id_marca']?>"><button
 									type="button" class="btn btn-danger btn-md" title="Borrar">Eliminar</button></a>
 							</td>

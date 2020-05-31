@@ -9,13 +9,13 @@ Class Producto{
 	}
 
 	public function getList(){
-		$query = "SELECT id_producto, nombre, precio, descripcion, disponibilidad, ranking
+		$query = "SELECT id_producto, nombre, precio, descripcion, disponibilidad, ranking, nombre_imagen
 		           FROM producto";
         return $this->con->query($query); 
 	}
 	
 	public function get($id_producto){
-	    $query = "SELECT id_producto,nombre,precio,descripcion,disponibilidad, ranking
+	    $query = "SELECT id_producto,nombre,precio,descripcion,disponibilidad, ranking, nombre_imagen
 		           FROM producto WHERE id_producto = ".$id_producto;
         $query = $this->con->query($query); 
 			

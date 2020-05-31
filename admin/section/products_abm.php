@@ -70,7 +70,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-warning" name="formulario_productos" >Guardar</button>
+                    <button type="submit" class="btn btn-warning" name="formulario_productos" >Guardar Producto</button>
                     </div>
                 </div> 
                 <input type="hidden" class="form-control" id="id" name="id_producto" placeholder="" 

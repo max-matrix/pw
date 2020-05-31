@@ -87,6 +87,8 @@ Class Usuario{
 	* Actualizo los datos en la base de datos
 	*/
 	public function edit($data){
+		//echo "data: ".var_dump($data);
+
 	    $id = $data['id_usuario'];
 	    unset($data['id_usuario']);
 	    
@@ -101,8 +103,10 @@ Class Usuario{
                 if($value != null){
                     $columns[]=$key." = '".$value."'"; 
                 }
-            }
-            $sql = "UPDATE usuarios SET ".implode(',',$columns)." WHERE id_usuario = ".$id;
+			}
+			//echo "columns: ".var_dump($columns);
+			$sql = "UPDATE usuarios SET ".implode(',',$columns)." WHERE id_usuario = ".$id;
+			
             
             $this->con->exec($sql);
 			

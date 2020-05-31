@@ -38,7 +38,7 @@
 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-warning" name="formulario_marcas">Guardar</button>
+          <button type="submit" class="btn btn-warning" name="formulario_marcas">Guardar Marca</button>
         </div>
       </div>
       <input type="hidden" class="form-control" id="id" name="id_marca" placeholder=""

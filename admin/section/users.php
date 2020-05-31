@@ -7,7 +7,10 @@
 
 	<div class="row justify-content-center">
 
-		<?php $userMenu = 'Usuarios';
+		<?php
+		$usuariosMenu = 'Usuarios';
+		$usuarios = new Usuario($con);
+		//var_dump($user);
 
             if (!in_array('user.add', $_SESSION['usuario']['permisos']) &&
                 !in_array('user.del', $_SESSION['usuario']['permisos']) &&
@@ -15,20 +18,26 @@
                 !in_array('user.see', $_SESSION['usuario']['permisos'])) {
                 header('Location: ../index.php');
             }
-                
-            if (isset($_POST['submit'])) {
+			//var_dump($_POST);
+			
+            if (isset($_POST['formulario_usuarios'])) {
                 if ($_POST['id_usuario'] > 0) {
+					//var_dump($_POST);
                     $user->edit($_POST);
                 } else {
+					//var_dump($_POST);
                     $user->save($_POST);
                 }
                 header('Location: index.php?section=users');
             }
         
             if (isset($_GET['del'])) {
-                $user->del($_GET['del']);
-                header('Location: index.php?section=users');
-            }
+				$resp = $usuarios->del($_GET['del']);
+				if ($resp == 1) {
+                    header('Location: index.php?section=users');
+			    }
+			    echo '<script>alert("'.$resp.'");</script>';
+			}
         ?>
 
 		<div class="col-12">
@@ -55,30 +64,23 @@
 					<?php
                     foreach ($user->getList() as $usuario) {?>
 					<tr>
-						<td class="font-weight-bold"><?php echo $usuario['id_usuario'];?>
-						</td>
-						<td><?php echo $usuario['nombre'];?>
-						</td>
-						<td><?php echo $usuario['apellido'];?>
-						</td>
-						<td><?php echo $usuario['usuario'];?>
-						</td>
-						<td><?php echo $usuario['email'];?>
-						</td>
-						<td><?php echo isset($usuario['perfiles'])?implode(', ', $usuario['perfiles']):'No tiene perfiles asignados';?>
-						</td>
-						<td><?php echo ($usuario['activo'])?'si':'no';?>
-						</td>
+						<td class="font-weight-bold"><?php echo $usuario['id_usuario'];?></td>
+						<td><?php echo $usuario['nombre'];?></td>
+						<td><?php echo $usuario['apellido'];?></td>
+						<td><?php echo $usuario['usuario'];?></td>
+						<td><?php echo $usuario['email'];?></td>
+						<td><?php echo isset($usuario['perfiles'])?implode(', ', $usuario['perfiles']):'No tiene perfiles asignados';?></td>
+						<td><?php echo ($usuario['activo'])?'si':'no';?></td>
 						<td>
 							<?php if (in_array('user.edit', $_SESSION['usuario']['permisos'])) {?>
-							<a
-								href="index.php?section=users_abm&edit=<?php echo $usuario['id_usuario']?>"><button
-									type="button" class="btn btn-info btn-md" title="Modificar">M</button></a>
+							<a	href="index.php?section=users_abm&edit=<?php echo $usuario['id_usuario']?>"><button
+								type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
 							<?php }?>
+							<!--Esto de borrar esta sin uso, ya que el borrado de usuarios se haria desde la db -->
 							<?php if (in_array('user.del', $_SESSION['usuario']['permisos'])) {?>
 							<a
 								href="index.php?section=users&del=<?php echo $usuario['id_usuario']?>"><button
-									type="button" class="btn btn-danger btn-md" title="Borrar">B</button></a>
+									type="button" class="btn btn-danger btn-md" title="Borrar">Eliminar</button></a>
 							<?php }?>
 						</td>
 					</tr>

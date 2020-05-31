@@ -44,14 +44,10 @@
 				<tbody> 
 					<?php
 						foreach ($categorias->getList() as $categoria) {?>
-
 						<tr>
-							<td><?php echo $categoria['id_categoria'];?>
-							</td>
-							<td><?php echo $categoria['nombre'];?>
-							</td>
-							<td><?php echo $categoria['id_padre'];?>
-							</td>
+							<td><?php echo $categoria['id_categoria'];?></td>
+							<td><?php echo $categoria['nombre'];?></td>
+							<td><?php echo $categoria['id_padre'];?></td>
 							<td>
 								<a	href="index.php?section=categories_abm&edit=<?php echo $categoria['id_categoria']?>"><button
 									type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
