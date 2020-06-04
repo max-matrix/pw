@@ -53,7 +53,7 @@ Class Marca{
 	public function save($data){
 		
             foreach($data as $key => $value){
-				
+
 				if(!is_array($value)){
 					if($value != null){
 						$columns[]=$key;
@@ -80,7 +80,8 @@ Class Marca{
 			// }
 			//echo $sql;die();
 
- 			// $this->con->exec($sql);
+			// $this->con->exec($sql);
+			 
 	} 
 	
 	

@@ -67,8 +67,14 @@
                         value="<?php echo (isset($productos->ranking)?$productos->ranking:'');?>">
                     </div>
                 </div> 
-
-                <div class="form-group">
+            <!--
+                <div class="form-group h6">
+                    <label for="imagen" class="col-sm-2 control-label">Imagen</label>
+                         <input type="file" class="form-control-file" name="imagen" id="imagen" aria-describedby="fileHelpId">
+                         <small id="fileHelpId" class="form-text text-muted">El formato debe ser <b>.jpg</b></small>
+                </div>
+            -->
+                <div class="form-group h6">
                     <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-warning" name="formulario_productos" >Guardar Producto</button>
                     </div>
