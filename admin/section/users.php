@@ -22,18 +22,55 @@
 			
             if (isset($_POST['formulario_usuarios'])) {
                 if ($_POST['id_usuario'] > 0) {
-					//var_dump($_POST);
-                    $user->edit($_POST);
-                } else {
-					//var_dump($_POST);
-                    $user->save($_POST);
-                }
-                header('Location: index.php?section=users');
-            }
+					//var_dump($_POST);					
+					if(empty($_POST["nombre"]) || empty($_POST["apellido"]) || empty($_POST["usuario"])|| empty($_POST["clave"])|| empty($_POST["email"])){
+						$_SESSION["estado"] = "error";
+						$_SESSION["mensaje"] = "Todos los campos son obligatorios.";
+						header("Location:index.php?section=users_abm&edit=$_POST[id_usuario]");					
+					}
+					else
+					{
+						$resp= $usuarios->get_por_nombreUsuario($_POST["nombre"]);
+						if ($resp < 1) 
+						{
+					    	$usuarios->edit($_POST);
+					    	$_SESSION["estado"] = "ok";
+					    	$_SESSION["mensaje"] = "Ha modificado el usuario de forma exitosa.";
+					    	header('Location: index.php?section=users');
+				    	} else {
+				    		$_SESSION["estado"] = "error";
+				    	 	$_SESSION["mensaje"] = "Ya existe un usuario con ese nombre.";
+				    		header("Location:index.php?section=users_abm&edit=$_POST[nombre]");
+			    		}
+			    	}		
+
+		    	} else {
+			    	if(empty($_POST["nombre"]) || empty($_POST["apellido"]) || empty($_POST["usuario"])|| empty($_POST["clave"])|| empty($_POST["email"])){
+				    	$_SESSION["estado"] = "error";
+				    	$_SESSION["mensaje"] = "Todos los campos son obligatorios.";
+				    	header("Location:index.php?section=users_abm");
+				    }else{
+					    $resp= $usuarios->get_por_nombreUsuario($_POST["nombre"]);
+					    if ($resp < 1 )
+					    {
+						    $usuarios->save($_POST);
+						    $_SESSION["estado"] = "ok";
+						    $_SESSION["mensaje"] = "Ha subido el usuario de forma exitosa.";
+						    header('Location: index.php?section=users');
+					    } else {
+    						$_SESSION["estado"] = "error";
+	    					$_SESSION["mensaje"] = "Ya existe un usuario con ese nombre.";
+		    				header('Location: index.php?section=users_abm');
+			    		}
+				    }
+			    }
+		    }
         
             if (isset($_GET['del'])) {
 				$resp = $usuarios->del($_GET['del']);
 				if ($resp == 1) {
+					$_SESSION["estado"] = "ok";
+					$_SESSION["mensaje"] = "Ha eliminado el usuario con exito";
                     header('Location: index.php?section=users');
 			    }
 			    echo '<script>alert("'.$resp.'");</script>';

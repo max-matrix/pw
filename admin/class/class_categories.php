@@ -13,9 +13,15 @@ Class Categoria{
 		           FROM categoria";
         return $this->con->query($query); 
 	}
+
+	public function get_por_nombreCategoria($nombre){ //id_padre
+		$query = 'SELECT count(1) as cantidad FROM categoria WHERE nombre = "'.$nombre.'"';
+		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+		return $consulta->cantidad ;
+	}
 	
 	public function get($id_categoria){
-	    $query = "SELECT id_categoria,nombre,id_padre
+	    $query = "SELECT id_categoria,nombre ,id_padre
 		           FROM categoria WHERE id_categoria = ".$id_categoria;
         $query = $this->con->query($query); 
 			

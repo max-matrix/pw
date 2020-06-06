@@ -11,42 +11,55 @@
 			$marcasMenu = 'Marcas';
 			$marcas = new Marca($con);
 
-
 			//$nombre = $_POST["nom_marca"];
 			//$id = $POST["id_marca"];
 			
 			if (isset($_POST['formulario_marcas'])) {
 				if ($_POST['id_marca'] > 0) {
 					
-					$marcas->edit($_POST);
-					//header('Location: index.php?section=brands');
-
 					if(empty($_POST["nom_marca"])){
 						$_SESSION["estado"] = "error";
 						$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
 						header("Location:index.php?section=brands_abm&edit=$_POST[id_marca]");
-					
-					}else{
-						$marcas->edit($_POST);
-						$_SESSION["estado"] = "ok";
-						$_SESSION["mensaje"] = "Ha modificado la marca de forma exitosa.";
-						header('Location: index.php?section=brands');}
+					}
+					else
+					{
+                        $resp= $marcas->get_por_nom_marca($_POST["nom_marca"]);
+						if ($resp < 1) 
+						{
+                            $marcas->edit($_POST);
+                            $_SESSION["estado"] = "ok";
+                            $_SESSION["mensaje"] = "Ha modificado la marca de forma exitosa.";
+                            header('Location: index.php?section=brands');
+                        } else {
+                            $_SESSION["estado"] = "error";
+							$_SESSION["mensaje"] = "Ya existe una marca con ese nombre.";							
+							header("Location:index.php?section=brands_abm&edit=$_POST[id_marca]");
+                        }
+                    }
 	
 				} else {
-
 					if(empty($_POST["nom_marca"])){
 						$_SESSION["estado"] = "error";
 						$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
 						header("Location:index.php?section=brands_abm");
 					}else{
-						$marcas->save($_POST);
-						$_SESSION["estado"] = "ok";
-						$_SESSION["mensaje"] = "Ha subido la marca de forma exitosa.";
-						header('Location: index.php?section=brands');
+						$resp= $marcas->get_por_nom_marca($_POST["nom_marca"]);
+						if ($resp < 1 )
+						{
+							$marcas->save($_POST);
+							$_SESSION["estado"] = "ok";
+							$_SESSION["mensaje"] = "Ha subido la marca de forma exitosa.";
+							header('Location: index.php?section=brands');
+						} else {
+                            $_SESSION["estado"] = "error";
+                            $_SESSION["mensaje"] = "Ya existe una marca con ese nombre.";
+                            header('Location: index.php?section=brands_abm');
+                        }
 					}
 				}				
 			}
-			
+
 			if (isset($_GET['del'])) {
 				$resp = $marcas->del($_GET['del']) 	;
 				if ($resp == 1) {

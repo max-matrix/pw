@@ -14,17 +14,56 @@
 
 			if(isset($_POST['formulario_perfiles'])){ 
 				if($_POST['id'] > 0){
-						$perfiles->edit($_POST);                
+						
+						if(empty($_POST["nombre"])){
+							$_SESSION["estado"] = "error";
+							$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
+							header("Location:index.php?section=profiles_abm&edit=$_POST[id]");
+						}
+						else
+						{
+							$resp= $perfiles->get_por_nombrePerfil($_POST["nombre"]);
+						    if ($resp < 1) 
+						    {  
+							    $perfiles->edit($_POST);
+							    $_SESSION["estado"] = "ok";
+							    $_SESSION["mensaje"] = "Ha modificado el perfil de forma exitosa.";
+								header('Location: index.php?section=profiles');
+							} else {
+								$_SESSION["estado"] = "error";
+								$_SESSION["mensaje"] = "Ya existe una perfil con ese nombre.";								
+								header("Location:index.php?section=profiles_abm&edit=$_POST[id]");
+							}
+						}	
+
 				}else{			
-						$perfiles->save($_POST); 
-				}
-				header('Location: index.php?section=profiles');
+					if(empty($_POST["nombre"])){
+						$_SESSION["estado"] = "error";
+						$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
+						header("Location:index.php?section=profiles_abm");
+					}else{
+						$resp= $perfiles->get_por_nombrePerfil($_POST["nombre"]);
+						if ($resp < 1 )
+						{
+						    $perfiles->save($_POST);
+						    $_SESSION["estado"] = "ok";
+						    $_SESSION["mensaje"] = "Ha subido el perfil de forma exitosa.";
+							header('Location: index.php?section=profiles');
+						} else {
+                            $_SESSION["estado"] = "error";
+                            $_SESSION["mensaje"] = "Ya existe un perfil con ese nombre.";
+                            header('Location: index.php?section=profiles_abm');
+                        }
+					}					 
+				}				
 			}	
 			
 			if(isset($_GET['del'])){
 					$resp = $perfiles->del($_GET['del']) 	;
 					if($resp == 1){
-						header('Location: index.php?section=profiles');	
+						$_SESSION["estado"] = "ok";
+						$_SESSION["mensaje"] = "Ha eliminado el perfil con exito";
+						header('Location: index.php?section=profiles');						
 					}
 					echo '<script>alert("'.$resp.'");</script>';
 			}

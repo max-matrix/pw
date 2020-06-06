@@ -25,8 +25,8 @@
       </h1>
   
           <div class="col-md-2"></div>
-
-            <form action="index.php?section=products" method="post" class="col-md-6 from-horizontal">
+            
+            <form action="index.php?section=products" method="post" class="col-md-6 from-horizontal" enctype="multipart/form-data" > 
 
                 <div class="form-group">
                     <label for="nombre" class="col-sm-2 control-label">Nombre</label>
@@ -67,13 +67,24 @@
                         value="<?php echo (isset($productos->ranking)?$productos->ranking:'');?>">
                     </div>
                 </div> 
-            <!--
+
+                <div class="form-group">
+                    <label for="nombre" class="col-sm-2 control-label">Nombre imagen</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nombre_imagen" name="nombre_imagen" 
+                        placeholder="" 
+                        disabled
+                        value="<?php echo (isset($productos->nombre_imagen)?$productos->nombre_imagen:'');?>">
+                    </div>
+                </div> 
+
+            
                 <div class="form-group h6">
                     <label for="imagen" class="col-sm-2 control-label">Imagen</label>
-                         <input type="file" class="form-control-file" name="imagen" id="imagen" aria-describedby="fileHelpId">
+                         <input type="file" class="form-control-file" name="ARCHIVO_SUBIDO" id="imagen" aria-describedby="fileHelpId">
                          <small id="fileHelpId" class="form-text text-muted">El formato debe ser <b>.jpg</b></small>
                 </div>
-            -->
+            
                 <div class="form-group h6">
                     <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-warning" name="formulario_productos" >Guardar Producto</button>
@@ -81,6 +92,17 @@
                 </div> 
                 <input type="hidden" class="form-control" id="id" name="id_producto" placeholder="" 
                 value="<?php echo (isset($productos->id_producto)?$productos->id_producto:'');?>">
+
+                <div class="form-group">
+                <img class="img-fluid" src="../img/<?php
+                if (isset($productos->nombre_imagen)) {
+                    echo $productos->nombre_imagen;
+                } else {
+                    echo 'sin_imagen.jpg';
+                }?>">
+                </div>
+
+
 
             </form>
           </div>

@@ -14,6 +14,12 @@ Class Perfil{
         return $this->con->query($query); 
 	}
 	
+	public function get_por_nombrePerfil($nombre){
+		$query = 'SELECT count(1) as cantidad FROM perfil WHERE nombre = "'.$nombre.'"';
+		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+		return $consulta->cantidad ;
+	}
+
 	public function get($id){
 	    $query = "SELECT id,nombre
 		           FROM perfil WHERE id = ".$id;

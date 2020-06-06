@@ -140,4 +140,12 @@ function encrypt($clave,$salt){
   return hash('md5',$clave);
 }
 
+
+function saveName($nombre){
+  $nombreImagen = str_ireplace(" ","_",$nombre);
+  return strtolower($nombreImagen);
+}
+
+
+
 ?>

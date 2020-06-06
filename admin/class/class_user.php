@@ -32,12 +32,20 @@ Class Usuario{
             return $resultado; 
 	}
 	
+	public function get_por_nombreUsuario($nombre){
+		$query = 'SELECT count(1) as cantidad FROM usuarios WHERE nombre = "'.$nombre.'"';
+		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+		return $consulta->cantidad ;
+	}
+
+
+
 	/**
 	* obtengo un usuario
 	*/
-	public function get($id){
+	public function get($id_usuario){
 	    $query = "SELECT id_usuario,nombre,apellido,email,usuario,clave,activo,salt
-		           FROM usuarios WHERE id_usuario = ".$id;
+		           FROM usuarios WHERE id_usuario = ".$id_usuario;
         $query = $this->con->query($query); 
 			
 		$usuario = $query->fetch(PDO::FETCH_OBJ);
