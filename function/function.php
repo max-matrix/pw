@@ -10,7 +10,7 @@ function printProduct($prod) {
       $salidaProduct .= '
         <div class="col-4 mb-4">
               <div class="card">
-                  <img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
+                  <img src="img/' . $row['nombre_imagen'] . '" class="card-img-top" alt="...">
                   <div class="card-body text-center">                                     
                       <h5 class="card-title">' . $row['nombre'] . '</h5>
                       <p class="card-text h-fix">' . $row['descripcion'] . '</p>
@@ -33,7 +33,7 @@ function printProductByID($prod) {
 
     $salidaProduct = '<div class="col-6">
     <div class="card">
-      <img src="img/' . $prod['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
+      <img src="img/' . $prod['nombre_imagen'] . '" class="card-img-top" alt="...">
     </div> 
     </div>
       <div class="col-4">
@@ -45,12 +45,62 @@ function printProductByID($prod) {
           <p>Marca:' . $prod['nom_marca'] . '</p>
           <p>Precio: $' . number_format($prod['precio'], 2, ',', '.') . '</p>
           <a href="#" class="btn btn-danger">Comprar</a>
+          <a href="index.php?section=commentary&id=' . $prod['id_producto'] . '" class="btn btn-danger">Comentar</a>
       </div>
     </div>'
       ;
   }
   return $salidaProduct;
 }
+
+
+function printProductByCommentary($prod) {
+
+  if (!empty($prod)) {
+
+    $salidaProduct = '<div class="col-6">
+    <div class="card">
+      <img src="img/' . $prod['nombre_imagen'] . '" class="card-img-top" alt="...">
+    </div> 
+    </div>
+      <div class="col-4">
+        <div class="card-description">
+          <h5 class="card-title">' . $prod['nombre'] . '</h5>
+          <p class="card-text">' . $prod['descripcion'] . '</p>
+          <p>Disponibilidad:' . $prod['disponibilidad'] . '</p>
+          <p>Condición:' . $prod['condicion'] . '</p>
+          <p>Marca:' . $prod['nom_marca'] . '</p>
+          <p>Precio: $' . number_format($prod['precio'], 2, ',', '.') . '</p>                    
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="card">
+        <div class="form-group">
+          <h5 label for="nombre">Comentario</label>
+          <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Deje su comentario del producto">
+        </div>
+ 
+
+    <div class="form-group">
+        <h5 label for="checkbox">Rankea este producto:</label>							
+            <label> 1 <input type="checkbox" name="1" /></label>
+            <label> 2 <input type="checkbox" name="2" /></label>
+            <label> 3 <input type="checkbox" name="3" /></label>
+            <label> 4 <input type="checkbox" name="4" /></label>
+            <label> 5 <input type="checkbox" name="5" /></label>
+    </div>
+
+
+      </div>
+    </div>
+    
+    '
+      ;
+  }
+  return $salidaProduct;
+}
+
+
 
 function printProductByOutstanding($prodByOutstanding) {
 
@@ -63,7 +113,7 @@ function printProductByOutstanding($prodByOutstanding) {
       $salidaProduct .= '
         <div class="col-4 mb-5">
         <div class="card" >
-          <img src="img/' . $row['nombre_imagen'] . '.jpg" class="card-img-top" alt="...">
+          <img src="img/' . $row['nombre_imagen'] . '" class="card-img-top" alt="...">
             <div class="card-body text-center">
               <h5 class="card-title">$' . number_format($row['precio'], 2, ',', '.') . '</h5>
               <p class="card-text">' . $row['nombre'] . '</p>
@@ -139,5 +189,13 @@ function encrypt($clave,$salt){
   //return md5($clave);
   return hash('md5',$clave);
 }
+
+
+function saveName($nombre){
+  $nombreImagen = str_ireplace(" ","_",$nombre);
+  return strtolower($nombreImagen);
+}
+
+
 
 ?>

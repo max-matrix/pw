@@ -1,5 +1,5 @@
 <?php 
-Class Perfil{
+Class Comentario{
 
     /*conexion a la base*/
 	private $con;	
@@ -7,21 +7,15 @@ Class Perfil{
 		$this->con = $con;
 	}
 
-	/* Obtengo todos los perfiles */
+    /* Obtengo todos los comentarios */
 	public function getList(){
-		$query = "SELECT id, nombre, activo
-		           FROM perfil";
+		$query = "SELECT id_comentario, descripcion, activo
+		           FROM comentario";
         return $this->con->query($query); 
 	}
 	
-	/* busco en la bd que no se repita el nombre */
-	public function get_por_nombrePerfil($nombre, $id){
-		$query = 'SELECT count(1) as cantidad FROM perfil WHERE nombre = "'.$nombre.'" AND id != "'.$id.'"';
-		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
-		return $consulta->cantidad ;
-	}
 
-	/* obtengo un perfil */
+    /* obtengo un comentario */
 	public function get($id){
 	    $query = "SELECT id,nombre,activo
 		           FROM perfil WHERE id = ".$id;
@@ -41,7 +35,7 @@ Class Perfil{
             return $perfil;
 	}
 
-	/* borrado de perfil */	
+	/* borrado de comentario */	
 	public function del($id){
 		$query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id;
 		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
@@ -76,13 +70,13 @@ Class Perfil{
 		$sql = '';
 		foreach($data['permisos'] as $permisos){
 			$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-					    VALUES ('.$id.','.$permisos.');';
+						VALUES ('.$id.','.$permisos.');';
 		}
 		//echo $sql;die();
+
  		$this->con->exec($sql);
 	} 
 	
-
 	/* Actualizo los datos en la base de datos */
 	public function edit($data){
 		$id = $data['id'];
@@ -98,7 +92,7 @@ Class Perfil{
         $sql = "UPDATE perfil SET ".implode(',',$columns)." WHERE id = ".$id;
         //echo $sql; die();
         $this->con->exec($sql);
-				 			 
+					 
 		$sql = 'DELETE FROM perfil_permisos WHERE perfil_id= '.$id;
 		$this->con->exec($sql);
 			

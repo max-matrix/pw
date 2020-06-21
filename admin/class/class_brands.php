@@ -9,13 +9,19 @@ Class Marca{
 	}
 
 	public function getList(){
-		$query = "SELECT id_marca, nom_marca
+		$query = "SELECT id_marca, nom_marca, activo
 		           FROM marca";
         return $this->con->query($query); 
 	}
+		
+	public function get_por_nom_marca($nom_marca){
+		$query = 'SELECT count(1) as cantidad FROM marca WHERE nom_marca = "'.$nom_marca.'"';//ojo, creo que la comilla simple no va
+		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+		return $consulta->cantidad ;
+	}
 	
 	public function get($id_marca){
-	    $query = "SELECT id_marca,nom_marca
+	    $query = "SELECT id_marca,nom_marca,activo
 		           FROM marca WHERE id_marca = ".$id_marca;
         $query = $this->con->query($query); 
 			
@@ -53,7 +59,7 @@ Class Marca{
 	public function save($data){
 		
             foreach($data as $key => $value){
-				
+
 				if(!is_array($value)){
 					if($value != null){
 						$columns[]=$key;
@@ -80,7 +86,8 @@ Class Marca{
 			// }
 			//echo $sql;die();
 
- 			// $this->con->exec($sql);
+			// $this->con->exec($sql);
+			 
 	} 
 	
 	

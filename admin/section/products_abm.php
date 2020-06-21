@@ -25,8 +25,8 @@
       </h1>
   
           <div class="col-md-2"></div>
-
-            <form action="index.php?section=products" method="post" class="col-md-6 from-horizontal">
+            
+            <form action="index.php?section=products" method="post" class="col-md-6 from-horizontal" enctype="multipart/form-data" > 
 
                 <div class="form-group">
                     <label for="nombre" class="col-sm-2 control-label">Nombre</label>
@@ -69,12 +69,56 @@
                 </div> 
 
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-warning" name="formulario_productos" >Guardar</button>
+                    <div class="col-sm-10">
+                        Destacado: <select class="controls" id="prod_destacado" name="prod_destacado">
+                        <option value= 1> Destacado</option>
+                        <option value= 0> No destacado</option>
+                        </select>
                     </div>
                 </div> 
-                <input type="hidden" class="form-control" id="id" name="id_producto" placeholder="" 
-                value="<?php echo (isset($productos->id_producto)?$productos->id_producto:'');?>">
+                
+                <div class="form-group">
+                    <label for="nombre" class="col-sm-2 control-label">Nombre imagen</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nombre_imagen" name="nombre_imagen" 
+                        placeholder="" 
+                        disabled
+                        value="<?php echo (isset($productos->nombre_imagen)?$productos->nombre_imagen:'');?>">
+                    </div>
+                </div> 
+            
+                <div class="form-group h6">
+                    <label for="imagen" class="col-sm-2 control-label">Imagen</label>
+                         <input type="file" class="form-control-file" name="ARCHIVO_SUBIDO" id="imagen" aria-describedby="fileHelpId">
+                         <small id="fileHelpId" class="form-text text-muted"></small>
+                </div>
+            
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">                        
+                        <label>Activo</label>
+                        <input type="hidden" name="activo" value="0">
+                        <input type="checkbox" name="activo" value="1"  <?php echo (isset($productos->activo)?(($productos->activo == 1) ?'checked="checked"':''):'');?>>
+                    </div>
+                </div>
+
+                <div class="form-group h6">
+                    <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-warning" name="formulario_productos" >Guardar Producto</button>
+                    </div>
+                </div> 
+                <input type="hidden" class="form-control" id="id_producto" name="id_producto" placeholder="" 
+                value="<?php echo (isset($productos->id_producto)?$productos->id_producto:'0');?>">
+
+                <div class="form-group">
+                <img class="img-fluid" src="../img/<?php
+                if (isset($productos->nombre_imagen)) {
+                    echo $productos->nombre_imagen;
+                } else {
+                    echo 'sin_imagen.jpg';
+                }?>">
+                </div>
+
+
 
             </form>
           </div>

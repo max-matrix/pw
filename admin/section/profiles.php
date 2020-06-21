@@ -7,22 +7,69 @@
 
 	<div class="row justify-content-center">
 
-		<?php $perfilMenu = 'Perfiles';
+		<?php 
+		    $perfilesMenu = 'Perfiles';
 			$perfiles = new Perfil($con);
-		
+
+			//si el usuario tiene el permiso de profiles.adm entra, si no, lo saco			
+            if (!in_array('profiles.admin', $_SESSION['usuario']['permisos'])) {
+            	header('Location: ../index.php');
+            }
+
 			if(isset($_POST['formulario_perfiles'])){ 
+
+				$resp= $perfiles->get_por_nombrePerfil($_POST["nombre"], $_POST["id"]);
+
 				if($_POST['id'] > 0){
-						$perfiles->edit($_POST);                
+						
+						if(empty($_POST["nombre"])){
+							$_SESSION["estado"] = "error";
+							$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
+							header("Location:index.php?section=profiles_abm&edit=$_POST[id]");
+						}
+						else
+						{							
+						    if ($resp < 1) 
+						    {  
+							    $perfiles->edit($_POST);
+							    $_SESSION["estado"] = "ok";
+							    $_SESSION["mensaje"] = "Ha modificado el perfil de forma exitosa.";
+								header('Location: index.php?section=profiles');
+							} else {
+								$_SESSION["estado"] = "error";
+								$_SESSION["mensaje"] = "Ya existe un perfil con ese nombre.";								
+								header("Location:index.php?section=profiles_abm&edit=$_POST[id]");
+							}
+						}	
+
 				}else{			
-						$perfiles->save($_POST); 
-				}
-				header('index.php?section=profiles');
+					if(empty($_POST["nombre"])){
+						$_SESSION["estado"] = "error";
+						$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
+						header("Location:index.php?section=profiles_abm");
+					}else{
+						
+						if ($resp < 1 )
+						{
+						    $perfiles->save($_POST);
+						    $_SESSION["estado"] = "ok";
+						    $_SESSION["mensaje"] = "Ha subido el perfil de forma exitosa.";
+							header('Location: index.php?section=profiles');
+						} else {
+                            $_SESSION["estado"] = "error";
+                            $_SESSION["mensaje"] = "Ya existe un perfil con ese nombre.";
+                            header('Location: index.php?section=profiles_abm');
+                        }
+					}					 
+				}				
 			}	
 			
 			if(isset($_GET['del'])){
 					$resp = $perfiles->del($_GET['del']) 	;
 					if($resp == 1){
-						header('index.php?section=profiles');	
+						$_SESSION["estado"] = "ok";
+						$_SESSION["mensaje"] = "Ha eliminado el perfil con exito";
+						header('Location: index.php?section=profiles');						
 					}
 					echo '<script>alert("'.$resp.'");</script>';
 			}
@@ -36,19 +83,28 @@
 					<tr class="font-weight-bold h5 text-center">
 						<th>#</th>
 						<th>Nombre</th>
+						<th>Activo</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody> 
 					<?php  	 
-						foreach($perfiles->getList() as $perfil){
-					?>
+						foreach($perfiles->getList() as $perfil){?>
 					<tr>
 						<td class="font-weight-bold"><?php echo $perfil['id'];?></td>
 						<td><?php echo $perfil['nombre'];?></td> 
-						<td>
-							<a href="index.php?section=profiles_abm&edit=<?php echo $perfil['id']?>"><button type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
-							<a href="index.php?section=profiles&del=<?php echo $perfil['id']?>"><button type="button" class="btn btn-danger btn-md" title="Borrar">Eliminar</button></a>
+						<td><?php echo ($perfil['activo'])?'si':'no';?></td>
+						<td>							
+							<div class="col-12">
+								<div class="row justify-content-center">
+									<form action="index.php?section=profiles_abm&edit=<?php echo $perfil['id']?>" method="POST" class="modify mr-2">
+										<button type="submit" class="btn btn-info btn-sm">Modificar</button>
+									</form>
+									<form action="index.php?section=profiles&del=<?php echo $perfil['id']?>" method="POST" class="delete">
+										<button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+									</form>
+								</div>
+							</div>
 						</td>
 					</tr>
 					<?php }?>      

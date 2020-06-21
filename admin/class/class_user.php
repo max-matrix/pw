@@ -1,16 +1,13 @@
 <?php 
 Class Usuario{
 
-    /*conexion a la base*/
-	private $con;
-	
-	
+    /* conexion a la base */
+	private $con;	
 	public function __construct($con){
 		$this->con = $con;
 	}
-        /**
-        * Obtengo todos los usuarios
-        */
+
+    /* Obtengo todos los usuarios */
 	public function getList(){
 		$query = "SELECT id_usuario,nombre,apellido,email,usuario,clave,activo 
 		           FROM usuarios ";
@@ -24,20 +21,32 @@ Class Usuario{
 			foreach($this->con->query($sql) as $perfil){
 				$resultado[$key]['perfiles'][] = $perfil['nombre'];
 			}
-			
-			
+						
 		}
 			/* echo '<pre>';
 			var_dump($resultado);echo '</pre>'; */
             return $resultado; 
 	}
-	
-	/**
-	* obtengo un usuario
-	*/
-	public function get($id){
+ 
+	/* busco en la bd que no se repita el mail */
+	public function get_por_emailUsuario($email){
+		$query = "SELECT count(1) as cantidad FROM usuarios WHERE email = '$email'";
+		//die($query );
+		try 
+		{
+			$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e)
+		{
+			exit ($consulta . "\n". $e->getMessage());
+		}
+		return $consulta->cantidad ;
+	}
+
+	/* obtengo un usuario */
+	public function get($id_usuario){
 	    $query = "SELECT id_usuario,nombre,apellido,email,usuario,clave,activo,salt
-		           FROM usuarios WHERE id_usuario = ".$id;
+		           FROM usuarios WHERE id_usuario = ".$id_usuario;
         $query = $this->con->query($query); 
 			
 		$usuario = $query->fetch(PDO::FETCH_OBJ);
@@ -52,12 +61,9 @@ Class Usuario{
 			/*echo '<pre>';
 			var_dump($usuario);echo '</pre>'; */
             return $usuario;
-	}
+	}	
 	
-	
-	/**
-	* Guardo los datos en la base de datos
-	*/
+	/* Guardo los datos en la base de datos	*/
 	public function save($data){
 			$data['salt'] = uniqid();
             // $data['salt'] = md5(date("Y-m-d H:i:s"));
@@ -83,10 +89,10 @@ Class Usuario{
  			$this->con->exec($sql);
 	} 
 	
-	/**
-	* Actualizo los datos en la base de datos
-	*/
+	/* Actualizo los datos en la base de datos */
 	public function edit($data){
+		//print_r($data);
+        //exit();
 	    $id = $data['id_usuario'];
 	    unset($data['id_usuario']);
 	    
@@ -96,14 +102,18 @@ Class Usuario{
             }else{
                 unset($data['clave']);
 			}
-			
+            //print_r($data);
+            //exit();
             foreach($data as $key => $value){
-                if($value != null){
+                if( !is_array($value) && $value != null ){
                     $columns[]=$key." = '".$value."'"; 
                 }
-            }
-            $sql = "UPDATE usuarios SET ".implode(',',$columns)." WHERE id_usuario = ".$id;
-            
+			}
+			//echo "columns: ".var_dump($columns);
+			$sql = "UPDATE usuarios SET ".implode(',',$columns)." WHERE id_usuario = ".$id;
+			
+            //exit($sql);
+			
             $this->con->exec($sql);
 			
 			 
@@ -119,69 +129,49 @@ Class Usuario{
  			$this->con->exec($sql);
 	} 
 	
-	/**
-	* encrypt password
-	*/
-	
-	private function encrypt($clave,$salt){
-		
-		/* concateno el salt con la clave */
-		$clave .= $salt;
-		
-		/* pongo el salt al medio de la contraseña */
-		//$clave = substr($clave,0,strlen($clave)/2).$salt.substr($clave,strlen($clave)/2,strlen($clave));
-		
-		/* par aobtener la lista de algoritmos de hash usar hash_algos()*/
-		//return md5($clave);
+	/* encrypt password	*/	
+	private function encrypt($clave,$salt){				
+		$clave .= $salt;		
 		return hash('md5',$clave);
 	}
-	/**
-	* borrado de usuario
-	*/
-	
-        public function del($id){
-			$sql = "DELETE FROM usuarios WHERE id_usuario = ".$id.';';
-			$sql .= 'DELETE FROM usuarios_perfiles WHERE usuario_id = '.$id;
 
-            $this->con->exec($sql);
-        }
-		
-	
-	/**
-	* Login de usuario
-	*/
-	
-        public function login($data){
-            $sql = "SELECT id_usuario,nombre,apellido,email,usuario,clave,activo,salt
-		           FROM usuarios WHERE activo = 1 AND usuario = '".$data['usuario']."'";
-			$datos = $this->con->query($sql)->fetch(PDO::FETCH_ASSOC);
- 			if(isset($datos['id_usuario'])){
-				if($this->encrypt($data['clave'],$datos['salt']) == $datos['clave']){
+	/* borrado de usuario */	
+    public function del($id){
+		$sql = "DELETE FROM usuarios WHERE id_usuario = ".$id.';';
+	    $sql .= 'DELETE FROM usuarios_perfiles WHERE usuario_id = '.$id;
+
+        $this->con->exec($sql);
+    }
+			
+	/* Login de usuario	*/	
+    public function login($data){
+        $sql = "SELECT id_usuario,nombre,apellido,email,usuario,clave,activo,salt
+		           FROM usuarios WHERE activo = 1 AND email = '".$data['email']."'";
+		$datos = $this->con->query($sql)->fetch(PDO::FETCH_ASSOC);
+ 		if(isset($datos['id_usuario'])){
+			if($this->encrypt($data['clave'],$datos['salt']) == $datos['clave']){
 				
-					$_SESSION['usuario'] = $datos;
-					$query = "SELECT cod FROM permisos
-							  INNER JOIN perfil_permisos ON (perfil_permisos.permiso_id = permisos.id)
-							  INNER JOIN usuarios_perfiles ON (usuarios_perfiles.perfil_id = perfil_permisos.perfil_id)
-							  WHERE usuario_id = ".$datos['id_usuario'];
-					$permisos = array();
-					foreach($this->con->query($query) as $key => $value){
+				$_SESSION['usuario'] = $datos;
+				$query = "SELECT cod FROM permisos
+						  INNER JOIN perfil_permisos ON (perfil_permisos.permiso_id = permisos.id)
+						  INNER JOIN usuarios_perfiles ON (usuarios_perfiles.perfil_id = perfil_permisos.perfil_id)
+						  WHERE usuario_id = ".$datos['id_usuario'];
+				$permisos = array();
+				foreach($this->con->query($query) as $key => $value){
 						$permisos[$key] = $value['cod'];
-					}	
+				}	
 						
-					$_SESSION['usuario']['permisos'] = $permisos;
-				}
-			} 
-        }
-		
-		/**
-	* Login de usuario
-	*/
-	
-        public function notLogged(){
-            if(!isset($_SESSION['usuario'])){
-				return true;
+				$_SESSION['usuario']['permisos'] = $permisos;
 			}
-			return false;
-        }
+		} 
+    }
+		
+	/* Login de usuario	*/	
+    public function notLogged(){
+        if(!isset($_SESSION['usuario'])){
+	    return true;
+		}
+		return false;
+    }
 }
 ?>

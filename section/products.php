@@ -21,7 +21,7 @@
         <a href="index.php?section=products&cat=<?=$categoria?>&marca=<?=$marca?>&orden=desc">Z - A</a>
       </li>
       <hr>
-      <h4>Cartegorías</h4>
+      <h4>Categorías</h4>
       <?php require_once("section/categories.php"); ?>
       <hr>
       <h4>Marcas</h4>

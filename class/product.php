@@ -9,7 +9,7 @@ class Product{
     }
 
     public function getProduct(){
-        $sql = 'SELECT * FROM producto ORDER BY nombre ' .$_SESSION['orden'];
+        $sql = 'SELECT * FROM producto WHERE activo = "1" ORDER BY nombre ' .$_SESSION['orden'];
         return $this->con->query($sql);
     }
 
@@ -20,7 +20,7 @@ class Product{
     }
 
     public function getProductImportant(){
-        $sql = 'SELECT * FROM producto WHERE prod_destacado = "1" ORDER BY nombre ' .$_SESSION['orden'];
+        $sql = 'SELECT * FROM producto WHERE prod_destacado = "1" AND activo = "1" ORDER BY nombre ' .$_SESSION['orden'];
         return $this->con->query($sql);
     }
     
@@ -30,7 +30,7 @@ class Product{
     }
 
     public function getProductByRandom(){
-        $sql = 'SELECT * FROM producto ORDER BY RAND() LIMIT 6';
+        $sql = 'SELECT * FROM producto WHERE activo = "1" ORDER BY RAND() LIMIT 6';
         return $this->con->query($sql);
     }
 
@@ -44,18 +44,18 @@ class Product{
 
     public function getProductByCategory($category){
         //$sql = 'SELECT * FROM producto WHERE id_categoria = ' . $category. ' ORDER BY nombre ' .$_SESSION['orden'];
-        $sql = 'SELECT producto.*  from producto inner join categoria on producto.id_categoria = categoria.id_categoria where producto.id_categoria = ' . $category. ' or categoria.id_padre = ' . $category. ' ORDER BY nombre' .$_SESSION['orden'];
+        $sql = 'SELECT producto.*  from producto inner join categoria on producto.id_categoria = categoria.id_categoria where producto.id_categoria = ' . $category. ' AND producto.activo = "1" AND categoria.activo = "1"  or categoria.id_padre = ' . $category. '  ORDER BY nombre ' .$_SESSION['orden'];
 
         return $this->con->query($sql);
     }
 
     public function getProductByBrand($brand){
-        $sql = 'SELECT * FROM producto WHERE id_marca = ' . $brand . ' ORDER BY nombre ' .$_SESSION['orden'];
+        $sql = 'SELECT * FROM producto WHERE id_marca = ' . $brand . ' AND activo = "1" ORDER BY nombre ' .$_SESSION['orden'];
         return $this->con->query($sql);
     }
 
     public function getProductByCategoryAndBrand($category, $brand) {
-        $sql = 'SELECT * FROM producto WHERE id_marca = ' . $brand . ' AND id_categoria = ' . $category . ' ORDER BY nombre ' .$_SESSION['orden'];
+        $sql = 'SELECT * FROM producto WHERE id_marca = ' . $brand . ' AND id_categoria = ' . $category . ' AND activo = "1"  ORDER BY nombre ' .$_SESSION['orden'];
         return $this->con->query($sql);
         
     }

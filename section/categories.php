@@ -6,9 +6,9 @@
             <?php
             $m = isset($_GET['marca']) ? $_GET['marca'] : '';
 
-            function printCategoria($con, $m, $id_padre = 0) {
+            function printCategoria($con, $m, $id_padre = 1) {
 
-              $sql = 'SELECT * FROM categoria WHERE id_padre = ' . $id_padre;
+              $sql = 'SELECT * FROM categoria WHERE activo = "1" AND id_padre = ' . $id_padre;
               $resultado = $con->query($sql);
               
               if (!empty($resultado)) {

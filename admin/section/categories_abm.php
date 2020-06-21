@@ -45,6 +45,14 @@
       </div>
 
       <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">                        
+               <label>Activo</label>
+              <input type="hidden" name="activo" value="0">
+              <input type="checkbox" name="activo" value="1"  <?php echo (isset($categorias->activo)?(($categorias->activo == 1) ?'checked="checked"':''):'');?>>
+          </div>
+      </div>
+
+      <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-warning" name="formulario_categorias">Guardar Categoria</button>
         </div>
@@ -54,7 +62,6 @@
 
     </form>
   </div>
-
 
 </div>
 </div>
