@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2020 a las 20:30:58
+-- Tiempo de generación: 21-06-2020 a las 17:43:46
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.8
 
@@ -31,25 +31,47 @@ SET time_zone = "+00:00";
 CREATE TABLE `categoria` (
   `id_categoria` int(11) NOT NULL,
   `nombre` varchar(250) NOT NULL,
-  `id_padre` int(11) NOT NULL DEFAULT 0
+  `id_padre` int(11) NOT NULL DEFAULT 0,
+  `activo` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`id_categoria`, `nombre`, `id_padre`) VALUES
-(6, 'Informatica', 0),
-(7, 'Celulares', 0),
-(8, 'Videojuegos', 0),
-(9, 'Android', 7),
-(10, 'IOS', 7),
-(11, 'Monitores', 6),
-(12, 'Motherboard', 6),
-(13, 'Impresoras', 6),
-(14, 'Microprocesadores', 6),
-(15, 'Notebooks', 6),
-(16, 'Consolas', 8);
+INSERT INTO `categoria` (`id_categoria`, `nombre`, `id_padre`, `activo`) VALUES
+(6, 'Informatica', 1, 1),
+(7, 'Celulares', 1, 1),
+(8, 'Videojuegos', 1, 1),
+(9, 'Android', 7, 1),
+(10, 'IOS', 7, 1),
+(11, 'Monitores', 6, 1),
+(12, 'Motherboard', 6, 1),
+(13, 'Impresoras', 6, 1),
+(14, 'Microprocesadores', 6, 1),
+(15, 'Notebooks', 6, 1),
+(16, 'Consolas', 8, 1),
+(73, 'nombre1', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id_comentario` int(11) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `activo` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `descripcion`, `activo`) VALUES
+(1, 'Muy buen producto, lo recomiendo!', 0),
+(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 0);
 
 -- --------------------------------------------------------
 
@@ -101,23 +123,24 @@ INSERT INTO `dato` (`id_dato`, `nombre`, `apellido`, `email`, `telefono`, `area`
 
 CREATE TABLE `marca` (
   `id_marca` int(11) NOT NULL,
-  `nom_marca` varchar(250) NOT NULL
+  `nom_marca` varchar(250) NOT NULL,
+  `activo` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `marca`
 --
 
-INSERT INTO `marca` (`id_marca`, `nom_marca`) VALUES
-(1, 'Exo'),
-(2, 'Epson'),
-(3, 'Philips'),
-(4, 'Samsung'),
-(5, 'Intel'),
-(6, 'Gigabyte'),
-(7, 'Nintendo'),
-(8, 'Apple'),
-(9, 'Sony');
+INSERT INTO `marca` (`id_marca`, `nom_marca`, `activo`) VALUES
+(1, 'Exo', 1),
+(2, 'Epson', 1),
+(3, 'Philips', 1),
+(4, 'Samsung', 1),
+(5, 'Intel', 1),
+(6, 'Gigabyte', 1),
+(7, 'Nintendo', 1),
+(8, 'Apple', 1),
+(74, 'marca1', 0);
 
 -- --------------------------------------------------------
 
@@ -127,18 +150,25 @@ INSERT INTO `marca` (`id_marca`, `nom_marca`) VALUES
 
 CREATE TABLE `perfil` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL
+  `nombre` varchar(100) NOT NULL,
+  `activo` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `perfil`
 --
 
-INSERT INTO `perfil` (`id`, `nombre`) VALUES
-(1, 'Administrador'),
-(2, 'Ventas'),
-(3, 'Comercial'),
-(10, 'Test');
+INSERT INTO `perfil` (`id`, `nombre`, `activo`) VALUES
+(1, 'Administrador', 1),
+(2, 'Ventas', 1),
+(3, 'Comercial', 1),
+(11, 'Recursos Humanos', 1),
+(13, 'RRHH', 1),
+(21, 'perfil1', 1),
+(22, 'perfil2', 1),
+(24, 'nombre1', 1),
+(30, 'nombre2', 0),
+(31, 'nombre3', 0);
 
 -- --------------------------------------------------------
 
@@ -160,11 +190,33 @@ INSERT INTO `perfil_permisos` (`id`, `perfil_id`, `permiso_id`) VALUES
 (1, 9, 2),
 (2, 9, 3),
 (3, 9, 4),
-(19, 10, 1),
-(20, 10, 4),
-(29, 1, 1),
-(30, 1, 2),
-(31, 1, 4);
+(36, 13, 4),
+(42, 11, 4),
+(57, 3, 4),
+(110, 21, 1),
+(111, 21, 2),
+(112, 21, 3),
+(113, 21, 4),
+(114, 21, 5),
+(115, 21, 9),
+(138, 1, 1),
+(139, 1, 2),
+(140, 1, 4),
+(141, 1, 6),
+(142, 1, 7),
+(143, 1, 8),
+(144, 1, 9),
+(145, 1, 10),
+(164, 22, 1),
+(165, 22, 2),
+(166, 22, 4),
+(167, 22, 6),
+(168, 22, 7),
+(169, 22, 8),
+(170, 22, 9),
+(171, 22, 10),
+(185, 24, 2),
+(186, 24, 3);
 
 -- --------------------------------------------------------
 
@@ -187,7 +239,12 @@ INSERT INTO `permisos` (`id`, `nombre`, `cod`) VALUES
 (2, 'Modificar usuarios', 'user.edit'),
 (3, 'Borrar Usuarios', 'user.del'),
 (4, 'Ver Usuarios', 'user.see'),
-(5, 'Agregar Noticias', 'new.add');
+(5, 'Agregar Noticias', 'new.add'),
+(6, 'Marcas abm', 'brands.admin'),
+(7, 'Categorias abm', 'categories.admin'),
+(8, 'Perfiles abm', 'profiles.admin'),
+(9, 'Productos abm', 'products.admin'),
+(10, 'Usuarios abm', 'users.admin');
 
 -- --------------------------------------------------------
 
@@ -206,25 +263,26 @@ CREATE TABLE `producto` (
   `id_categoria` int(11) NOT NULL,
   `ranking` int(11) NOT NULL,
   `nombre_imagen` varchar(250) NOT NULL DEFAULT 'img',
-  `prod_destacado` tinyint(1) NOT NULL
+  `prod_destacado` tinyint(1) NOT NULL,
+  `activo` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `condicion`, `descripcion`, `disponibilidad`, `id_marca`, `id_categoria`, `ranking`, `nombre_imagen`, `prod_destacado`) VALUES
-(1, 'Notebook', 80000, 'Nuevo', 'Windows 10, 1tb de memoria.', 20, 1, 15, 25, '101', 0),
-(2, 'Impresora', 10000, 'Nuevo', 'Impresora multifuncion.', 36, 2, 13, 10, '102', 1),
-(3, 'monitor', 25000, 'Usados', 'Monitores con 1 año de uso particular, excelente estado.', 2, 3, 11, 5, '103', 0),
-(4, 'celular', 80000, 'Nuevo', 'Samsung s9 plus 64gb memoria.', 16, 4, 9, 15, '104', 0),
-(5, 'procesador', 40000, 'Nuevo', 'Lo último de mercado.', 11, 5, 14, 35, '105', 1),
-(6, 'placa', 38000, 'Nuevo', 'Desconocido', 8, 6, 12, 20, '106', 0),
-(7, 'Nintendo Switch', 65000, 'Nuevo', 'La mas nueva consola de Nintendo', 15, 7, 16, 30, '107', 0),
-(8, 'Iphone X', 100000, 'Nuevo', 'Celular de alta gama', 3, 8, 10, 40, '108', 1),
-(9, 'Gran pantalla 4k', 50000, 'Nuevo', '4k pantalla', 8, 3, 11, 5, '103', 1),
-(10, 'Pantalla', 15000, 'Nuevo', 'nueva pantalla', 50, 3, 11, 5, '103', 0),
-(11, 'Espectacular pantalla', 32000, 'Nuevo', 'mejor pantalla', 10, 3, 11, 5, '103', 0);
+INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `condicion`, `descripcion`, `disponibilidad`, `id_marca`, `id_categoria`, `ranking`, `nombre_imagen`, `prod_destacado`, `activo`) VALUES
+(1, 'Notebook1', 80000, 'Nuevo', 'Windows 10, 1tb de memoria.', 20, 1, 15, 25, '101.jpg', 0, 1),
+(2, 'Impresora', 10000, 'Nuevo', 'Impresora multifuncion.', 36, 2, 13, 10, '102.jpg', 1, 1),
+(3, 'monitor', 25000, 'Usados', 'Monitores con 1 año de uso particular, excelente estado.', 2, 3, 11, 5, '103.jpg', 0, 1),
+(4, 'celular', 80000, 'Nuevo', 'Samsung s9 plus 64gb memoria.', 16, 4, 9, 15, '104.jpg', 0, 1),
+(5, 'procesador', 40000, 'Nuevo', 'Lo último de mercado.', 11, 5, 14, 35, '105.jpg', 1, 1),
+(6, 'placa', 38000, 'Nuevo', 'Desconocido', 8, 6, 12, 20, '106.jpg', 0, 1),
+(7, 'Nintendo Switch', 65000, 'Nuevo', 'La mas nueva consola de Nintendo', 15, 7, 16, 30, '107.jpg', 1, 0),
+(8, 'Iphone X', 100000, 'Nuevo', 'Celular de alta gama', 3, 8, 10, 40, '108.jpg', 1, 1),
+(9, 'Gran pantalla 4k', 50000, 'Nuevo', '4k pantalla', 8, 3, 11, 5, '103.jpg', 1, 1),
+(10, 'Pantalla', 15000, 'Nuevo', 'nueva pantalla', 50, 3, 11, 5, '103.jpg', 0, 1),
+(11, 'Espectacular pantalla2', 3200000000, 'Nuevo', 'mejor pantalla', 10, 3, 11, 5, '103.jpg', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -251,7 +309,12 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `usuario`, `clave`, `email`, `tipo`, `activo`, `salt`) VALUES
 (1, 'Admin', 'Sistema', 'admin', '207acd61a3c1bd506d7e9a4535359f8a', 'admin@carrito.com', 1, 1, 'salt'),
 (32, 'Ignacio', 'Esses', 'iesses', '5a2e54ee57e5b7273b9a8fed78c1ebd8', 'ignacio.esses@davinci.edu.ar', 4, 1, 'test'),
-(33, 'Ignacio', 'Esses', 'iesses', '861f194e9d6118f3d942a72be3e51749', 'ignacio.esses@davinci.edu.ar', 4, 1, 'test');
+(34, 'Rodrigo', 'Miliano', 'rodrigomiliano16', '64513b8a91f3263b7f048e40affd60ee', 'rodrigomiliano16@hotmail.com', 0, 1, '5ec03337b8774'),
+(42, 'Santiago', 'Astrada', 'Santii', '36c978418bb566ecd70f5f610970f2be', 'santiago.astrada@davinci.edu.ar', 0, 0, '5ed300b24473c'),
+(55, 'nombre1', 'apellido1', 'usuario1', '00b354bfa01d9c31a82a04d24922b559', 'email1@gmail.com', 0, 0, '5ee7ac2fbb63d'),
+(56, 'nombre2', 'apellido2', 'usuario2', '23a1387770ea8bdf925deba43acea208', 'email2@gmail.com', 0, 0, '5ee7ac4a40082'),
+(57, 'nombre4', 'apellido4', 'usuario4', 'b64dc7b9883dd535166337d9646e09be', 'email4@gmail.com', 0, 1, '5eee3a912ec5b'),
+(58, 'nombre3', 'apellido3', 'usuario3', 'a012cfb8d887d4e52cdb17fda9f9d22b', 'email3@gmail.com', 0, 1, '5eee5de702227');
 
 -- --------------------------------------------------------
 
@@ -270,11 +333,35 @@ CREATE TABLE `usuarios_perfiles` (
 --
 
 INSERT INTO `usuarios_perfiles` (`id`, `usuario_id`, `perfil_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4),
-(5, 1, 5);
+(25, 34, 2),
+(26, 34, 3),
+(41, 36, 1),
+(42, 36, 2),
+(43, 36, 3),
+(44, 36, 11),
+(45, 35, 2),
+(46, 35, 3),
+(49, 38, 2),
+(54, 37, 1),
+(55, 37, 3),
+(57, 1, 1),
+(58, 1, 2),
+(59, 1, 3),
+(67, 39, 2),
+(68, 40, 2),
+(69, 40, 3),
+(70, 41, 2),
+(71, 41, 3),
+(75, 42, 2),
+(76, 32, 3),
+(77, 33, 1),
+(78, 33, 2),
+(80, 43, 13),
+(81, 54, 3),
+(97, 56, 22),
+(98, 55, 21),
+(99, 57, 1),
+(102, 58, 1);
 
 -- --------------------------------------------------------
 
@@ -306,6 +393,12 @@ INSERT INTO `usuarios_tipos` (`id_tipo`, `tipo`) VALUES
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id_comentario`);
 
 --
 -- Indices de la tabla `dato`
@@ -369,7 +462,13 @@ ALTER TABLE `usuarios_tipos`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `dato`
@@ -381,43 +480,43 @@ ALTER TABLE `dato`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil_permisos`
 --
 ALTER TABLE `perfil_permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_perfiles`
 --
 ALTER TABLE `usuarios_perfiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_tipos`

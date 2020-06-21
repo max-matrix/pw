@@ -9,7 +9,7 @@ Class Marca{
 	}
 
 	public function getList(){
-		$query = "SELECT id_marca, nom_marca
+		$query = "SELECT id_marca, nom_marca, activo
 		           FROM marca";
         return $this->con->query($query); 
 	}
@@ -21,7 +21,7 @@ Class Marca{
 	}
 	
 	public function get($id_marca){
-	    $query = "SELECT id_marca,nom_marca
+	    $query = "SELECT id_marca,nom_marca,activo
 		           FROM marca WHERE id_marca = ".$id_marca;
         $query = $this->con->query($query); 
 			

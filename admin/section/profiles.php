@@ -10,9 +10,16 @@
 		<?php 
 		    $perfilesMenu = 'Perfiles';
 			$perfiles = new Perfil($con);
-		
+
+			//si el usuario tiene el permiso de profiles.adm entra, si no, lo saco			
+            if (!in_array('profiles.admin', $_SESSION['usuario']['permisos'])) {
+            	header('Location: ../index.php');
+            }
 
 			if(isset($_POST['formulario_perfiles'])){ 
+
+				$resp= $perfiles->get_por_nombrePerfil($_POST["nombre"], $_POST["id"]);
+
 				if($_POST['id'] > 0){
 						
 						if(empty($_POST["nombre"])){
@@ -21,8 +28,7 @@
 							header("Location:index.php?section=profiles_abm&edit=$_POST[id]");
 						}
 						else
-						{
-							$resp= $perfiles->get_por_nombrePerfil($_POST["nombre"]);
+						{							
 						    if ($resp < 1) 
 						    {  
 							    $perfiles->edit($_POST);
@@ -31,7 +37,7 @@
 								header('Location: index.php?section=profiles');
 							} else {
 								$_SESSION["estado"] = "error";
-								$_SESSION["mensaje"] = "Ya existe una perfil con ese nombre.";								
+								$_SESSION["mensaje"] = "Ya existe un perfil con ese nombre.";								
 								header("Location:index.php?section=profiles_abm&edit=$_POST[id]");
 							}
 						}	
@@ -42,7 +48,7 @@
 						$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
 						header("Location:index.php?section=profiles_abm");
 					}else{
-						$resp= $perfiles->get_por_nombrePerfil($_POST["nombre"]);
+						
 						if ($resp < 1 )
 						{
 						    $perfiles->save($_POST);
@@ -77,6 +83,7 @@
 					<tr class="font-weight-bold h5 text-center">
 						<th>#</th>
 						<th>Nombre</th>
+						<th>Activo</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -86,12 +93,18 @@
 					<tr>
 						<td class="font-weight-bold"><?php echo $perfil['id'];?></td>
 						<td><?php echo $perfil['nombre'];?></td> 
-						<td>
-							<a href="index.php?section=profiles_abm&edit=<?php echo $perfil['id']?>"><button
-							   type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
-
-							<a href="index.php?section=profiles&del=<?php echo $perfil['id']?>"><button
-							   type="button" class="btn btn-danger btn-md" title="Borrar">Eliminar</button></a>
+						<td><?php echo ($perfil['activo'])?'si':'no';?></td>
+						<td>							
+							<div class="col-12">
+								<div class="row justify-content-center">
+									<form action="index.php?section=profiles_abm&edit=<?php echo $perfil['id']?>" method="POST" class="modify mr-2">
+										<button type="submit" class="btn btn-info btn-sm">Modificar</button>
+									</form>
+									<form action="index.php?section=profiles&del=<?php echo $perfil['id']?>" method="POST" class="delete">
+										<button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+									</form>
+								</div>
+							</div>
 						</td>
 					</tr>
 					<?php }?>      

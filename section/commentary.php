@@ -1,15 +1,31 @@
-
 <?php
-    if(logueado()):
-        header("Location:index.php");
-    endif;
+$idP = $_GET['id'];
 ?>
+  
+  
+  
+  <div class="col-9">
+    <div class="row">
 
-<div class="row justify-content-center mt-4">
+      <?php
+
+      $product = new Product($con);
+      echo printProductByCommentary($product->getProductByID($idP));
+
+      ?> 
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row justify-content-center mt-4">
     <div class="col-6">
         <h1 class="text-center h2">Iniciar Sesión</h1>
     </div>
 </div>
+
+
+
 
 <div class="row justify-content-center">
     <div class="col-12 col-md-6">
@@ -30,4 +46,4 @@
             </div>
         </div>    
     </div>
-</div>
+</div> -->

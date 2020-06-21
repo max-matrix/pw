@@ -11,10 +11,18 @@
 			$marcasMenu = 'Marcas';
 			$marcas = new Marca($con);
 
+            //si el usuario tiene el permiso de brand.adm entra, si no, lo saco			
+            if (!in_array('brands.admin', $_SESSION['usuario']['permisos'])) {
+         	   header('Location: ../index.php');
+            }
+
 			//$nombre = $_POST["nom_marca"];
 			//$id = $POST["id_marca"];
 			
 			if (isset($_POST['formulario_marcas'])) {
+				
+				$resp= $marcas->get_por_nom_marca($_POST["nom_marca"]);
+				
 				if ($_POST['id_marca'] > 0) {
 					
 					if(empty($_POST["nom_marca"])){
@@ -23,19 +31,11 @@
 						header("Location:index.php?section=brands_abm&edit=$_POST[id_marca]");
 					}
 					else
-					{
-                        $resp= $marcas->get_por_nom_marca($_POST["nom_marca"]);
-						if ($resp < 1) 
-						{
-                            $marcas->edit($_POST);
-                            $_SESSION["estado"] = "ok";
-                            $_SESSION["mensaje"] = "Ha modificado la marca de forma exitosa.";
-                            header('Location: index.php?section=brands');
-                        } else {
-                            $_SESSION["estado"] = "error";
-							$_SESSION["mensaje"] = "Ya existe una marca con ese nombre.";							
-							header("Location:index.php?section=brands_abm&edit=$_POST[id_marca]");
-                        }
+					{                        
+                        $marcas->edit($_POST);
+                        $_SESSION["estado"] = "ok";
+                        $_SESSION["mensaje"] = "Ha modificado la marca de forma exitosa.";
+                        header('Location: index.php?section=brands');                      
                     }
 	
 				} else {
@@ -43,8 +43,7 @@
 						$_SESSION["estado"] = "error";
 						$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
 						header("Location:index.php?section=brands_abm");
-					}else{
-						$resp= $marcas->get_por_nom_marca($_POST["nom_marca"]);
+					}else{						
 						if ($resp < 1 )
 						{
 							$marcas->save($_POST);
@@ -79,6 +78,7 @@
 					<tr class="font-weight-bold h5 text-center">
 						<th>#</th>
 						<th>Nombre</th>
+						<th>Activo</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -88,12 +88,18 @@
 						<tr>
 							<td class="font-weight-bold"><?php echo $marca['id_marca'];?></td>
 							<td><?php echo $marca['nom_marca'];?></td>
+							<td><?php echo ($marca['activo'])?'si':'no';?></td>
 							<td>
-								<a	href="index.php?section=brands_abm&edit=<?php echo $marca['id_marca']?>"><button
-									type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
-
-								<a	href="index.php?section=brands&del=<?php echo $marca['id_marca']?>"><button
-									type="button" class="btn btn-danger btn-md" title="Borrar">Eliminar</button></a>
+								<div class="col-12">
+									<div class="row justify-content-center">
+										<form action="index.php?section=brands_abm&edit=<?php echo $marca['id_marca']?>" method="POST" class="modify mr-2">
+											<button type="submit" class="btn btn-info btn-sm">Modificar</button>
+										</form>
+										<form action="index.php?section=brands&del=<?php echo $marca['id_marca']?>" method="POST" class="delete">
+											<button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+										</form>
+									</div>
+								</div>
 							</td>
 						</tr>
 					<?php }?> 

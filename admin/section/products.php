@@ -10,66 +10,78 @@
 		<?php
             $productosMenu = 'Productos';
             $productos = new Producto($con);
-            //var_dump($productos);
-            
+			//var_dump($productos);           
+			
+			//si el usuario tiene el permiso de products.adm entra, si no, lo saco		
+			if (!in_array('products.admin', $_SESSION['usuario']['permisos'])) {
+            	header('Location: ../index.php');
+            }
+
             if (isset($_POST['formulario_productos'])) {
+
+				$resp1= $productos->get_por_nombreProducto($_POST["nombre"], $_POST["id_producto"]);				
+
                 if ($_POST['id_producto'] > 0) {
                     //var_dump($_POST);
-                    $productos->edit($_POST);
+                    //$productos->edit($_POST);
                                                 
-                    if (empty($_POST["nombre"]) || empty($_POST["precio"]) || empty($_POST["descripcion"])|| empty($_POST["disponibilidad"])|| empty($_POST["ranking"])) {
+					if (empty($_POST["nombre"]) || empty($_POST["precio"]) || empty($_POST["descripcion"])|| 
+					empty($_POST["disponibilidad"])|| empty($_POST["ranking"])) {
                         $_SESSION["estado"] = "error";
                         $_SESSION["mensaje"] = "Todos los campos son obligatorios.";
                         header("Location:index.php?section=products_abm&edit=$_POST[id_producto]");
-                    } else {
-                        if (isset($_FILES['ARCHIVO_SUBIDO']) && isset($_POST['id_producto'])) {
+					} 
+					else 
+					{
+                        if (isset($_FILES['ARCHIVO_SUBIDO']) && isset($_POST['id_producto']) && ($resp1 < 1 )) {
                             $nombre_archivo_imagen = $_FILES['ARCHIVO_SUBIDO']['name'];
                             $nombreImagen = saveName($nombre_archivo_imagen);
                             $ruta = '../img/';
                             move_uploaded_file($_FILES['ARCHIVO_SUBIDO']['tmp_name'], $ruta.$nombreImagen);
                             $_POST['nombre_imagen'] = $nombreImagen;
-                        }
-                        //----------------------
+                        
                         $productos->edit($_POST);
                         $_SESSION["estado"] = "ok";
                         $_SESSION["mensaje"] = "Ha modificado el producto de forma exitosa.";
                         header('Location: index.php?section=products');
-                    }
-                    //---------------------
-                } else {
+                    }else {
+						$_SESSION["estado"] = "error";
+						$_SESSION["mensaje"] = "Ya existe un producto con ese nombre.";							
+						header("Location:index.php?section=products_abm&edit=$_POST[id_producto]");
+					}
+				}				
 					
-					if (empty($_POST["nombre"]) || empty($_POST["precio"]) || empty($_POST["descripcion"])|| empty($_POST["disponibilidad"])|| empty($_POST["ranking"])) {
+                } else {					
+					if (empty($_POST["nombre"]) || empty($_POST["precio"]) || empty($_POST["descripcion"])|| 
+					empty($_POST["disponibilidad"])|| empty($_POST["ranking"]) || $_FILES["ARCHIVO_SUBIDO"]["size"] == "0") {
                         $_SESSION["estado"] = "error";
                         $_SESSION["mensaje"] = "Todos los campos son obligatorios.";
                         header("Location:index.php?section=products_abm");
                     } else {
 
-						if (isset($_FILES['ARCHIVO_SUBIDO']) && isset($_POST['id_producto'])) 
-						{
+						if (isset($_FILES['ARCHIVO_SUBIDO']) && isset($_POST['id_producto']) && ($resp1 < 1 )){
                             $nombre_archivo_imagen = $_FILES['ARCHIVO_SUBIDO']['name'];
                             $nombreImagen = saveName($nombre_archivo_imagen);
                             $ruta = '../img/';
                             move_uploaded_file($_FILES['ARCHIVO_SUBIDO']['tmp_name'], $ruta.$nombreImagen);
                             $_POST['nombre_imagen'] = $nombreImagen;
-
+												
 							$productos->save($_POST);
                             $_SESSION["estado"] = "ok";
 							$_SESSION["mensaje"] = "Ha subido el producto de forma exitosa.";
-						}
-						else {
-                            $productos->save($_POST);
+							header('Location: index.php?section=products');
+						}else {                        
                             $_SESSION["estado"] = "ok";
-                            $_SESSION["mensaje"] = "No se subió ningun archivo de imagen";
-                            header('Location: index.php?section=products');
+                            $_SESSION["mensaje"] = "Ya existe un producto con ese nombre.";
+                            header('Location: index.php?section=products_abm');
                         }
                     }
                 }
-            }
-
+			}		
             
             if (isset($_GET['del'])) {
-                $resp = $productos->del($_GET['del']) 	;
-                if ($resp == 1) {
+                $resp1 = $productos->del($_GET['del']) 	;
+                if ($resp1 == 1) {
                     $_SESSION["estado"] = "ok";
                     $_SESSION["mensaje"] = "Ha eliminado el producto con exito";
                     header('Location: index.php?section=products');
@@ -93,6 +105,7 @@
 						<th>Ranking</th>
 						<th>Nombre Imagen</th>
 						<th>Imagen</th>
+						<th>Activo</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -117,6 +130,7 @@
 						<td><img class="img-fluid"
 								src="../img/<?php echo $producto['nombre_imagen']; ?>"
 								alt="..."></td>
+						<td><?php echo ($producto['activo'])?'si':'no';?></td>
 						<td>
 							<a
 								href="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>"><button

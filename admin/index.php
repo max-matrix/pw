@@ -15,10 +15,13 @@
     require_once('class/class_product.php');
     require_once('class/class_brands.php');
     require_once('class/class_categories.php');
+    require_once('class/class_commentaries.php');
     require_once('../mysql-login.php');
 
     try {
         $con = new PDO('mysql:host='.$hostname.';port='.$port.';dbname='.$database, $username, $password, $charset);
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);        
     } catch (PDOException $e) {
         print "�Error!: " . $e->getMessage();
         die();
@@ -79,7 +82,8 @@
 						<li
 							class="<?php echo isset($userMenu)?'active':''?>">
 							<a class="nav-link" href="index.php?section=users">Usuarios</a></li>
-						<?php }?>
+                        <?php }?>
+                        <li class="nav-item"><a class="nav-link" href="index.php?section=commentaries">Comentarios</a></li>
 						<li class="nav-item"><a class="nav-link" href="index.php?section=profiles">Perfiles</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Export</a></li>
 						<li class="nav-item"><a class="nav-link" href="../function/logout.php">Logout</a></li>
@@ -119,6 +123,77 @@
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 	</script>
 	<script src="js/main.js"></script>
+
+<!-- JS -->
+<script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.4.0/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+    <script>
+
+        let formBorrar = document.querySelectorAll(".delete");
+
+        for(let i = 0; i < formBorrar.length; i++){
+
+            formBorrar[i].addEventListener("submit", function(evento){
+                let botonTocado = this;
+
+                evento.preventDefault();
+
+                Swal.fire({
+                    title: '¿Desea eliminar?',
+                    text: "Esta acción es irreversible.",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+
+                    if (result.value) {
+                
+                        botonTocado.submit();
+
+                    }
+                })
+            })
+        }
+
+    </script>
+    <script>
+
+        let formModificar = document.querySelectorAll(".modify");
+
+        for(let i = 0; i < formModificar.length; i++){
+
+            formModificar[i].addEventListener("submit", function(evento){
+                let botonTocado = this;
+
+                evento.preventDefault();
+
+                Swal.fire({
+                    title: '¿Desea modificar?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+
+                    if (result.value) {
+                
+                        botonTocado.submit();
+
+                    }
+                })
+            })
+        }
+
+    </script>
+
 </body>
 
 </html>

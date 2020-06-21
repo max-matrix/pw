@@ -1,0 +1,24 @@
+El vie., 19 jun. 2020 a las 0:14, Miliano, Rodrigo Ezequiel (<rodrigo.miliano@davinci.edu.ar>) escribió:
+Hola profe! Le cuento las consultas que tengo:
+1A-En la sección agregar usuario del admin, cuando completo todos los campos me tira un error que no logro solucionar, y no me lo agrega. 
+1B-Asimismo al modificar usuario tampoco me deja, pero allí el error es "todos los campos son obligatorios" siendo que completo todo y guardo.
+2-Sigo sin poder hacer funcionar el activar o desactivar usuario (tambien lo intente en la sección producto).
+3-Como sugerencia, Flavio me dijo que en las categorías, trate que en la columna id_padre se muestran los nombres de los padres en vez de los id
+
+Seguro tendrà más consultas, pero bueno esto es lo que hasta ahora tenemos problemas, sobre todo los 2 primeros son los más importantes. 
+Le comparto el trabajo, y también está suelto la bd produccion actualizada. Nos vemos mañana!
+
+
+1A
+no estaba viajando el id_usuario
+mejor buscar por email que por nombre y id
+1B
+quitarle el if 
+2
+el input type="checkbox" por definición no viaja en el post si no está checheado
+
+una solución es preguntar siempre por isset($_POST['activo']) y si es falso, ponerle activo = 0
+
+otra solución es agregar antes un hidden con value 0
+<input type="hidden" name="activo" value="0">
+de esta manera cuando no viaja el checkbox, al menos ciaje la variable activo del 'post' con 0

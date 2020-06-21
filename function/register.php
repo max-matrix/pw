@@ -2,7 +2,8 @@
 
 require_once '../mysql-login.php';
 $con = new PDO('mysql:host=' . $hostname . ';port=' . $port . ';dbname=' . $database, $username, $password, $charset);
-
+$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 require_once("../function/config.php");
 require_once("../function/function.php");
 

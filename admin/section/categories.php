@@ -11,19 +11,26 @@
 			$categoriasMenu = 'Categorias';
 			$categorias = new Categoria($con);
 
+            //si el usuario tiene el permiso de categories.adm entra, si no, lo saco			
+            if (!in_array('categories.admin', $_SESSION['usuario']['permisos'])) {
+            	header('Location: ../index.php');
+            }
+
 			if (isset($_POST['formulario_categorias'])) {
+				
+				$resp1= $categorias->get_por_nombreCategoria($_POST["nombre"], $_POST["id_categoria"]);				
+				
 				if ($_POST['id_categoria'] > 0) {
 
-					if(empty($_POST["nombre"])){ //|| empty($_POST["id_padre"]) no se puede poner obligatorio el id_padre, ya que no permite "0"
+					if(empty($_POST["nombre"]) || empty($_POST["id_padre"])){ 
 						$_SESSION["estado"] = "error";
-						$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
+						$_SESSION["mensaje"] = "Todos los campos son obligatorios.";
 						header("Location:index.php?section=categories_abm&edit=$_POST[id_categoria]");					
 					}
 					else
-					{
-						$resp= $categorias->get_por_nombreCategoria($_POST["nombre"],$_POST["id_padre"]);
-						if ($resp < 1) 
-						{
+					{		
+						if ($resp1 < 1 )						
+						{						
                             $categorias->edit($_POST);
                             $_SESSION["estado"] = "ok";
                             $_SESSION["mensaje"] = "Ha modificado la categoria de forma exitosa.";
@@ -31,18 +38,17 @@
                         } else {
                             $_SESSION["estado"] = "error";
 							$_SESSION["mensaje"] = "Ya existe una categoria con ese nombre.";							
-							header("Location:index.php?section=categories_abm&edit=$_POST[nombre]");
+							header("Location:index.php?section=categories_abm&edit=$_POST[id_categoria]");
                         }
                     }						
 	
 				} else {
-					if(empty($_POST["nombre"])){//|| empty($_POST["id_padre"]) no se puede poner obligatorio el id_padre, ya que no permite "0"
+					if(empty($_POST["nombre"]) || empty($_POST["id_padre"])){
 						$_SESSION["estado"] = "error";
-						$_SESSION["mensaje"] = "El campo nombre es obligatorio.";
+						$_SESSION["mensaje"] = "Todos los campos son obligatorios.";
 						header("Location:index.php?section=categories_abm");
 					}else{
-						$resp= $categorias->get_por_nombreCategoria($_POST["nombre"]);
-						if ($resp < 1 )
+						if ($resp1 < 1 )						
 						{
 							$categorias->save($_POST);
 						    $_SESSION["estado"] = "ok";
@@ -58,13 +64,13 @@
 			}	
 			
 			if (isset($_GET['del'])) {
-				$resp = $categorias->del($_GET['del']) 	;
-				if ($resp == 1) {
+				$resp1 = $categorias->del($_GET['del']) 	;
+				if ($resp1 == 1) {
 					$_SESSION["estado"] = "ok";
 					$_SESSION["mensaje"] = "Ha eliminado la categoria con exito";					
 					header('Location: index.php?section=categories');
 				}
-				echo '<script>alert("'.$resp.'");</script>';
+				echo '<script>alert("'.$resp1.'");</script>';
 			}
 		?>	 
 
@@ -77,6 +83,7 @@
 						<th>#</th>
 						<th>Nombre</th>
 						<th>Id_padre</th>
+						<th>Activo</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -87,12 +94,18 @@
 							<td><?php echo $categoria['id_categoria'];?></td>
 							<td><?php echo $categoria['nombre'];?></td>
 							<td><?php echo $categoria['id_padre'];?></td>
+							<td><?php echo ($categoria['activo'])?'si':'no';?></td>
 							<td>
-								<a	href="index.php?section=categories_abm&edit=<?php echo $categoria['id_categoria']?>"><button
-									type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
-								
-								<a	href="index.php?section=categories&del=<?php echo $categoria['id_categoria']?>"><button
-									type="button" class="btn btn-danger btn-md" title="Borrar">Eliminar</button></a>
+								<div class="col-12">
+									<div class="row justify-content-center">
+										<form action="index.php?section=categories_abm&edit=<?php echo $categoria['id_categoria']?>" method="POST" class="modify mr-2">
+											<button type="submit" class="btn btn-info btn-sm">Modificar</button>
+										</form>
+										<form action="index.php?section=categories&del=<?php echo $categoria['id_categoria']?>" method="POST" class="delete">
+											<button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+										</form>
+									</div>
+								</div>
 							</td>
 						</tr>
 					<?php }?>     

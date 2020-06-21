@@ -37,12 +37,20 @@
       </div>
 
       <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">                        
+               <label>Activo</label>
+              <input type="hidden" name="activo" value="0">
+              <input type="checkbox" name="activo" value="1"  <?php echo (isset($marcas->activo)?(($marcas->activo == 1) ?'checked="checked"':''):'');?>>
+          </div>
+      </div>
+
+      <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-warning" name="formulario_marcas">Guardar Marca</button>
         </div>
       </div>
       <input type="hidden" class="form-control" id="id" name="id_marca" placeholder=""
-        value="<?php echo(isset($marcas->id_marca)?$marcas->id_marca:'');?>">
+        value="<?php echo(isset($marcas->id_marca)?$marcas->id_marca:'0');?>">
 
     </form>
   </div>
