@@ -8,7 +8,7 @@ class Brand{
     }
 
     public function getBrands(){
-        $sql = 'SELECT * FROM marca WHERE id_marca';
+        $sql = 'SELECT * FROM marca WHERE activo = "1"';
         return $this->con->query($sql);
     }
 
