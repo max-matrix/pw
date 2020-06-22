@@ -1,4 +1,4 @@
-<div class="container my-5 text-center">
+<div class="container-fluid px-5 text-center">
     <div class="row justify-content-center">
         <div class="col-12"> 
             <h1 class="text-center">Marcas</h1>
@@ -12,9 +12,9 @@
 			$marcas = new Marca($con);
 
             //si el usuario tiene el permiso de brand.adm entra, si no, lo saco			
-            if (!in_array('brands.admin', $_SESSION['usuario']['permisos'])) {
+            /* if (!in_array('brands.admin', $_SESSION['usuario']['permisos'])) {
          	   header('Location: ../index.php');
-            }
+            } */
 
 			//$nombre = $_POST["nom_marca"];
 			//$id = $POST["id_marca"];
@@ -86,17 +86,19 @@
 					<?php
 						foreach ($marcas->getList() as $marca) {?>
 						<tr>
-							<td class="font-weight-bold"><?php echo $marca['id_marca'];?></td>
-							<td><?php echo $marca['nom_marca'];?></td>
-							<td><?php echo ($marca['activo'])?'si':'no';?></td>
-							<td>
+							<td class="font-weight-bold align-middle"><?php echo $marca['id_marca'];?></td>
+							<td class="align-middle"><?php echo $marca['nom_marca'];?></td>
+							<td class="align-middle"><?php echo ($marca['activo'])?'si':'no';?></td>
+							<td class="align-middle">
 								<div class="col-12">
 									<div class="row justify-content-center">
 										<form action="index.php?section=brands_abm&edit=<?php echo $marca['id_marca']?>" method="POST" class="modify mr-2">
-											<button type="submit" class="btn btn-info btn-sm">Modificar</button>
+											<button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
+                                        class="fas fa-edit"></i></button>
 										</form>
 										<form action="index.php?section=brands&del=<?php echo $marca['id_marca']?>" method="POST" class="delete">
-											<button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+											<button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
+                                        class="far fa-trash-alt"></i></button>
 										</form>
 									</div>
 								</div>

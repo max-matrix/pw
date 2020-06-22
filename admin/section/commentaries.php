@@ -1,13 +1,13 @@
-<div class="container my-5 text-center">
+<div class="container-fluid px-5 text-center">
 	<div class="row justify-content-center">
 		<div class="col-12">
 			<h1 class="text-center">Comentarios</h1>
 		</div>
 	</div>
 
-	<div class="filtros">
-		<a href="index.php?section=commentaries&filtros=off">activo</a>
-		<a href="index.php?section=commentaries&filtros=on">inactivo</a>
+	<div class="filtros mb-3">
+		<a href="index.php?section=commentaries&filtros=off" class="btn btn-success mr-5">Activo</a>
+		<a href="index.php?section=commentaries&filtros=on" class="btn btn-danger">Inactivo</a>
 	</div>
 
 	<div class="row justify-content-center">
@@ -60,31 +60,31 @@
 					<?php
               foreach ($comentarios->getComByProduct($_GET['id']) as $comentario) {?>
 					<tr>
-						<td class="font-weight-bold"><?php echo $comentario['id_comentario'];?>
+						<td class="font-weight-bold align-middle"><?php echo $comentario['id_comentario'];?>
 						</td>
-						<td><?php echo $comentario['comentario'];?>
+						<td class="align-middle"><?php echo $comentario['comentario'];?>
 						</td>
-						<td><?php echo $comentario['id_prod_com'];?>
+						<td class="align-middle"><?php echo $comentario['id_prod_com'];?>
 						</td>
-						<td><?php echo $comentario['id_us_com'];?>
+						<td class="align-middle"><?php echo $comentario['id_us_com'];?>
 						</td>
-						<td><?php echo $comentario['ip_us_com'];?>
+						<td class="align-middle"><?php echo $comentario['ip_us_com'];?>
 						</td>
-						<td><?php echo $comentario['fecha_us_com'];?>
+						<td class="align-middle"><?php echo $comentario['fecha_us_com'];?>
 						</td>
-						<td><?php echo $comentario['puntaje_us_com'];?>
+						<td class="align-middle"><?php echo $comentario['puntaje_us_com'];?>
 						</td>
-						<td><?php echo $comentario['email'];?>
+						<td class="align-middle"><?php echo $comentario['email'];?>
 						</td>
-						<td><?php echo ($comentario['activo'])?'si':'no';?>
+						<td class="align-middle"><?php echo ($comentario['activo'])?'si':'no';?>
 						</td>
-						<td>
+						<td class="align-middle">
 							<div class="col-12">
 								<div class="row justify-content-center">
 									<form
 										action="index.php?section=commentaries_abm&edit=<?php echo $comentario['id_comentario']?>"
 										method="POST" class="actinact mr-2">
-										<button type="submit" class="btn btn-info btn-sm"><?php echo ($comentario['activo'])?'Desactivar':'Activar';?></button>
+										<button type="submit" class="btn btn-info btn-sm"><?php echo ($comentario['activo'])?'<i class="far fa-thumbs-down"></i>':'<i class="far fa-thumbs-up"></i>';?></button>
 									</form>
 								</div>
 							</div>
@@ -145,7 +145,7 @@
 									<form
 										action="index.php?section=commentaries_abm&edit=<?php echo $comentario['id_comentario']?>"
 										method="POST" class="actinact mr-2">
-										<button type="submit" class="btn btn-info btn-sm"><?php echo ($comentario['activo'])?'Desactivar':'Activar';?></button>
+										<button type="submit" class="btn btn-info btn-sm"><?php echo ($comentario['activo'])?'<i class="far fa-thumbs-down"></i>':'<i class="far fa-thumbs-up"></i>';?></button>
 									</form>
 								</div>
 							</div>
@@ -203,7 +203,7 @@
 									<form
 										action="index.php?section=commentaries_abm&edit=<?php echo $comentario['id_comentario']?>"
 										method="POST" class="actinact mr-2">
-										<button type="submit" class="btn btn-info btn-sm"><?php echo ($comentario['activo'])?'Desactivar':'Activar';?></button>
+										<button type="submit" class="btn btn-info btn-sm"><?php echo ($comentario['activo'])?'<i class="far fa-thumbs-down"></i>':'<i class="far fa-thumbs-up"></i>';?></button>
 									</form>
 								</div>
 							</div>
@@ -267,7 +267,7 @@
 									<form
 										action="index.php?section=commentaries_abm&edit=<?php echo $comentario['id_comentario']?>"
 										method="POST" class="actinact mr-2">
-										<button type="submit" class="btn btn-info btn-sm"><?php echo ($comentario['activo'])?'Desactivar':'Activar';?></button>
+										<button type="submit" class="btn btn-info btn-sm"><?php echo ($comentario['activo'])?'<i class="far fa-thumbs-down"></i>':'<i class="far fa-thumbs-up"></i>';?></button>
 									</form>
 								</div>
 							</div>

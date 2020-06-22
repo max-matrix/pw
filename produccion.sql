@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2020 a las 17:43:46
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Tiempo de generación: 22-06-2020 a las 01:37:28
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -61,7 +60,13 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`, `id_padre`, `activo`) VALUES
 
 CREATE TABLE `comentario` (
   `id_comentario` int(11) NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
+  `comentario` varchar(100) NOT NULL,
+  `id_prod_com` int(11) NOT NULL,
+  `id_us_com` int(11) NOT NULL,
+  `ip_us_com` varchar(20) NOT NULL,
+  `fecha_us_com` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `puntaje_us_com` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `activo` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,9 +74,22 @@ CREATE TABLE `comentario` (
 -- Volcado de datos para la tabla `comentario`
 --
 
-INSERT INTO `comentario` (`id_comentario`, `descripcion`, `activo`) VALUES
-(1, 'Muy buen producto, lo recomiendo!', 0),
-(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 0);
+INSERT INTO `comentario` (`id_comentario`, `comentario`, `id_prod_com`, `id_us_com`, `ip_us_com`, `fecha_us_com`, `puntaje_us_com`, `email`, `activo`) VALUES
+(1, 'Muy buen producto, lo recomiendo!', 0, 0, '0', '2020-06-21 18:57:43', 0, '', 0),
+(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 0, 0, '0', '2020-06-21 18:57:43', 0, '', 0),
+(3, 'dfasdfasdfafsd', 8, 1, '::1', '2020-06-21 20:10:42', 2, '', 0),
+(4, 'dfsasdfasfd', 1, 1, '::1', '2020-06-21 20:19:27', 4, '', 0),
+(5, 'vfasdfasdfa', 2, 1, '::1', '2020-06-21 20:20:54', 4, '', 0),
+(6, 'Nuevo comentario', 2, 1, '::1', '2020-06-21 20:22:08', 5, '', 0),
+(7, 'dfadfadsf', 8, 1, '::1', '2020-06-21 20:23:06', 5, '', 0),
+(8, 'Ultimo comentario', 5, 1, '::1', '2020-06-21 21:21:20', 3, '', 0),
+(9, 'Ultimo comentario', 5, 1, '::1', '2020-06-21 20:29:23', 5, '', 0),
+(10, 'Otro comentario y van', 11, 1, '::1', '2020-06-21 20:29:39', 5, '', 0),
+(11, 'uno mas', 4, 1, '::1', '2020-06-21 20:30:47', 3, '', 0),
+(12, 'fasdfasfd', 2, 1, '::1', '2020-06-21 20:32:02', 4, '', 0),
+(13, 'fasdfasfd', 2, 1, '::1', '2020-06-21 20:33:23', 4, '', 0),
+(14, 'dfsafasdf', 11, 1, '::1', '2020-06-21 20:33:36', 3, '', 0),
+(15, 'dsfajsdflkjña', 2, 1, '::1', '2020-06-21 23:05:21', 3, 'maxi.principe@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -468,7 +486,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `dato`

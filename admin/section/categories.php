@@ -1,4 +1,4 @@
-<div class="container my-5 text-center">
+<div class="container-fluid px-5 text-center">
     <div class="row justify-content-center">
         <div class="col-12"> 
             <h1 class="text-center">Categorías</h1>
@@ -12,9 +12,9 @@
 			$categorias = new Categoria($con);
 
             //si el usuario tiene el permiso de categories.adm entra, si no, lo saco			
-            if (!in_array('categories.admin', $_SESSION['usuario']['permisos'])) {
+           /*  if (!in_array('categories.admin', $_SESSION['usuario']['permisos'])) {
             	header('Location: ../index.php');
-            }
+            } */
 
 			if (isset($_POST['formulario_categorias'])) {
 				
@@ -91,18 +91,20 @@
 					<?php
 						foreach ($categorias->getList() as $categoria) {?>
 						<tr>
-							<td><?php echo $categoria['id_categoria'];?></td>
-							<td><?php echo $categoria['nombre'];?></td>
-							<td><?php echo $categoria['id_padre'];?></td>
-							<td><?php echo ($categoria['activo'])?'si':'no';?></td>
-							<td>
+							<td class="align-middle"><?php echo $categoria['id_categoria'];?></td>
+							<td class="align-middle"><?php echo $categoria['nombre'];?></td>
+							<td class="align-middle"><?php echo $categoria['id_padre'];?></td>
+							<td class="align-middle"><?php echo ($categoria['activo'])?'si':'no';?></td>
+							<td class="align-middle">
 								<div class="col-12">
 									<div class="row justify-content-center">
 										<form action="index.php?section=categories_abm&edit=<?php echo $categoria['id_categoria']?>" method="POST" class="modify mr-2">
-											<button type="submit" class="btn btn-info btn-sm">Modificar</button>
+											<button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
+                                        class="fas fa-edit"></i></button>
 										</form>
 										<form action="index.php?section=categories&del=<?php echo $categoria['id_categoria']?>" method="POST" class="delete">
-											<button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+											<button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
+                                        class="far fa-trash-alt"></i></button>
 										</form>
 									</div>
 								</div>

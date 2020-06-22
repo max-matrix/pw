@@ -1,4 +1,4 @@
-<div class="container my-5 text-center">
+<div class="container-fluid px-5 text-center">
     <div class="row justify-content-center">
         <div class="col-12"> 
             <h1 class="text-center">Perfiles</h1>
@@ -12,9 +12,9 @@
 			$perfiles = new Perfil($con);
 
 			//si el usuario tiene el permiso de profiles.adm entra, si no, lo saco			
-            if (!in_array('profiles.admin', $_SESSION['usuario']['permisos'])) {
+            /* if (!in_array('profiles.admin', $_SESSION['usuario']['permisos'])) {
             	header('Location: ../index.php');
-            }
+            } */
 
 			if(isset($_POST['formulario_perfiles'])){ 
 
@@ -91,17 +91,19 @@
 					<?php  	 
 						foreach($perfiles->getList() as $perfil){?>
 					<tr>
-						<td class="font-weight-bold"><?php echo $perfil['id'];?></td>
-						<td><?php echo $perfil['nombre'];?></td> 
-						<td><?php echo ($perfil['activo'])?'si':'no';?></td>
-						<td>							
+						<td class="font-weight-bold align-middle"><?php echo $perfil['id'];?></td>
+						<td class="align-middle"><?php echo $perfil['nombre'];?></td> 
+						<td class="align-middle"><?php echo ($perfil['activo'])?'si':'no';?></td>
+						<td class="align-middle">							
 							<div class="col-12">
 								<div class="row justify-content-center">
 									<form action="index.php?section=profiles_abm&edit=<?php echo $perfil['id']?>" method="POST" class="modify mr-2">
-										<button type="submit" class="btn btn-info btn-sm">Modificar</button>
+										<button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
+                                        class="fas fa-edit"></i></button>
 									</form>
 									<form action="index.php?section=profiles&del=<?php echo $perfil['id']?>" method="POST" class="delete">
-										<button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+										<button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
+                                        class="far fa-trash-alt"></i></button>
 									</form>
 								</div>
 							</div>

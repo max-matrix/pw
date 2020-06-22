@@ -1,4 +1,4 @@
-<div class="container my-5 text-center">
+<div class="container-fluid px-5 text-center">
 	<div class="row justify-content-center">
 		<div class="col-12">
 			<h1 class="text-center">Usuarios</h1>
@@ -29,9 +29,9 @@
 
             //si el usuario tiene el permiso de brand.adm entra, si no, lo saco
 			
-            if (!in_array('users.admin', $_SESSION['usuario']['permisos'])) {
+            /* if (!in_array('users.admin', $_SESSION['usuario']['permisos'])) {
             	header('Location: ../index.php');
-            }
+            } */
 
 			
             if (isset($_POST['formulario_usuarios'])) {
@@ -112,14 +112,14 @@
 					<?php
                     foreach ($user->getList() as $usuario) {?>
 					<tr>
-						<td class="font-weight-bold"><?php echo $usuario['id_usuario'];?></td>
-						<td><?php echo $usuario['nombre'];?></td>
-						<td><?php echo $usuario['apellido'];?></td>
-						<td><?php echo $usuario['usuario'];?></td>
-						<td><?php echo $usuario['email'];?></td>
-						<td><?php echo isset($usuario['perfiles'])?implode(', ', $usuario['perfiles']):'No tiene perfiles asignados';?></td>
-						<td><?php echo ($usuario['activo'])?'si':'no';?></td>
-						<td>
+						<td class="font-weight-bold align-middle"><?php echo $usuario['id_usuario'];?></td>
+						<td class="align-middle"><?php echo $usuario['nombre'];?></td>
+						<td class="align-middle"><?php echo $usuario['apellido'];?></td>
+						<td class="align-middle"><?php echo $usuario['usuario'];?></td>
+						<td class="align-middle"><?php echo $usuario['email'];?></td>
+						<td class="align-middle"><?php echo isset($usuario['perfiles'])?implode(', ', $usuario['perfiles']):'No tiene perfiles asignados';?></td>
+						<td class="align-middle"><?php echo ($usuario['activo'])?'si':'no';?></td>
+						<td class="align-middle">
 							<?php if (in_array('user.edit', $_SESSION['usuario']['permisos'])) {?>
 								<!-- <a	href="index.php?section=users_abm&edit=<?php echo $usuario['id_usuario']?>"><button
 									type="button" class="btn btn-info btn-md" title="Modificar">Modificar</button></a>
@@ -127,7 +127,8 @@
 								<div class="col-12">
 									<div class="row justify-content-center">
 										<form action="index.php?section=users_abm&edit=<?php echo $usuario['id_usuario']?>" method="POST" class="modify mr-2">
-											<button type="submit" class="btn btn-info btn-sm">Modificar</button>
+											<button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
+                                        class="fas fa-edit"></i></button>
 										</form>
 									</div>
 								</div>
@@ -135,7 +136,8 @@
 								<?php if (in_array('user.del', $_SESSION['usuario']['permisos'])) {?>
 								<a
 									href="index.php?section=users&del=<?php echo $usuario['id_usuario']?>"><button
-										type="button" class="btn btn-danger btn-md" title="Borrar">Eliminar</button></a>
+										type="button" class="btn btn-danger btn-md" title="Borrar"><i
+                                        class="far fa-trash-alt"></i></button></a>
 							<?php }?>
 						</td>
 					</tr>

@@ -1,4 +1,4 @@
-<div class="container my-5 text-center">
+<div class="container-fluid px-5 text-center">
     <div class="row justify-content-center">
         <div class="col-12">
             <h1 class="text-center">Productos</h1>
@@ -13,9 +13,9 @@
             //var_dump($productos);
             
             //si el usuario tiene el permiso de products.adm entra, si no, lo saco
-            if (!in_array('products.admin', $_SESSION['usuario']['permisos'])) {
+            /* if (!in_array('products.admin', $_SESSION['usuario']['permisos'])) {
                 header('Location: ../index.php');
-            }
+            } */
 
             if (isset($_POST['formulario_productos'])) {
                 $resp1= $productos->get_por_nombreProducto($_POST["nombre"], $_POST["id_producto"]);
@@ -151,78 +151,84 @@
                         if (isset($_POST['categoria'])) {
                             foreach ($productos->getListByID($_POST['categoria']) as $producto) {?>
                     <tr>
-                        <td class="font-weight-bold"><?php echo $producto['id_producto']; ?>
+                        <td class="font-weight-bold align-middle"><?php echo $producto['id_producto']; ?>
                         </td>
-                        <td><?php echo $producto['nombre']; ?>
+                        <td class="align-middle"><?php echo $producto['nombre']; ?>
                         </td>
-                        <td><?php echo $producto['precio']; ?>
+                        <td class="align-middle"><?php echo $producto['precio']; ?>
                         </td>
-                        <td><?php echo $producto['descripcion']; ?>
+                        <td class="align-middle"><?php echo $producto['descripcion']; ?>
                         </td>
-                        <td><?php echo $producto['disponibilidad']; ?>
+                        <td class="align-middle"><?php echo $producto['disponibilidad']; ?>
                         </td>
-                        <td><?php echo $producto['ranking']; ?>
+                        <td class="align-middle"><?php echo $producto['ranking']; ?>
                         </td>
-                        <td><?php echo $producto['nombre_imagen']; ?>
+                        <td class="align-middle"><?php echo $producto['nombre_imagen']; ?>
                         </td>
-                        <td><img class="img-fluid"
+                        <td class="align-middle"><img class="img-fluid"
                                 src="../img/<?php echo $producto['nombre_imagen']; ?>"
-                                alt="..."></td>
-                        <td><?php echo ($producto['activo'])?'si':'no'; ?>
+                                alt="..." height="100px" width="100px"> </td>
+                        <td class="align-middle"><?php echo ($producto['activo'])?'si':'no'; ?>
                         </td>
-                        <td>
-                            <a
-                                href="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>"><button
-                                    type="button" class="btn btn-info btn-md" title="Modificar"><i
-                                        class="fas fa-edit"></i></button></a>
-
-                            <a
-                                href="index.php?section=products&del=<?php echo $producto['id_producto']?>"><button
-                                    type="button" class="btn btn-danger btn-md" title="Borrar"><i
-                                        class="far fa-trash-alt"></i></button></a>
-                            <a
-                                href="index.php?section=commentaries&id=<?php echo $producto['id_producto']?>"><button
-                                    type="button" class="btn btn-dark btn-md" title="Comentario"><i
-                                        class="fas fa-comments"></i></button></a>
+                        <td class="align-middle">
+                            <div class="col-12">
+                                <div class="row justify-content-center">
+									<form action="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>" method="POST" class="modify mr-1">
+										<button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
+                                        class="fas fa-edit"></i></button>
+									</form>
+									<form action="index.php?section=products&del=<?php echo $producto['id_producto']?>" method="POST" class="delete">
+										<button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
+                                        class="far fa-trash-alt"></i></button>
+									</form>
+									<form action="index.php?section=commentaries&id=<?php echo $producto['id_producto']?>" method="POST" class="ml-1">
+										<button type="submit" class="btn btn-secondary btn-sm" title="Comentario"><i
+                                        class="fas fa-comments"></i></button>
+									</form>
+								</div>
+							</div>
                         </td>
                     </tr>
                     <?php }
                         } else {
                             foreach ($productos->getList() as $producto) {?>
                     <tr>
-                        <td class="font-weight-bold"><?php echo $producto['id_producto'];?>
+                        <td class="font-weight-bold align-middle"><?php echo $producto['id_producto'];?>
                         </td>
-                        <td><?php echo $producto['nombre'];?>
+                        <td class="align-middle"><?php echo $producto['nombre'];?>
                         </td>
-                        <td><?php echo $producto['precio'];?>
+                        <td class="align-middle"><?php echo $producto['precio'];?>
                         </td>
-                        <td><?php echo $producto['descripcion'];?>
+                        <td class="align-middle"><?php echo $producto['descripcion'];?>
                         </td>
-                        <td><?php echo $producto['disponibilidad'];?>
+                        <td class="align-middle"><?php echo $producto['disponibilidad'];?>
                         </td>
-                        <td><?php echo $producto['ranking'];?>
+                        <td class="align-middle"><?php echo $producto['ranking'];?>
                         </td>
-                        <td><?php echo $producto['nombre_imagen'];?>
+                        <td class="align-middle"><?php echo $producto['nombre_imagen'];?>
                         </td>
-                        <td><img class="img-fluid"
+                        <td class="align-middle"><img class="img-fluid"
                                 src="../img/<?php echo $producto['nombre_imagen']; ?>"
-                                alt="..."></td>
-                        <td><?php echo ($producto['activo'])?'si':'no';?>
+                                alt="..." height="100px" width="100px"></td>
+                        <td class="align-middle"><?php echo ($producto['activo'])?'si':'no';?>
                         </td>
-                        <td>
-                            <a
-                                href="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>"><button
-                                    type="button" class="btn btn-info btn-md" title="Modificar"><i
-                                        class="fas fa-edit"></i></button></a>
-
-                            <a
-                                href="index.php?section=products&del=<?php echo $producto['id_producto']?>"><button
-                                    type="button" class="btn btn-danger btn-md" title="Borrar"><i
-                                        class="far fa-trash-alt"></i></button></a>
-                            <a
-                                href="index.php?section=commentaries&id=<?php echo $producto['id_producto']?>"><button
-                                    type="button" class="btn btn-dark btn-md" title="Comentario"><i
-                                        class="fas fa-comments"></i></button></a>
+                        <td class="align-middle">                           
+                            <div class="col-12">
+                                <div class="row justify-content-center">
+									<form action="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>" method="POST" class="modify mr-1">
+										<button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
+                                        class="fas fa-edit"></i></button>
+									</form>
+									<form action="index.php?section=products&del=<?php echo $producto['id_producto']?>" method="POST" class="delete">
+										<button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
+                                        class="far fa-trash-alt"></i></button>
+									</form>
+									<form action="index.php?section=commentaries&id=<?php echo $producto['id_producto']?>" method="POST" class="ml-1">
+										<button type="submit" class="btn btn-secondary btn-sm" title="Comentario"><i
+                                        class="fas fa-comments"></i></button>
+									</form>
+								</div>
+							</div>
                         </td>
                     </tr>
                     <?php }

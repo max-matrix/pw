@@ -72,20 +72,37 @@
 
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.php?section=products">Productos</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.php?section=brands">Marcas</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.php?section=categories">Categorías</a></li>
-            <?php if (in_array('user.add', $_SESSION['usuario']['permisos']) ||
-                                in_array('user.del', $_SESSION['usuario']['permisos'])||
-                                in_array('user.edit', $_SESSION['usuario']['permisos'])||
-                                in_array('user.see', $_SESSION['usuario']['permisos'])) {?>
-            <li
-              class="<?php echo isset($userMenu)?'active':''?>">
-              <a class="nav-link" href="index.php?section=users">Usuarios</a></li>
+
+            <?php if (in_array('products.admin', $_SESSION['usuario']['permisos']) ) {?>
+               <li class="<?php echo isset($userMenu)?'active':''?>">
+               <li class="nav-item"><a class="nav-link" href="index.php?section=products">Productos</a></li>
             <?php }?>
-            <li class="nav-item"><a class="nav-link" href="index.php?section=commentaries">Comentarios</a>
-            </li>
+
+            <?php if (in_array('brands.admin', $_SESSION['usuario']['permisos']) ) {?>
+               <li class="<?php echo isset($userMenu)?'active':''?>">
+               <li class="nav-item"><a class="nav-link" href="index.php?section=brands">Marcas</a></li>
+            <?php }?>
+
+            <?php if (in_array('categories.admin', $_SESSION['usuario']['permisos']) ) {?>
+               <li class="<?php echo isset($userMenu)?'active':''?>">
+            <li class="nav-item"><a class="nav-link" href="index.php?section=categories">Categorías</a></li>
+            <?php }?>
+
+            <?php if (in_array('users.admin', $_SESSION['usuario']['permisos']) ) {?>
+               <li class="<?php echo isset($userMenu)?'active':''?>">
+               <a class="nav-link" href="index.php?section=users">Usuarios</a></li>
+            <?php }?>
+
+            <?php if (in_array('commentaries.admin', $_SESSION['usuario']['permisos']) ) {?>
+               <li class="<?php echo isset($userMenu)?'active':''?>">
+            <li class="nav-item"><a class="nav-link" href="index.php?section=commentaries">Comentarios</a></li>
+            <?php }?>
+
+            <?php if (in_array('profiles.admin', $_SESSION['usuario']['permisos']) ) {?>
+               <li class="<?php echo isset($userMenu)?'active':''?>">
             <li class="nav-item"><a class="nav-link" href="index.php?section=profiles">Perfiles</a></li>
+            <?php }?>
+
             <li class="nav-item"><a class="nav-link" href="../function/logout.php">Logout</a></li>
           </ul>
 
@@ -95,7 +112,7 @@
   </header>
 
   <main>
-    <div class="wrapper container">
+    <div class="wrapper container-fluid">
 
       <?php
                 notificacion();
