@@ -111,3 +111,28 @@ footer p {
   font-size: 12px;
   text-transform: uppercase;
 }
+
+.comentario {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.comentario .card {
+  display:flex; 
+  flex-direction:row;
+}
+.comentario .card i {
+  align-items: center;
+  margin-left:10px;
+}
+
+.comentario .card .com {
+  flex-grow:1; 
+  padding-left: 20px;
+}
+.comentario .card .date {
+  margin-right: 10px;
+}
+
+.precio {
+  font-size: 40px;
+}

@@ -1,107 +1,91 @@
-<?php 
-Class Comentario{
+<?php
+class Comentario
+{
 
     /*conexion a la base*/
-	private $con;	
-	public function __construct($con){
-		$this->con = $con;
-	}
+    private $con;
+    public function __construct($con)
+    {
+        $this->con = $con;
+    }
 
     /* Obtengo todos los comentarios */
-	public function getList(){
-		$query = "SELECT id_comentario, descripcion, activo
+    public function getList()
+    {
+        $query = "SELECT id_comentario, comentario, id_prod_com, id_us_com, ip_us_com, fecha_us_com, puntaje_us_com,email, activo
 		           FROM comentario";
-        return $this->con->query($query); 
-	}
-	
+        return $this->con->query($query);
+    }
+    
+    public function get($id_comentario)
+    {
+        $query = "SELECT id_comentario, comentario, id_prod_com, id_us_com, ip_us_com, fecha_us_com, puntaje_us_com,email, activo
+		           FROM comentario WHERE id_comentario = ".$id_comentario;
+        $query = $this->con->query($query);
+            
+        $comentario = $query->fetch(PDO::FETCH_OBJ);
+
+        return $comentario;
+    }
+
 
     /* obtengo un comentario */
-	public function get($id){
-	    $query = "SELECT id,nombre,activo
-		           FROM perfil WHERE id = ".$id;
-        $query = $this->con->query($query); 
-			
-		$perfil = $query->fetch(PDO::FETCH_OBJ);
-			
-			$sql = 'SELECT perfil_id, permiso_id
-					  FROM perfil_permisos  
-					  WHERE perfil_id = '.$perfil->id;
-					  
-			foreach($this->con->query($sql) as $permiso){
-				$perfil->permisos[] = $permiso['permiso_id'];
-			}
-			/*echo '<pre>';
-			var_dump($perfil);echo '</pre>'; */
-            return $perfil;
-	}
+    public function getComByProduct($id)
+    {
+        $query = "SELECT id_comentario, comentario, id_prod_com, id_us_com, ip_us_com, fecha_us_com, puntaje_us_com,email, activo
+		           FROM comentario WHERE id_prod_com = ".$id;
+        return $this->con->query($query);
+    }
 
-	/* borrado de comentario */	
-	public function del($id){
-		$query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id;
-		$consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
-		if($consulta->cantidad == 0){
-			$query = "DELETE FROM perfil WHERE id = ".$id."; 
-					  DELETE FROM perfil_permisos WHERE perfil_id = ".$id.";";
+    public function getActivos()
+    {
+        $query = "SELECT id_comentario, comentario, id_prod_com, id_us_com, ip_us_com, fecha_us_com, puntaje_us_com,email, activo
+		           FROM comentario WHERE activo = 0";
+        return $this->con->query($query);
+    }
 
-			return $this->con->exec($query); 
-		}
-		return 'Perfil asignado a un usuario';
-	}
-	
-	/* Guardo los datos en la base de datos	*/
-	public function save($data){
-		
-        foreach($data as $key => $value){
-				
-			if(!is_array($value)){
-				if($value != null){
-					$columns[]=$key;
-					$datos[]=$value;
-				}
-			}
-		}
-		//var_dump($datos);die();
-        $sql = "INSERT INTO perfil(".implode(',',$columns).") VALUES('".implode("','",$datos)."')";
-		//echo $sql;die();
-			
-        $this->con->exec($sql);
-		$id = $this->con->lastInsertId();
-			   			
-		$sql = '';
-		foreach($data['permisos'] as $permisos){
-			$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-						VALUES ('.$id.','.$permisos.');';
-		}
-		//echo $sql;die();
+    public function getInactivos()
+    {
+        $query = "SELECT id_comentario, comentario, id_prod_com, id_us_com, ip_us_com, fecha_us_com, puntaje_us_com,email, activo
+		           FROM comentario WHERE activo = 1";
+        return $this->con->query($query);
+    }
 
- 		$this->con->exec($sql);
-	} 
-	
-	/* Actualizo los datos en la base de datos */
-	public function edit($data){
-		$id = $data['id'];
-		unset($data['id']);
-            
-        foreach($data as $key => $value){
-			if(!is_array($value)){
-				if($value != null){	
-					$columns[]=$key." = '".$value."'"; 
-				}
-			}
+        
+    /* Guardo los datos en la base de datos	*/
+    public function save($data)
+    {
+        foreach ($data as $key => $value) {
+            if (!is_array($value)) {
+                if ($value != null) {
+                    $columns[]=$key;
+                    $datos[]=$value;
+                }
+            }
         }
-        $sql = "UPDATE perfil SET ".implode(',',$columns)." WHERE id = ".$id;
+        //var_dump($datos);die();
+        $sql = "INSERT INTO comentario(".implode(',', $columns).") VALUES('".implode("','", $datos)."')";
+        //echo $sql;die();
+            
+        $this->con->exec($sql);
+        $id_comentario = $this->con->lastInsertId();
+    }
+    
+    /* Actualizo los datos en la base de datos */
+    public function edit($data)
+    {
+        $id_comentario = $data['id_comentario'];
+        unset($data['id_comentario']);
+            
+        foreach ($data as $key => $value) {
+            if (!is_array($value)) {
+                if ($value != null) {
+                    $columns[]=$key." = '".$value."'";
+                }
+            }
+        }
+        $sql = "UPDATE comentario SET ".implode(',', $columns)." WHERE id_comentario = ".$id_comentario;
         //echo $sql; die();
         $this->con->exec($sql);
-					 
-		$sql = 'DELETE FROM perfil_permisos WHERE perfil_id= '.$id;
-		$this->con->exec($sql);
-			
-		$sql = '';
-		foreach($data['permisos'] as $permisos){
-			$sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-						VALUES ('.$id.','.$permisos.');';
-		}
-		$this->con->exec($sql);	 
-	} 
+    }
 }
-?>

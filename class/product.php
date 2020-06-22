@@ -18,6 +18,8 @@ class Product{
         $sql->execute();
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
+   
+    
 
     public function getProductImportant(){
         $sql = 'SELECT * FROM producto WHERE prod_destacado = "1" AND activo = "1" ORDER BY nombre ' .$_SESSION['orden'];
@@ -39,6 +41,14 @@ class Product{
         $sql = $this->con->prepare('SELECT * FROM producto ORDER BY ranking DESC LIMIT 6');
         $sql->execute();
         return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getPromedioByID($id){
+        $comentarios = $this->con->prepare('SELECT AVG(puntaje_us_com) FROM comentario WHERE id_prod_com='. $id );
+        
+        $comentarios->execute();
+        $result = $comentarios->fetch(PDO::FETCH_BOTH);
+        return $result[0];
     }
 
 
