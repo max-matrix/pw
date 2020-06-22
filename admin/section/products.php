@@ -157,7 +157,7 @@
                         </td>
                         <td class="align-middle"><?php echo $producto['precio']; ?>
                         </td>
-                        <td class="align-middle"><?php echo $producto['descripcion']; ?>
+                        <td class="align-middle" width="200"><?php echo $producto['descripcion']; ?>
                         </td>
                         <td class="align-middle"><?php echo $producto['disponibilidad']; ?>
                         </td>
@@ -199,7 +199,7 @@
                         </td>
                         <td class="align-middle"><?php echo $producto['precio'];?>
                         </td>
-                        <td class="align-middle"><?php echo $producto['descripcion'];?>
+                        <td class="align-middle" width="200"><?php echo $producto['descripcion'];?>
                         </td>
                         <td class="align-middle"><?php echo $producto['disponibilidad'];?>
                         </td>
