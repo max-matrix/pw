@@ -1,12 +1,9 @@
 <div class="panel-group category-products" id="accordian">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-      </h4>
-    </div>
-    <div id="sportswear">
-      <div class="panel-body">
-        <ul>
+    <div class="panel-heading panel pl-0">
+    <div class="panel-title text-left" id="sportswear">
+      <div class="panel-body text-left">
+          <ul class="pl-3 cat">
           <?php
 
           $brand = new Brand($con);
@@ -18,4 +15,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

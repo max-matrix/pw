@@ -86,8 +86,6 @@
         ?>
 
 
-
-
         <div class="col-12">
             <div class="row">
                 <div class="col-8">
@@ -95,9 +93,9 @@
                         <a href="index.php?section=products_abm"><button type="button" class="btn btn-success btn-md"
                                 title="Agregar">Agregar Producto</button></a></h2>
                 </div>
-                <div class="col-4">
+                <div class="col-4 ">
                     <form action="index.php?section=products" method="POST">
-                        <div class="form-row align-items-center">
+                        <div class="form-row justify-content-end">
                             <div class="col-auto my-1">
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="categoria">
                                     <option selected value="1000">Todas</option>
@@ -126,7 +124,7 @@
 
                                 </select>
                             </div>
-                            <div class="col-auto my-1">
+                            <div class="col-auto my-1 justify-content-between">
                                 <button type="submit" class="btn btn-success">Filtrar</button>
                             </div>
                         </div>
@@ -190,7 +188,7 @@
                     </tr>
                     <?php }
                         } else {
-                             foreach ($productos->getList() as $producto) {?>
+                            foreach ($productos->getList() as $producto) {?>
                     <tr>
                         <td class="font-weight-bold"><?php echo $producto['id_producto'];?>
                         </td>
@@ -228,7 +226,7 @@
                         </td>
                     </tr>
                     <?php }
-                         }?>
+                        }?>
                 </tbody>
             </table>
         </div>
