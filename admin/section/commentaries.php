@@ -27,12 +27,17 @@
                         $comentarios->edit($_POST);
                         $_SESSION["estado"] = "ok";
                         $_SESSION["mensaje"] = "El comentario ahora esta desactivado.";
-                        header('Location: index.php?section=commentaries');
+						header('Location: index.php?section=commentaries');
+						
+						// agregar a la URL &id= y acá poner el id del producto en cuestión
+						// section=commentaries&id=NN
                     } else {
                         $comentarios->edit($_POST);
                         $_SESSION["estado"] = "ok";
                         $_SESSION["mensaje"] = "El comentario ahora esta activado y listo para ver en la página";
-                        header('Location: index.php?section=commentaries');
+						header('Location: index.php?section=commentaries');
+						// agregar a la URL &id= y acá poner el id del producto en cuestión
+						// section=commentaries&id=NN
                     }
                 }
             }

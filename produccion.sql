@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2020 a las 01:37:28
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Tiempo de generación: 26-06-2020 a las 15:27:02
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -16,6 +17,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+
+create database produccion;
+use produccion;
 
 --
 -- Base de datos: `produccion`
@@ -50,7 +54,8 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`, `id_padre`, `activo`) VALUES
 (14, 'Microprocesadores', 6, 1),
 (15, 'Notebooks', 6, 1),
 (16, 'Consolas', 8, 1),
-(73, 'nombre1', 2, 1);
+(73, 'nombre1', 2, 1),
+(75, 'prueba', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -75,10 +80,10 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id_comentario`, `comentario`, `id_prod_com`, `id_us_com`, `ip_us_com`, `fecha_us_com`, `puntaje_us_com`, `email`, `activo`) VALUES
-(1, 'Muy buen producto, lo recomiendo!', 0, 0, '0', '2020-06-21 18:57:43', 0, '', 0),
-(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 0, 0, '0', '2020-06-21 18:57:43', 0, '', 0),
-(3, 'dfasdfasdfafsd', 8, 1, '::1', '2020-06-21 20:10:42', 2, '', 0),
-(4, 'dfsasdfasfd', 1, 1, '::1', '2020-06-21 20:19:27', 4, '', 0),
+(1, 'Muy buen producto, lo recomiendo!', 0, 0, '0', '2020-06-22 04:15:44', 0, '', 0),
+(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 0, 0, '0', '2020-06-22 04:15:39', 0, '', 1),
+(3, 'dfasdfasdfafsd', 8, 1, '::1', '2020-06-22 03:29:53', 2, '', 0),
+(4, 'dfsasdfasfd', 1, 1, '::1', '2020-06-22 03:29:55', 4, '', 0),
 (5, 'vfasdfasdfa', 2, 1, '::1', '2020-06-21 20:20:54', 4, '', 0),
 (6, 'Nuevo comentario', 2, 1, '::1', '2020-06-21 20:22:08', 5, '', 0),
 (7, 'dfadfadsf', 8, 1, '::1', '2020-06-21 20:23:06', 5, '', 0),
@@ -89,7 +94,11 @@ INSERT INTO `comentario` (`id_comentario`, `comentario`, `id_prod_com`, `id_us_c
 (12, 'fasdfasfd', 2, 1, '::1', '2020-06-21 20:32:02', 4, '', 0),
 (13, 'fasdfasfd', 2, 1, '::1', '2020-06-21 20:33:23', 4, '', 0),
 (14, 'dfsafasdf', 11, 1, '::1', '2020-06-21 20:33:36', 3, '', 0),
-(15, 'dsfajsdflkjña', 2, 1, '::1', '2020-06-21 23:05:21', 3, 'maxi.principe@gmail.com', 1);
+(15, 'dsfajsdflkjña', 2, 1, '::1', '2020-06-21 23:05:21', 3, 'maxi.principe@gmail.com', 1),
+(16, 'Es muy caro pero parece bueno!', 8, 1, '::1', '2020-06-22 04:18:23', 3, 'rodrigomiliano16@gmail.com', 0),
+(17, 'Necesito una!!!!!', 1, 1, '::1', '2020-06-22 04:19:45', 5, 'rodrigomiliano16@hotmail.com', 0),
+(18, 'es carisimo!!!!!', 11, 1, '::1', '2020-06-22 04:21:50', 2, 'email1@gmail.com', 0),
+(19, 'Hola esto es para la grabacion!', 2, 0, '::1', '2020-06-23 01:38:47', 5, 'prueba@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -157,7 +166,7 @@ INSERT INTO `marca` (`id_marca`, `nom_marca`, `activo`) VALUES
 (5, 'Intel', 1),
 (6, 'Gigabyte', 1),
 (7, 'Nintendo', 1),
-(8, 'Apple', 1),
+(8, 'Apple', 0),
 (74, 'marca1', 0);
 
 -- --------------------------------------------------------
@@ -185,8 +194,8 @@ INSERT INTO `perfil` (`id`, `nombre`, `activo`) VALUES
 (21, 'perfil1', 1),
 (22, 'perfil2', 1),
 (24, 'nombre1', 1),
-(30, 'nombre2', 0),
-(31, 'nombre3', 0);
+(37, 'prueba', 1),
+(38, 'perfilprueba', 1);
 
 -- --------------------------------------------------------
 
@@ -217,14 +226,6 @@ INSERT INTO `perfil_permisos` (`id`, `perfil_id`, `permiso_id`) VALUES
 (113, 21, 4),
 (114, 21, 5),
 (115, 21, 9),
-(138, 1, 1),
-(139, 1, 2),
-(140, 1, 4),
-(141, 1, 6),
-(142, 1, 7),
-(143, 1, 8),
-(144, 1, 9),
-(145, 1, 10),
 (164, 22, 1),
 (165, 22, 2),
 (166, 22, 4),
@@ -234,7 +235,18 @@ INSERT INTO `perfil_permisos` (`id`, `perfil_id`, `permiso_id`) VALUES
 (170, 22, 9),
 (171, 22, 10),
 (185, 24, 2),
-(186, 24, 3);
+(186, 24, 3),
+(198, 37, 9),
+(199, 1, 1),
+(200, 1, 2),
+(201, 1, 4),
+(202, 1, 6),
+(203, 1, 7),
+(204, 1, 8),
+(205, 1, 9),
+(206, 1, 10),
+(207, 1, 11),
+(208, 38, 9);
 
 -- --------------------------------------------------------
 
@@ -262,7 +274,8 @@ INSERT INTO `permisos` (`id`, `nombre`, `cod`) VALUES
 (7, 'Categorias abm', 'categories.admin'),
 (8, 'Perfiles abm', 'profiles.admin'),
 (9, 'Productos abm', 'products.admin'),
-(10, 'Usuarios abm', 'users.admin');
+(10, 'Usuarios abm', 'users.admin'),
+(11, 'Comentarios abm', 'commentaries.admin');
 
 -- --------------------------------------------------------
 
@@ -293,14 +306,15 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `condicion`, `descrip
 (1, 'Notebook1', 80000, 'Nuevo', 'Windows 10, 1tb de memoria.', 20, 1, 15, 25, '101.jpg', 0, 1),
 (2, 'Impresora', 10000, 'Nuevo', 'Impresora multifuncion.', 36, 2, 13, 10, '102.jpg', 1, 1),
 (3, 'monitor', 25000, 'Usados', 'Monitores con 1 año de uso particular, excelente estado.', 2, 3, 11, 5, '103.jpg', 0, 1),
-(4, 'celular', 80000, 'Nuevo', 'Samsung s9 plus 64gb memoria.', 16, 4, 9, 15, '104.jpg', 0, 1),
 (5, 'procesador', 40000, 'Nuevo', 'Lo último de mercado.', 11, 5, 14, 35, '105.jpg', 1, 1),
 (6, 'placa', 38000, 'Nuevo', 'Desconocido', 8, 6, 12, 20, '106.jpg', 0, 1),
-(7, 'Nintendo Switch', 65000, 'Nuevo', 'La mas nueva consola de Nintendo', 15, 7, 16, 30, '107.jpg', 1, 0),
+(7, 'Nintendo Switch', 65000, 'Nuevo', 'La mas nueva consola de Nintendo', 15, 7, 16, 30, '107.jpg', 1, 1),
 (8, 'Iphone X', 100000, 'Nuevo', 'Celular de alta gama', 3, 8, 10, 40, '108.jpg', 1, 1),
 (9, 'Gran pantalla 4k', 50000, 'Nuevo', '4k pantalla', 8, 3, 11, 5, '103.jpg', 1, 1),
 (10, 'Pantalla', 15000, 'Nuevo', 'nueva pantalla', 50, 3, 11, 5, '103.jpg', 0, 1),
-(11, 'Espectacular pantalla2', 3200000000, 'Nuevo', 'mejor pantalla', 10, 3, 11, 5, '103.jpg', 0, 1);
+(11, 'Espectacular pantalla2', 3200000000, 'Nuevo', 'mejor pantalla', 10, 3, 11, 5, '103.jpg', 0, 1),
+(64, 'Samsung s9', 65000, '', 'Celular de alta gama', 15, 4, 9, 4, '104.jpg', 1, 1),
+(65, 'prueba', 80000, '', 'esto es prueba', 15, 4, 7, 16, 'descarga.jpg', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -332,7 +346,9 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `usuario`, `clave`, 
 (55, 'nombre1', 'apellido1', 'usuario1', '00b354bfa01d9c31a82a04d24922b559', 'email1@gmail.com', 0, 0, '5ee7ac2fbb63d'),
 (56, 'nombre2', 'apellido2', 'usuario2', '23a1387770ea8bdf925deba43acea208', 'email2@gmail.com', 0, 0, '5ee7ac4a40082'),
 (57, 'nombre4', 'apellido4', 'usuario4', 'b64dc7b9883dd535166337d9646e09be', 'email4@gmail.com', 0, 1, '5eee3a912ec5b'),
-(58, 'nombre3', 'apellido3', 'usuario3', 'a012cfb8d887d4e52cdb17fda9f9d22b', 'email3@gmail.com', 0, 1, '5eee5de702227');
+(58, 'nombre3', 'apellido3', 'usuario3', 'a012cfb8d887d4e52cdb17fda9f9d22b', 'email3@gmail.com', 0, 1, '5eee5de702227'),
+(59, 'nombre5', 'apellido5', 'usuario5', '5d6a04497cf1c39941e74121810cb9ed', 'email5@gmail.com', 0, 1, '5ef0332bc3466'),
+(60, 'prueba', 'prueba', 'prueba', 'cd9d4021dbc18e58958b2a6d06a34972', 'pruebaadmin@gmail.com', 0, 1, '5ef15dc13b801');
 
 -- --------------------------------------------------------
 
@@ -379,7 +395,9 @@ INSERT INTO `usuarios_perfiles` (`id`, `usuario_id`, `perfil_id`) VALUES
 (97, 56, 22),
 (98, 55, 21),
 (99, 57, 1),
-(102, 58, 1);
+(102, 58, 1),
+(103, 59, 37),
+(104, 60, 38);
 
 -- --------------------------------------------------------
 
@@ -480,13 +498,13 @@ ALTER TABLE `usuarios_tipos`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `dato`
@@ -498,43 +516,43 @@ ALTER TABLE `dato`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil_permisos`
 --
 ALTER TABLE `perfil_permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_perfiles`
 --
 ALTER TABLE `usuarios_perfiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_tipos`
