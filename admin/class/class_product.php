@@ -35,7 +35,7 @@ class Producto
     /* obtengo un producto */
     public function get($id_producto)
     {
-        $query = "SELECT id_producto,nombre,precio,descripcion,disponibilidad, ranking, nombre_imagen, activo
+        $query = "SELECT id_producto,nombre,precio,descripcion,disponibilidad, ranking, prod_destacado, nombre_imagen, activo
 		           FROM producto WHERE id_producto = ".$id_producto;
         $query = $this->con->query($query);
             

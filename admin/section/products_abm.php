@@ -68,14 +68,14 @@
                     </div>
                 </div> 
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <div class="col-sm-10">
                         Destacado: <select class="controls" id="prod_destacado" name="prod_destacado">
                         <option value= 1> Destacado</option>
                         <option value= 0> No destacado</option>
                         </select>
                     </div>
-                </div> 
+                </div>  -->
                 
                 <div class="form-group">
                     <label for="nombre" class="col-sm-2 control-label">Nombre imagen</label>
@@ -91,6 +91,14 @@
                     <label for="imagen" class="col-sm-2 control-label">Imagen</label>
                          <input type="file" class="form-control-file" name="ARCHIVO_SUBIDO" id="imagen" aria-describedby="fileHelpId">
                          <small id="fileHelpId" class="form-text text-muted"></small>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">                        
+                        <label>Destacado</label>
+                        <input type="hidden" name="prod_destacado" value="0">
+                        <input type="checkbox" name="prod_destacado" value="1"  <?php echo (isset($productos->prod_destacado)?(($productos->prod_destacado == 1) ?'checked="checked"':''):'');?>>
+                    </div>
                 </div>
             
                 <div class="form-group">

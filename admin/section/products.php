@@ -142,6 +142,7 @@
                         <th>Ranking</th>
                         <th>Nombre Imagen</th>
                         <th>Imagen</th>
+                        <th>Destacado</th>
                         <th>Activo</th>
                         <th>Acciones</th>
                     </tr>
@@ -168,6 +169,7 @@
                         <td class="align-middle"><img class="img-fluid"
                                 src="../img/<?php echo $producto['nombre_imagen']; ?>"
                                 alt="..." height="100px" width="100px"> </td>
+                        <td class="align-middle"><?php echo ($producto['prod_destacado'])?'si':'no'; ?>
                         <td class="align-middle"><?php echo ($producto['activo'])?'si':'no'; ?>
                         </td>
                         <td class="align-middle">
@@ -210,6 +212,7 @@
                         <td class="align-middle"><img class="img-fluid"
                                 src="../img/<?php echo $producto['nombre_imagen']; ?>"
                                 alt="..." height="100px" width="100px"></td>
+                        <td class="align-middle"><?php echo ($producto['prod_destacado'])?'si':'no';?>
                         <td class="align-middle"><?php echo ($producto['activo'])?'si':'no';?>
                         </td>
                         <td class="align-middle">                           
