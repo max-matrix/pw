@@ -10,19 +10,17 @@
     if (isset($_GET['edit'])) {
         $perfiles = $perfil->get($_GET['edit']);
         $titulo = 'Modificar Perfil';
-    }
-    else
-    {
-      $titulo = 'Nuevo Perfil';
+    } else {
+        $titulo = 'Nuevo Perfil';
     }
     ?>
 
-    
+
     <div class="col-sm-9 col-md-10 main">
 
-    <h1 class="page-header">
-        <? echo $titulo ?>
-    </h1>
+        <h1 class="page-header">
+            <?php echo $titulo ?>
+        </h1>
 
         <div class="col-md-2"></div>
 
@@ -39,7 +37,7 @@
             <div class="form-group">
                 <label for="tipo" class="col-sm-2 control-label">Permisos</label>
                 <div class="col-sm-10">
-                    <select name="permisos[]" id="permisos" multiple='multiple'>
+                    <select name="permisos[]" id="permisos" multiple='multiple' required>
                         <?php  foreach ($permisos as $t) {?>
                         <option
                             value="<?php echo $t['id']?>"
@@ -58,12 +56,12 @@
             </div>
 
             <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">                        
-               <label>Activo</label>
-              <input type="hidden" name="activo" value="0">
-              <input type="checkbox" name="activo" value="1"  <?php echo (isset($perfiles->activo)?(($perfiles->activo == 1) ?'checked="checked"':''):'');?>>
-          </div>
-      </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <label>Activo</label>
+                    <input type="hidden" name="activo" value="0">
+                    <input type="checkbox" name="activo" value="1" <?php echo(isset($perfiles->activo)?(($perfiles->activo == 1) ?'checked="checked"':''):'');?>>
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">

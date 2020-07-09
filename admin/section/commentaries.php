@@ -8,7 +8,7 @@ function printTableHead()
     <th>Comentario</th>
     <th>ID_Producto</th>
     <th>ID_Usuario</th>
-    <th>IP_Usuario</th>
+    <th>IP_Usuario</th>}
     <th>Fecha</th>
     <th>Puntaje</th>
     <th>email</th>
