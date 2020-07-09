@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-06-2020 a las 15:27:02
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Tiempo de generación: 10-07-2020 a las 00:27:01
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -17,9 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
-create database produccion;
-use produccion;
 
 --
 -- Base de datos: `produccion`
@@ -53,9 +49,7 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`, `id_padre`, `activo`) VALUES
 (13, 'Impresoras', 6, 1),
 (14, 'Microprocesadores', 6, 1),
 (15, 'Notebooks', 6, 1),
-(16, 'Consolas', 8, 1),
-(73, 'nombre1', 2, 1),
-(75, 'prueba', 8, 0);
+(16, 'Consolas', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -80,25 +74,21 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id_comentario`, `comentario`, `id_prod_com`, `id_us_com`, `ip_us_com`, `fecha_us_com`, `puntaje_us_com`, `email`, `activo`) VALUES
-(1, 'Muy buen producto, lo recomiendo!', 0, 0, '0', '2020-06-22 04:15:44', 0, '', 0),
-(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 0, 0, '0', '2020-06-22 04:15:39', 0, '', 1),
-(3, 'dfasdfasdfafsd', 8, 1, '::1', '2020-06-22 03:29:53', 2, '', 0),
-(4, 'dfsasdfasfd', 1, 1, '::1', '2020-06-22 03:29:55', 4, '', 0),
-(5, 'vfasdfasdfa', 2, 1, '::1', '2020-06-21 20:20:54', 4, '', 0),
-(6, 'Nuevo comentario', 2, 1, '::1', '2020-06-21 20:22:08', 5, '', 0),
-(7, 'dfadfadsf', 8, 1, '::1', '2020-06-21 20:23:06', 5, '', 0),
-(8, 'Ultimo comentario', 5, 1, '::1', '2020-06-21 21:21:20', 3, '', 0),
+(1, 'Muy buen producto, lo recomiendo!', 0, 0, '0', '2020-07-09 21:47:29', 0, '', 1),
+(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 0, 0, '0', '2020-07-09 22:24:54', 0, '', 1),
+(3, 'dfasdfasdfafsd', 8, 1, '::1', '2020-07-09 21:47:59', 2, '', 0),
+(4, 'dfsasdfasfd', 1, 1, '::1', '2020-07-09 21:46:27', 4, '', 0),
+(5, 'vfasdfasdfa', 2, 1, '::1', '2020-07-09 21:47:52', 4, '', 0),
+(6, 'Nuevo comentario', 2, 1, '::1', '2020-06-24 23:11:53', 5, '', 1),
+(7, 'dfadfadsf', 8, 1, '::1', '2020-07-09 21:47:43', 5, '', 1),
+(8, 'Ultimo comentario', 5, 1, '::1', '2020-07-09 21:48:05', 3, '', 0),
 (9, 'Ultimo comentario', 5, 1, '::1', '2020-06-21 20:29:23', 5, '', 0),
 (10, 'Otro comentario y van', 11, 1, '::1', '2020-06-21 20:29:39', 5, '', 0),
 (11, 'uno mas', 4, 1, '::1', '2020-06-21 20:30:47', 3, '', 0),
-(12, 'fasdfasfd', 2, 1, '::1', '2020-06-21 20:32:02', 4, '', 0),
+(12, 'fasdfasfd', 2, 1, '::1', '2020-06-24 23:11:45', 4, '', 1),
 (13, 'fasdfasfd', 2, 1, '::1', '2020-06-21 20:33:23', 4, '', 0),
 (14, 'dfsafasdf', 11, 1, '::1', '2020-06-21 20:33:36', 3, '', 0),
-(15, 'dsfajsdflkjña', 2, 1, '::1', '2020-06-21 23:05:21', 3, 'maxi.principe@gmail.com', 1),
-(16, 'Es muy caro pero parece bueno!', 8, 1, '::1', '2020-06-22 04:18:23', 3, 'rodrigomiliano16@gmail.com', 0),
-(17, 'Necesito una!!!!!', 1, 1, '::1', '2020-06-22 04:19:45', 5, 'rodrigomiliano16@hotmail.com', 0),
-(18, 'es carisimo!!!!!', 11, 1, '::1', '2020-06-22 04:21:50', 2, 'email1@gmail.com', 0),
-(19, 'Hola esto es para la grabacion!', 2, 0, '::1', '2020-06-23 01:38:47', 5, 'prueba@gmail.com', 1);
+(15, 'dsfajsdflkjña', 2, 1, '::1', '2020-06-21 23:05:21', 3, 'maxi.principe@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -166,7 +156,7 @@ INSERT INTO `marca` (`id_marca`, `nom_marca`, `activo`) VALUES
 (5, 'Intel', 1),
 (6, 'Gigabyte', 1),
 (7, 'Nintendo', 1),
-(8, 'Apple', 0),
+(8, 'Apple', 1),
 (74, 'marca1', 0);
 
 -- --------------------------------------------------------
@@ -194,8 +184,8 @@ INSERT INTO `perfil` (`id`, `nombre`, `activo`) VALUES
 (21, 'perfil1', 1),
 (22, 'perfil2', 1),
 (24, 'nombre1', 1),
-(37, 'prueba', 1),
-(38, 'perfilprueba', 1);
+(30, 'nombre2', 0),
+(31, 'nombre3', 0);
 
 -- --------------------------------------------------------
 
@@ -236,17 +226,15 @@ INSERT INTO `perfil_permisos` (`id`, `perfil_id`, `permiso_id`) VALUES
 (171, 22, 10),
 (185, 24, 2),
 (186, 24, 3),
-(198, 37, 9),
-(199, 1, 1),
-(200, 1, 2),
-(201, 1, 4),
-(202, 1, 6),
-(203, 1, 7),
-(204, 1, 8),
-(205, 1, 9),
-(206, 1, 10),
-(207, 1, 11),
-(208, 38, 9);
+(189, 1, 1),
+(190, 1, 2),
+(191, 1, 4),
+(192, 1, 6),
+(193, 1, 7),
+(194, 1, 8),
+(195, 1, 9),
+(196, 1, 10),
+(197, 1, 11);
 
 -- --------------------------------------------------------
 
@@ -303,18 +291,26 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `condicion`, `descripcion`, `disponibilidad`, `id_marca`, `id_categoria`, `ranking`, `nombre_imagen`, `prod_destacado`, `activo`) VALUES
-(1, 'Notebook1', 80000, 'Nuevo', 'Windows 10, 1tb de memoria.', 20, 1, 15, 25, '101.jpg', 0, 1),
-(2, 'Impresora', 10000, 'Nuevo', 'Impresora multifuncion.', 36, 2, 13, 10, '102.jpg', 1, 1),
-(3, 'monitor', 25000, 'Usados', 'Monitores con 1 año de uso particular, excelente estado.', 2, 3, 11, 5, '103.jpg', 0, 1),
-(5, 'procesador', 40000, 'Nuevo', 'Lo último de mercado.', 11, 5, 14, 35, '105.jpg', 1, 1),
-(6, 'placa', 38000, 'Nuevo', 'Desconocido', 8, 6, 12, 20, '106.jpg', 0, 1),
-(7, 'Nintendo Switch', 65000, 'Nuevo', 'La mas nueva consola de Nintendo', 15, 7, 16, 30, '107.jpg', 1, 1),
-(8, 'Iphone X', 100000, 'Nuevo', 'Celular de alta gama', 3, 8, 10, 40, '108.jpg', 1, 1),
-(9, 'Gran pantalla 4k', 50000, 'Nuevo', '4k pantalla', 8, 3, 11, 5, '103.jpg', 1, 1),
-(10, 'Pantalla', 15000, 'Nuevo', 'nueva pantalla', 50, 3, 11, 5, '103.jpg', 0, 1),
-(11, 'Espectacular pantalla2', 3200000000, 'Nuevo', 'mejor pantalla', 10, 3, 11, 5, '103.jpg', 0, 1),
-(64, 'Samsung s9', 65000, '', 'Celular de alta gama', 15, 4, 9, 4, '104.jpg', 1, 1),
-(65, 'prueba', 80000, '', 'esto es prueba', 15, 4, 7, 16, 'descarga.jpg', 1, 0);
+(1, 'Monitor HP', 10000, 'Nuevo', 'Monitor HP V194 led 18.5', 5, 3, 11, 4, '114.jpg', 1, 1),
+(2, 'Intel I9', 64710, 'Nuevo', 'Micro Procesador Intel I9 9900k Coffee Lake 9na Gen', 10, 5, 14, 5, '115.jpg', 1, 1),
+(3, 'Playstation 4 + juegos', 52999, 'Nuevo', 'Playstation 4 Megapack Ps4 3 Juegos, Joystick Cupón Fortnite', 4, 7, 8, 3, '119.jpg', 1, 1),
+(6, 'iPhone 7 Plus', 136649, 'Nuevo', 'iPhone 7 Plus 256 GB Negro mate 3 GB RAM', 11, 8, 10, 5, '112.jpg', 1, 1),
+(8, 'Impresora Epson', 29999, 'Nuevo', 'Impresora a color fotográfica Epson EcoTank L805 con wifi 220V negra', 5, 2, 13, 5, '123.jpg', 1, 1),
+(9, 'Amd Ryzen 5', 43990, 'Nuevo', 'Amd Ryzen 5 2600 8gb Fury B450 C1', 15, 6, 12, 5, '122.jpg', 1, 1),
+(11, 'Notebook Asus Intel Core I7', 174999, 'Nuevo', 'Notebook Asus Intel Core I7 X509 8565u 12gb 480gb Ssd Gamer', 9, 1, 15, 4, '116.jpg', 1, 1),
+(12, 'Notebook Asus Tuf Ryzen 7', 297190, 'Nuevo', 'Notebook Asus Tuf Ryzen 7 16gb Ssd 512gb + 1tb Rtx 2060 6gb', 2, 1, 15, 5, '117.jpg', 1, 1),
+(13, 'iPhone 11', 169999, 'Nuevo', 'iPhone 11 64 GB Negro 4 GB RAM', 2, 8, 7, 5, '125.jpg', 1, 1),
+(14, 'Notebook Hp 240 G7', 59999, 'Nuevo', 'Notebook Hp 240 G7 6fu25lt Celeron N4000 4gb 1tb 14 Free Dos', 7, 1, 15, 4, '118.jpg', 1, 1),
+(15, 'Intel I5', 35799, 'Nuevo', 'Procesador gamer Intel Core i5-9600K BX80684I59600K de 6 núcleos y 4.6GHz de frecuencia con gráfica integrada', 6, 5, 14, 5, '124.jpg', 0, 1),
+(16, 'Intel I3', 9499, 'Nuevo', 'Procesador gamer Intel Core i3-9100F BX80684I39100F de 4 núcleos y 4.2GHz de frecuencia', 3, 5, 14, 4, '113.jpg', 1, 1),
+(17, 'Monitor Sentey MS-2150', 21999, 'Nuevo', 'Monitor Sentey MS-2150 led 21.5', 8, 3, 11, 5, '126.jpg', 1, 1),
+(18, 'Monitor LG UltraWide', 36998, 'Nuevo', 'Monitor LG UltraWide 25UM58 led 25', 4, 3, 11, 5, '127.jpg', 1, 1),
+(19, 'Impresora a color multifunción Epson', 29280, 'Nuevo', 'Impresora a color multifunción Epson EcoTank L4160 con wifi 220V negra', 6, 2, 13, 4, '128.jpg', 1, 1),
+(20, 'Samsung Galaxy A51', 36999, 'Nuevo', 'Samsung Galaxy A51 128 GB Prism crush white 4 GB RAM', 6, 4, 9, 5, '130.jpg', 0, 1),
+(21, 'Notebook Exo', 78399, 'Nuevo', 'Notebook Exo Smart Intel I3 Xl4 F3145 4gb/500gb 15.6 W10', 2, 1, 15, 5, '131.jpg', 0, 1),
+(22, 'Consola Nintendo Switch', 73000, 'Nuevo', 'Consola Nintendo Switch 32gb Neon', 2, 7, 8, 5, '133.jpg', 0, 1),
+(23, 'Monitor Pc 19 Pulgadas Philips', 10889, 'Nuevo', 'Monitor Pc 19 Pulgadas Philips Led Hdmi Vga 1366 X 768', 10, 3, 11, 5, '134.jpg', 0, 1),
+(24, 'iPad Apple 7', 56900, 'Nuevo', 'iPad Apple 7ª Generación 2019 A2197 10.2\" 32GB gold con memoria RAM 3GB', 14, 8, 10, 4, '135.jpg', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -347,8 +343,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `usuario`, `clave`, 
 (56, 'nombre2', 'apellido2', 'usuario2', '23a1387770ea8bdf925deba43acea208', 'email2@gmail.com', 0, 0, '5ee7ac4a40082'),
 (57, 'nombre4', 'apellido4', 'usuario4', 'b64dc7b9883dd535166337d9646e09be', 'email4@gmail.com', 0, 1, '5eee3a912ec5b'),
 (58, 'nombre3', 'apellido3', 'usuario3', 'a012cfb8d887d4e52cdb17fda9f9d22b', 'email3@gmail.com', 0, 1, '5eee5de702227'),
-(59, 'nombre5', 'apellido5', 'usuario5', '5d6a04497cf1c39941e74121810cb9ed', 'email5@gmail.com', 0, 1, '5ef0332bc3466'),
-(60, 'prueba', 'prueba', 'prueba', 'cd9d4021dbc18e58958b2a6d06a34972', 'pruebaadmin@gmail.com', 0, 1, '5ef15dc13b801');
+(59, 'pepe', 'argento', 'carlos', 'ed2b1f468c5f915f3f1cf75d7068baae', 'pepe@hotmail.com', 4, 1, '1234'),
+(60, 'pepe', 'argento', 'admin@carrito.com', '8d421e892a47dff539f46142eb09e56b', 'pepe@hotmail.com', 4, 1, '1234');
 
 -- --------------------------------------------------------
 
@@ -395,9 +391,7 @@ INSERT INTO `usuarios_perfiles` (`id`, `usuario_id`, `perfil_id`) VALUES
 (97, 56, 22),
 (98, 55, 21),
 (99, 57, 1),
-(102, 58, 1),
-(103, 59, 37),
-(104, 60, 38);
+(102, 58, 1);
 
 -- --------------------------------------------------------
 
@@ -498,13 +492,13 @@ ALTER TABLE `usuarios_tipos`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `dato`
@@ -516,19 +510,19 @@ ALTER TABLE `dato`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `perfil_permisos`
 --
 ALTER TABLE `perfil_permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
@@ -540,7 +534,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -552,7 +546,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios_perfiles`
 --
 ALTER TABLE `usuarios_perfiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_tipos`
