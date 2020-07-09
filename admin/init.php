@@ -1,0 +1,16 @@
+<?php
+  require_once("../function/arrays.php");
+  require_once("../function/config.php");
+  require_once("../function/function.php");
+  require_once("../function/helpers.php");
+  require_once("../class/Product.php");
+  require_once("../class/Category.php");
+  require_once("../class/Brand.php");
+  require_once("../class/Comment.php");
+  require_once('class/class_user.php');
+  require_once('class/class_profile.php');
+  require_once('class/class_product.php');
+  require_once('class/class_brands.php');
+  require_once('class/class_categories.php');
+  require_once('class/class_commentaries.php');
+  require_once('../mysql-login.php');

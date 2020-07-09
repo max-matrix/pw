@@ -1,3 +1,9 @@
+<?php
+/* if (isset($_POST)) {
+    var_dump($_POST);
+} */
+?>
+
 <div class="container-fluid px-5 text-center">
     <div class="row justify-content-center">
         <div class="col-12">
@@ -173,20 +179,26 @@
                         <td class="align-middle">
                             <div class="col-12">
                                 <div class="row justify-content-center">
-									<form action="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>" method="POST" class="modify mr-1">
-										<button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
-                                        class="fas fa-edit"></i></button>
-									</form>
-									<form action="index.php?section=products&del=<?php echo $producto['id_producto']?>" method="POST" class="delete">
-										<button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
-                                        class="far fa-trash-alt"></i></button>
-									</form>
-									<form action="index.php?section=commentaries&id=<?php echo $producto['id_producto']?>" method="POST" class="ml-1">
-										<button type="submit" class="btn btn-secondary btn-sm" title="Comentario"><i
-                                        class="fas fa-comments"></i></button>
-									</form>
-								</div>
-							</div>
+                                    <form
+                                        action="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>"
+                                        method="POST" class="modify mr-1">
+                                        <button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
+                                                class="fas fa-edit"></i></button>
+                                    </form>
+                                    <form
+                                        action="index.php?section=products&del=<?php echo $producto['id_producto']?>"
+                                        method="POST" class="delete">
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
+                                                class="far fa-trash-alt"></i></button>
+                                    </form>
+                                    <form
+                                        action="index.php?section=commentaries&id=<?php echo $producto['id_producto']?>"
+                                        method="POST" class="ml-1">
+                                        <button type="submit" class="btn btn-secondary btn-sm" title="Comentario"><i
+                                                class="fas fa-comments"></i></button>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <?php }
@@ -212,23 +224,29 @@
                                 alt="..." height="100px" width="100px"></td>
                         <td class="align-middle"><?php echo ($producto['activo'])?'si':'no';?>
                         </td>
-                        <td class="align-middle">                           
+                        <td class="align-middle">
                             <div class="col-12">
                                 <div class="row justify-content-center">
-									<form action="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>" method="POST" class="modify mr-1">
-										<button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
-                                        class="fas fa-edit"></i></button>
-									</form>
-									<form action="index.php?section=products&del=<?php echo $producto['id_producto']?>" method="POST" class="delete">
-										<button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
-                                        class="far fa-trash-alt"></i></button>
-									</form>
-									<form action="index.php?section=commentaries&id=<?php echo $producto['id_producto']?>" method="POST" class="ml-1">
-										<button type="submit" class="btn btn-secondary btn-sm" title="Comentario"><i
-                                        class="fas fa-comments"></i></button>
-									</form>
-								</div>
-							</div>
+                                    <form
+                                        action="index.php?section=products_abm&edit=<?php echo $producto['id_producto']?>"
+                                        method="POST" class="modify mr-1">
+                                        <button type="submit" class="btn btn-info btn-sm" title="Modificar"><i
+                                                class="fas fa-edit"></i></button>
+                                    </form>
+                                    <form
+                                        action="index.php?section=products&del=<?php echo $producto['id_producto']?>"
+                                        method="POST" class="delete">
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Borrar"><i
+                                                class="far fa-trash-alt"></i></button>
+                                    </form>
+                                    <form
+                                        action="index.php?section=commentaries&id=<?php echo $producto['id_producto']?>"
+                                        method="POST" class="ml-1">
+                                        <button type="submit" class="btn btn-secondary btn-sm" title="Comentario"><i
+                                                class="fas fa-comments"></i></button>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <?php }

@@ -1,4 +1,5 @@
 <?php 
+// @codingStandardsIgnoreLine
 Class Marca{
 
     /*conexion a la base*/

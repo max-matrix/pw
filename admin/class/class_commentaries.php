@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreLine
 class Comentario
 {
 
@@ -87,5 +88,26 @@ class Comentario
         $sql = "UPDATE comentario SET ".implode(',', $columns)." WHERE id_comentario = ".$id_comentario;
         //echo $sql; die();
         $this->con->exec($sql);
+    }
+
+    /* Modifico el estado del comentario (activo/inactivo) */
+    public function modify($data)
+    {
+        $id_comentario = $_GET['id'];
+        unset($_GET['id']);
+
+        $query = "SELECT activo FROM comentario WHERE id_comentario = ".$id_comentario;
+        $query = $this->con->query($query)->fetch(PDO::FETCH_ASSOC);
+
+        if ($query['activo']==1) {
+            $sql = "UPDATE comentario SET activo = 0 WHERE id_comentario = ".$id_comentario;
+        } else {
+            $sql = "UPDATE comentario SET activo = 1 WHERE id_comentario = ".$id_comentario;
+        }
+        $this->con->exec($sql);
+        
+        $_SESSION["estado"] = "ok";
+        $_SESSION["mensaje"] = "Se ha modificado el estado de forma exitosa.";
+        header("Location:index.php?section=commentaries");
     }
 }

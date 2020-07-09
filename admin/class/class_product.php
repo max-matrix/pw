@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreLine
 class Producto
 {
 
@@ -54,17 +55,33 @@ class Producto
     }
 
     /* borrado de producto */
-    public function del($id_producto)
+    /* public function del($id_producto)
     {
         $query = 'SELECT count(1) as cantidad FROM usuarios_perfiles WHERE perfil_id = '.$id_producto;
         $consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
         if ($consulta->cantidad == 0) {
-            $query = "DELETE FROM producto WHERE id_producto = ".$id_producto."; 
-					  DELETE FROM producto WHERE id_producto = ".$id_producto.";";
+            $query = "DELETE FROM producto WHERE id_producto = ".$id_producto.";
+                      DELETE FROM producto WHERE id_producto = ".$id_producto.";";
 
             return $this->con->exec($query);
         }
         return 'Perfil asignado a un producto';
+    } */
+
+    public function del($id_producto)
+    {
+        $query = 'SELECT count(1) as activo FROM producto WHERE activo = 1 AND id_producto = '.$id_producto;
+        $consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
+        
+        if ($consulta->activo == 0) {
+            $query = "DELETE FROM producto WHERE id_producto = ".$id_producto."";
+
+            return $this->con->exec($query);
+        }
+        
+        $_SESSION["estado"] = "error";
+        $_SESSION["mensaje"] = "Si el producto se encuentra activo no podrá eliminarlo.";
+        header('Location: index.php?section=products');
     }
     
     /* Guardo los datos en la base de datos */

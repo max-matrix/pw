@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreLine
 class Perfil
 {
 
@@ -13,7 +14,7 @@ class Perfil
     public function getList()
     {
         $query = "SELECT id, nombre, activo
-		           FROM perfil";
+                   FROM perfil";
         return $this->con->query($query);
     }
     
@@ -29,14 +30,14 @@ class Perfil
     public function get($id)
     {
         $query = "SELECT id,nombre,activo
-		           FROM perfil WHERE id = ".$id;
+                   FROM perfil WHERE id = ".$id;
         $query = $this->con->query($query);
             
         $perfil = $query->fetch(PDO::FETCH_OBJ);
             
         $sql = 'SELECT perfil_id, permiso_id
-					  FROM perfil_permisos  
-					  WHERE perfil_id = '.$perfil->id;
+                      FROM perfil_permisos  
+                      WHERE perfil_id = '.$perfil->id;
                       
         foreach ($this->con->query($sql) as $permiso) {
             $perfil->permisos[] = $permiso['permiso_id'];
@@ -53,7 +54,7 @@ class Perfil
         $consulta = $this->con->query($query)->fetch(PDO::FETCH_OBJ);
         if ($consulta->cantidad == 0) {
             $query = "DELETE FROM perfil WHERE id = ".$id."; 
-					  DELETE FROM perfil_permisos WHERE perfil_id = ".$id.";";
+                      DELETE FROM perfil_permisos WHERE perfil_id = ".$id.";";
 
             return $this->con->exec($query);
         }
@@ -81,7 +82,7 @@ class Perfil
         $sql = '';
         foreach ($data['permisos'] as $permisos) {
             $sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-					    VALUES ('.$id.','.$permisos.');';
+                        VALUES ('.$id.','.$permisos.');';
         }
         //echo $sql;die();
         $this->con->exec($sql);
@@ -111,7 +112,7 @@ class Perfil
         $sql = '';
         foreach ($data['permisos'] as $permisos) {
             $sql .= 'INSERT INTO perfil_permisos(perfil_id,permiso_id) 
-						VALUES ('.$id.','.$permisos.');';
+                        VALUES ('.$id.','.$permisos.');';
         }
         $this->con->exec($sql);
     }

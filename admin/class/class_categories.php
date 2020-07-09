@@ -1,4 +1,5 @@
 <?php 
+// @codingStandardsIgnoreLine
 Class Categoria{
 
     /*conexion a la base*/

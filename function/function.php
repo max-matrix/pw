@@ -1,4 +1,10 @@
 <?php
+
+function redirect($url)
+{
+    header('Location: '. $url);
+}
+
 function printProduct($prod)
 {
     if (!empty($prod)) {
@@ -8,7 +14,7 @@ function printProduct($prod)
             $salidaProduct .= '
         <div class="col-4 mb-4">
               <div class="card">
-                  <img src="img/' . $row['nombre_imagen'] . '" class="card-img-top" alt="...">
+                  <img src="img/' . $row['nombre_imagen'] . '" class="card-img-top img-fluid" width="253" height="249" alt="...">
                   <div class="card-body text-center">                                     
                       <h5 class="card-title">' . $row['nombre'] . '</h5>
                       <p class="card-text h-fix">' . $row['descripcion'] . '</p>

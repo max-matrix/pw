@@ -35,6 +35,18 @@ footer p {
     margin-bottom: 40px;
 }
 
+.wrapper-login {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 96px);
+}
+.separator {
+  margin-top: 100px;
+}
+.white {
+  color:white;
+}
+
 .card-description {
     position: relative;
     width: 100%;
@@ -44,6 +56,17 @@ footer p {
     background-clip: border-box;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
+}
+
+.card-login {
+  background-color: rgba(255,255,255,0.7);
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  top: 0;
+
 }
 
 /* Filtros */
@@ -136,3 +159,4 @@ footer p {
 .precio {
   font-size: 40px;
 }
+

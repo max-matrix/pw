@@ -11,8 +11,14 @@
         $comentarios = $comentario->get($_GET['edit']);
         $titulo = 'Modificar Comentario';
     }
-    ?>
 
+    if (isset($_GET['id'])) {
+        $id_comentario = $_GET['id'];
+        $comentario->modify($id_comentario);
+        header('Location:'. getenv('HTTP_REFERER'));
+    }
+
+    ?>
 
   <div class="col-sm-9 col-md-10 main">
 
