@@ -1,5 +1,6 @@
 <?php
 $idP = $_GET['id'];
+// id 10
 ?>
 <div class="row">
     <div class="col-3">

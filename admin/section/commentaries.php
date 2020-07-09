@@ -76,7 +76,6 @@ function printTableBody($comentarios)
               header('Location: ../index.php');
             } */
 
-            
         if (isset($_GET['id'])) {
             ?>
 

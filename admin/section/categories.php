@@ -83,7 +83,8 @@
 						<th>#</th>
 						<th>Nombre</th>
 						<th>Id_padre</th>
-						<th>Activo</th>
+						<th>Padre</th>
+						<th>Activo</th>						
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -94,7 +95,8 @@
 							<td class="align-middle"><?php echo $categoria['id_categoria'];?></td>
 							<td class="align-middle"><?php echo $categoria['nombre'];?></td>
 							<td class="align-middle"><?php echo $categoria['id_padre'];?></td>
-							<td class="align-middle"><?php echo ($categoria['activo'])?'si':'no';?></td>
+							<td class="align-middle"><?php echo $categoria['padre'];?></td>							
+							<td class="align-middle"><?php echo ($categoria['activo'])?'si':'no';?></td>							
 							<td class="align-middle">
 								<div class="col-12">
 									<div class="row justify-content-center">

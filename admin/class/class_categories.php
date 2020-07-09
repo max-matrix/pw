@@ -9,11 +9,19 @@ Class Categoria{
 	}
 
 	/* Obtengo todos las categorias */
-	public function getList(){
+	public function getList2(){
 		$query = "SELECT id_categoria, nombre, id_padre, activo 
 		           FROM categoria";
         return $this->con->query($query); 
 	}
+
+	public function getList(){
+		$query =  "SELECT categoria.*, cat.nombre as padre 
+				   FROM `categoria` 
+				   left join categoria cat on (cat.id_categoria = categoria.id_padre)";
+        return $this->con->query($query); 
+	}
+
 
 	/* busco en la bd que no se repita el nombre */
 	public function get_por_nombreCategoria($nombre, $id_categoria){ 
