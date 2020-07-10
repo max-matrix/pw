@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-07-2020 a las 01:20:22
+-- Tiempo de generación: 10-07-2020 a las 19:27:03
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -74,21 +74,34 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id_comentario`, `comentario`, `id_prod_com`, `id_us_com`, `ip_us_com`, `fecha_us_com`, `puntaje_us_com`, `email`, `activo`) VALUES
-(1, 'Muy buen producto, lo recomiendo!', 0, 0, '0', '2020-07-09 22:43:02', 0, '', 0),
-(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 0, 0, '0', '2020-07-09 22:43:42', 0, '', 0),
-(3, 'dfasdfasdfafsd', 8, 1, '::1', '2020-07-09 22:43:16', 2, '', 1),
-(4, 'dfsasdfasfd', 1, 1, '::1', '2020-07-09 22:43:25', 4, '', 1),
-(5, 'vfasdfasdfa', 2, 1, '::1', '2020-07-09 21:47:52', 4, '', 0),
-(6, 'Nuevo comentario', 2, 1, '::1', '2020-06-24 23:11:53', 5, '', 1),
-(7, 'dfadfadsf', 8, 1, '::1', '2020-07-09 21:47:43', 5, '', 1),
-(8, 'Ultimo comentario', 5, 1, '::1', '2020-07-09 21:48:05', 3, '', 0),
-(9, 'Ultimo comentario', 5, 1, '::1', '2020-07-09 22:43:33', 5, '', 1),
-(10, 'Otro comentario y van', 11, 1, '::1', '2020-07-09 22:43:36', 5, '', 1),
-(11, 'uno mas', 4, 1, '::1', '2020-06-21 20:30:47', 3, '', 0),
-(12, 'fasdfasfd', 2, 1, '::1', '2020-06-24 23:11:45', 4, '', 1),
-(13, 'fasdfasfd', 2, 1, '::1', '2020-06-21 20:33:23', 4, '', 0),
-(14, 'dfsafasdf', 11, 1, '::1', '2020-06-21 20:33:36', 3, '', 0),
-(15, 'dsfajsdflkjña', 2, 1, '::1', '2020-06-21 23:05:21', 3, 'maxi.principe@gmail.com', 1);
+(1, 'Muy malo, me vino sin el manual.', 9, 1, '::1', '2020-07-10 15:53:18', 1, 'rodrigo.miliano@davinci.edu.ar', 0),
+(2, 'No es lo que esperaba, hay mejores precios en otro lado.', 15, 1, '::1', '2020-07-10 15:54:40', 2, 'ignacio.esses@davinci.edu.ar', 0),
+(3, 'Complicada de instalar.', 8, 1, '::1', '2020-07-10 15:45:20', 2, 'porceljr@yahoo.com.ar', 1),
+(4, 'Es lo que estaba necesitando, por fin lo tengo.', 1, 1, '::1', '2020-07-10 15:43:06', 4, 'pepeargento@hotmail.com', 0),
+(5, 'Esta muy bueno!', 2, 1, '::1', '2020-07-10 15:44:42', 4, 'guillecoppola@gmail.com', 0),
+(6, 'Muy buen producto, lo recomiendo!', 2, 1, '::1', '2020-07-10 15:40:20', 5, 'rodrigomiliano16@gmail.com', 1),
+(7, 'Excelente calidad, funciona perfecto.', 8, 1, '::1', '2020-07-10 15:45:39', 5, 'lulipop@fibertel.com.ar', 1),
+(8, 'El producto esta bien', 18, 1, '::1', '2020-07-10 15:56:26', 3, 'maximiliano.principe@davinci.edu.ar', 0),
+(9, '¡Excelente!', 19, 1, '::1', '2020-07-10 15:57:16', 5, 'rodrigomiliano16@hotmail.com', 1),
+(10, 'Me encanta!!', 11, 1, '::1', '2020-07-10 15:42:25', 5, 'ignacio.esses@davinci.edu.ar', 1),
+(11, 'El producto es bueno.', 23, 1, '::1', '2020-07-10 15:58:10', 3, 'el_bromas@gmail.com', 0),
+(12, 'Funciona muy bien', 2, 1, '::1', '2020-07-10 15:40:04', 4, 'santiago.astrada@davinci.edu.ar', 1),
+(13, 'Me gustó y lo entregaron en tiempo y forma.', 2, 1, '::1', '2020-07-10 15:41:56', 4, 'cosmefulanito@outlook.com', 0),
+(14, 'Bastante bien', 11, 1, '::1', '2020-07-10 15:42:15', 3, 'cosmefulanito@outlook.com', 0),
+(15, 'Me gusto mucho, a pesar que fue difícil de instalar', 2, 1, '::1', '2020-07-10 15:30:51', 3, 'maxi.principe@gmail.com', 1),
+(16, 'Muy practica, me encanta que además sea portable. Sirve para cuando te quedas sin luz en casa.', 22, 1, '::1', '2020-07-10 16:03:01', 5, 'rodrigo_cuervo1@hotmail.com', 1),
+(17, 'Me gusto mucho, seria bueno quizás que con tu compra te regalen algún juego.', 22, 1, '::1', '2020-07-10 16:03:03', 4, 'pibeplay@speedy.com.ar', 0),
+(19, 'Playstation siempre la mejor!', 3, 1, '::1', '2020-07-10 16:08:15', 5, 'pibeplay@hotmail.com', 1),
+(20, 'Funciona muy bien.', 20, 1, '::1', '2020-07-10 16:27:24', 4, 'jorge.perez@outlook.com', 1),
+(21, 'Sirve para trabajar, pero para juegos no tanto.', 21, 1, '::1', '2020-07-10 16:27:26', 3, 'juantopo@gmail.com', 0),
+(22, 'Estoy esperando la entrega, se demoraron mas de lo que habían dicho.', 16, 1, '::1', '2020-07-10 16:27:29', 2, 'bruno_diaz@gmail.com', 0),
+(23, 'Buena definición.', 17, 1, '::1', '2020-07-10 16:27:31', 4, 'santiago.astrada@davinci.edu.ar', 1),
+(24, 'Me gusto por la capacidad que tiene.', 24, 1, '::1', '2020-07-10 16:27:33', 5, 'seba-alvarez@hotmail.com', 1),
+(25, 'Me gusto, es muy practica.', 14, 1, '::1', '2020-07-10 16:27:36', 4, 'esteban_quito@gmail.com', 1),
+(26, 'No se si es la mejor, pero la garantía respondió rápido cuando tuve un problema.', 12, 1, '::1', '2020-07-10 16:27:38', 3, 'karol-g@gmail.com', 1),
+(27, 'Muy caro para sus características, es mejor Xiaomi.', 13, 1, '::1', '2020-07-10 16:26:37', 2, 'shu_wu_wang@gmail.com', 1),
+(28, 'Gran oferta!', 18, 1, '::1', '2020-07-10 16:26:31', 5, 'rodrigo.miliano@davinci.edu.ar', 1),
+(29, 'Pude comprarla gracias a las cuotas sin interés, muy buena!', 18, 1, '::1', '2020-07-10 16:26:34', 4, 'ignacio.esses@davinci.edu.ar', 1);
 
 -- --------------------------------------------------------
 
@@ -293,7 +306,7 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `condicion`, `descripcion`, `disponibilidad`, `id_marca`, `id_categoria`, `ranking`, `nombre_imagen`, `prod_destacado`, `activo`) VALUES
 (1, 'Monitor HP', 10000, 'Nuevo', 'Monitor HP V194 led 18.5', 5, 3, 11, 4, '114.jpg', 1, 1),
 (2, 'Intel I9', 64710, 'Nuevo', 'Micro Procesador Intel I9 9900k Coffee Lake 9na Gen', 10, 5, 14, 5, '115.jpg', 1, 1),
-(3, 'Playstation 4 + juegos', 52999, 'Nuevo', 'Playstation 4 Megapack Ps4 3 Juegos, Joystick Cupón Fortnite', 4, 7, 8, 3, '119.jpg', 1, 1),
+(3, 'Playstation 4 + juegos', 52999, 'Nuevo', 'Playstation 4 Megapack Ps4 3 Juegos, Joystick Cupón Fortnite', 4, 7, 16, 3, '119.jpg', 1, 1),
 (6, 'iPhone 7 Plus', 136649, 'Nuevo', 'iPhone 7 Plus 256 GB Negro mate 3 GB RAM', 11, 8, 10, 5, '112.jpg', 1, 1),
 (8, 'Impresora Epson', 29999, 'Nuevo', 'Impresora a color fotográfica Epson EcoTank L805 con wifi 220V negra', 5, 2, 13, 5, '123.jpg', 1, 1),
 (9, 'Amd Ryzen 5', 43990, 'Nuevo', 'Amd Ryzen 5 2600 8gb Fury B450 C1', 15, 6, 12, 5, '122.jpg', 1, 1),
@@ -301,14 +314,14 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `condicion`, `descrip
 (12, 'Notebook Asus Tuf Ryzen 7', 297190, 'Nuevo', 'Notebook Asus Tuf Ryzen 7 16gb Ssd 512gb + 1tb Rtx 2060 6gb', 2, 1, 15, 5, '117.jpg', 1, 1),
 (13, 'iPhone 11', 169999, 'Nuevo', 'iPhone 11 64 GB Negro 4 GB RAM', 2, 8, 7, 5, '125.jpg', 1, 1),
 (14, 'Notebook Hp 240 G7', 59999, 'Nuevo', 'Notebook Hp 240 G7 6fu25lt Celeron N4000 4gb 1tb 14 Free Dos', 7, 1, 15, 4, '118.jpg', 1, 1),
-(15, 'Intel I5', 35799, 'Nuevo', 'Procesador gamer Intel Core i5-9600K BX80684I59600K de 6 núcleos y 4.6GHz de frecuencia con gráfica integrada', 6, 5, 14, 5, '124.jpg', 0, 1),
-(16, 'Intel I3', 9499, 'Nuevo', 'Procesador gamer Intel Core i3-9100F BX80684I39100F de 4 núcleos y 4.2GHz de frecuencia', 3, 5, 14, 4, '113.jpg', 1, 1),
+(15, 'Intel I5', 35799, 'Nuevo', 'Procesador gamer Intel Core i5-9600K de 6 núcleos y 4.6GHz ', 6, 5, 14, 5, '124.jpg', 0, 1),
+(16, 'Intel I3', 9499, 'Nuevo', 'Procesador gamer Intel Core i3-9100F de 4 núcleos y 4.2GHz de frecuencia', 3, 5, 14, 4, '113.jpg', 1, 1),
 (17, 'Monitor Sentey MS-2150', 21999, 'Nuevo', 'Monitor Sentey MS-2150 led 21.5', 8, 3, 11, 5, '126.jpg', 1, 1),
 (18, 'Monitor LG UltraWide', 36998, 'Nuevo', 'Monitor LG UltraWide 25UM58 led 25', 4, 3, 11, 5, '127.jpg', 1, 1),
 (19, 'Impresora a color multifunción Epson', 29280, 'Nuevo', 'Impresora a color multifunción Epson EcoTank L4160 con wifi 220V negra', 6, 2, 13, 4, '128.jpg', 1, 1),
 (20, 'Samsung Galaxy A51', 36999, 'Nuevo', 'Samsung Galaxy A51 128 GB Prism crush white 4 GB RAM', 6, 4, 9, 5, '130.jpg', 0, 1),
 (21, 'Notebook Exo', 78399, 'Nuevo', 'Notebook Exo Smart Intel I3 Xl4 F3145 4gb/500gb 15.6 W10', 2, 1, 15, 5, '131.jpg', 0, 1),
-(22, 'Consola Nintendo Switch', 73000, 'Nuevo', 'Consola Nintendo Switch 32gb Neon', 2, 7, 8, 5, '133.jpg', 0, 1),
+(22, 'Consola Nintendo Switch', 73000, 'Nuevo', 'Consola Nintendo Switch 32gb Neon', 2, 7, 16, 5, '133.jpg', 0, 0),
 (23, 'Monitor Pc 19 Pulgadas Philips', 10889, 'Nuevo', 'Monitor Pc 19 Pulgadas Philips Led Hdmi Vga 1366 X 768', 10, 3, 11, 5, '134.jpg', 0, 1),
 (24, 'iPad Apple 7', 56900, 'Nuevo', 'iPad Apple 7ª Generación 2019 A2197 10.2\" 32GB gold con memoria RAM 3GB', 14, 8, 10, 4, '135.jpg', 0, 1);
 
@@ -499,7 +512,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `dato`

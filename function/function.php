@@ -16,8 +16,8 @@ function printProduct($prod)
               <div class="card">
                   <img src="img/' . $row['nombre_imagen'] . '" class="card-img-top img-fluid" width="253" height="249" alt="...">
                   <div class="card-body text-center">                                     
-                      <h5 class="card-title">' . $row['nombre'] . '</h5>
-                      <p class="card-text h-fix">' . $row['descripcion'] . '</p>
+                      <h5 class="card-title h5-height">' . $row['nombre'] . '</h5>
+                      <p class="card-text h-fix p-height">' . $row['descripcion'] . '</p>
                   </div>
                   <div class="card-body text-center text-center">
                       <a href="index.php?section=detail&id=' . $row['id_producto'] . '" class="card-link ">Detalle</a>

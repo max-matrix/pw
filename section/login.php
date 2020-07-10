@@ -7,7 +7,7 @@ endif;
 
   <div class="container separator">
     <div class="row align-items-center">
-      <div class="col-4 offset-1 text-center card-login px-4 pt-2">
+      <div class="col-4 offset-1 text-center card-login px-4 pt-2 rounded">
         <h2>TECHNLOGY</h2>
         <p>Dónde el futuro se hace realidad</p>
       </div>

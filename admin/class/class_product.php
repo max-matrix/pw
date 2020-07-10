@@ -24,6 +24,14 @@ class Producto
 								 FROM producto WHERE id_categoria="'.$id.'"';
         return $this->con->query($query);
     }
+
+    public function getListByIdPadre($id) // ultima
+    {
+        $sql = 'SELECT producto.* from producto 
+        inner join categoria on producto.id_categoria = categoria.id_categoria 
+        where producto.id_categoria = ' . $id. ' AND producto.activo = "1" or categoria.id_padre = ' . $id;
+        return $this->con->query($sql);
+    }
     
     /* busco en la bd que no se repita el nombre */
     public function get_por_nombreProducto($nombre, $id_producto)

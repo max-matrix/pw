@@ -46,6 +46,12 @@ footer p {
 .white {
   color:white;
 }
+.h5-height {
+  height: 60px;
+}
+.p-height {
+  height: 80px;
+}
 
 .card-description {
     position: relative;
