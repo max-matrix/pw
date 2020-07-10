@@ -1,6 +1,4 @@
-<div class="container-fluid">
-
-  <?php $marcasMenu = 'Marcas';
+<?php $marcasMenu = 'Marcas';
     
     $marca = new Marca($con);
     
@@ -10,54 +8,42 @@
     if (isset($_GET['edit'])) {
         $marcas = $marca->get($_GET['edit']);
         $titulo = 'Modificar Marca';
-    }
-    else
-    {
-      $titulo = 'Nueva Marca';
+    } else {
+        $titulo = 'Nueva Marca';
     }
     ?>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12">
 
-  <div class="col-sm-9 col-md-10 main">
+      <h1 class="page-header">
+        <?php echo $titulo ?>
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form action="index.php?section=brands" method="post">
 
-    <h1 class="page-header">
-        <? echo $titulo ?>
-    </h1>
-
-    <div class="col-md-2"></div>
-
-    <form action="index.php?section=brands" method="post" class="col-md-6 from-horizontal">
-    
-      <div class="form-group">
-        <label for="nombre" class="col-sm-2 control-label">Nombre</label>
-        <div class="col-sm-10">
+        <div class="form-group col-12 px-0">
+          <label for="nombre" class="control-label">Nombre</label>
           <input type="text" class="form-control" id="nombre" name="nom_marca" placeholder=""
             value="<?php echo(isset($marcas->nom_marca)?$marcas->nom_marca:'');?>">
         </div>
-      </div>
-
-      <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">                        
-               <label>Activo</label>
-              <input type="hidden" name="activo" value="0">
-              <input type="checkbox" name="activo" value="1"  <?php echo (isset($marcas->activo)?(($marcas->activo == 1) ?'checked="checked"':''):'');?>>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>Activo</label>
+            <input type="hidden" name="activo" value="0">
+            <input type="checkbox" name="activo" value="1" <?php echo(isset($marcas->activo)?(($marcas->activo == 1) ?'checked="checked"':''):'');?>>
           </div>
-      </div>
 
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-warning" name="formulario_marcas">Guardar Marca</button>
+          <div class="form-group col-6">
+            <button type="submit" class="btn btn-warning float-right" name="formulario_marcas">Guardar Marca</button>
+          </div>
+          <input type="hidden" class="form-control" id="id" name="id_marca" placeholder=""
+            value="<?php echo(isset($marcas->id_marca)?$marcas->id_marca:'0');?>">
         </div>
-      </div>
-      <input type="hidden" class="form-control" id="id" name="id_marca" placeholder=""
-        value="<?php echo(isset($marcas->id_marca)?$marcas->id_marca:'0');?>">
-
-    </form>
+      </form>
+    </div>
   </div>
-
-
-</div>
-<!--/row-->
-</div>
-</div>
-

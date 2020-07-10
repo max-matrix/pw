@@ -1,5 +1,5 @@
 <header>
-  <div class="container-fluid">
+  <div class="container-fluid px-0">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="../index.php">TECHNOLOGY</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,10 +47,9 @@
             class="<?php echo isset($userMenu)?'active':''?>">
           <li class="nav-item"><a class="nav-link" href="index.php?section=profiles">Perfiles</a></li>
           <?php }?>
-
-          <li class="nav-item"><a class="nav-link" href="../function/logout.php">Logout</a></li>
         </ul>
 
+        <a class="btn btn-danger px-4" href="../function/logout.php">Salir</a>
       </div>
     </nav>
   </div>
