@@ -53,6 +53,16 @@ footer p {
   height: 80px;
 }
 
+.wrapper-404 {
+  height: calc(100vh - 96px);
+  text-align: center;
+}
+
+.wrapper-404 h1,.wrapper-404 h3,.wrapper-404 p {
+ display: inline-block;
+}
+
+
 .card-description {
     position: relative;
     width: 100%;
