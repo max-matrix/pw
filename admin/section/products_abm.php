@@ -1,17 +1,19 @@
-<?php $productosMenu = 'Productos';
+<?php 
+
+$productosMenu = 'Productos';
     
-    $producto = new Producto($con);
+$producto = new Producto($con);
+
+$query = 'SELECT * FROM permisos';
+$permisos = $con->query($query);
     
-    $query = 'SELECT * FROM permisos';
-    $permisos = $con->query($query);
-    
-    if (isset($_GET['edit'])) {
-        $productos = $producto->get($_GET['edit']);
-        $titulo = 'Modificar Producto';
-    } else {
-        $titulo = 'Nuevo Producto';
-    }
-    ?>
+if (isset($_GET['edit'])) {
+    $productos = $producto->get($_GET['edit']);
+    $titulo = 'Modificar Producto';
+} else {
+    $titulo = 'Nuevo Producto';
+}
+?>
 
 
 <div class="container">

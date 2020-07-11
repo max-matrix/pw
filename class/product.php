@@ -53,7 +53,7 @@ class Product{
     }
 
     public function getPromedioByID($id){
-        $comentarios = $this->con->prepare('SELECT AVG(puntaje_us_com) FROM comentario WHERE id_prod_com='. $id );
+        $comentarios = $this->con->prepare('SELECT AVG(puntaje_us_com) FROM comentario WHERE activo = 1 AND id_prod_com='. $id );
         
         $comentarios->execute();
         $result = $comentarios->fetch(PDO::FETCH_BOTH);

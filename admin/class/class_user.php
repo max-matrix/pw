@@ -146,7 +146,7 @@ class Usuario
         $sql = "DELETE FROM usuarios WHERE id_usuario = ".$id.';';
         $sql .= 'DELETE FROM usuarios_perfiles WHERE usuario_id = '.$id;
 
-        $this->con->exec($sql);
+        return $this->con->exec($sql);
     }
             
     /* Login de usuario	*/

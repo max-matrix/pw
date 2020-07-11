@@ -71,21 +71,18 @@ if (isset($_GET['edit'])) {
       <div class="form-group col-12">
         <label for="tipo" class="control-label">Perfil</label>
         <div class="col-12 px-0">
-          <select name="perfil[]" id="perfil" multiple='multiple' required>
-            <?php  foreach ($perfil->getList() as $t) {?>
-            <option style="width: 240px;"
-              value="<?php echo $t['id']?>" <i>
-              </i>
-              <?php
-                    if (isset($usuario->perfiles)) {
-                        if (in_array($t['id'], $usuario->perfiles)) {
-                            echo ' selected="selected" ';
-                        }
-                    }
-                ?>><?php echo $t['nombre']?>
-            </option>
-            <?php }?>
-          </select>
+        <select name="perfil[]" id="perfil" multiple='multiple' >
+                                <?php  foreach($perfil->getList() as $t){?>
+                                    <option style="width: 240px;"value="<?php echo $t['id']?>" 
+                                    <?php 
+                                        if(isset($usuario->perfiles)){
+                                            if(in_array($t['id'],$usuario->perfiles)){
+                                                echo ' selected="selected" ';
+                                            }
+                                        }
+                                    ?>><?php echo $t['nombre']?></option>
+                                <?php }?>
+                            </select>
         </div>
       </div>
 

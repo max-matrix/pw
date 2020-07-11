@@ -18,9 +18,8 @@ foreach ($con->query($q) as $comment) {
     $ip = $comment['ip_us_com'];
     $f = strtotime($comment['fecha_us_com']);
     $dif = $fechaunix - $f;
-    $valid = true;
 
-    if ($dif < 86400 && $ip == $ip_usuario) {
+    if ($dif < 24*60*60 && $ip == $ip_usuario) {
         $valid = false;
         break;
     }
