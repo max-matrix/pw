@@ -102,27 +102,35 @@ if (in_array('products.admin', $_SESSION['usuario']['permisos'])) {
             <div class="form-row justify-content-end">
               <div class="col-auto my-1">
                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="categoria">
-                  <option selected value="1000">Todas</option>
+                  <option value="1000">Todas</option>
                   <?php
-           
-                    function printCategoria($con, $id_padre = 1)
+
+                    function selected($a, $b)
                     {
-                        $sql = 'SELECT * FROM categoria WHERE activo = "1" AND id_padre = ' . $id_padre;
-                        $resultado = $con->query($sql);
-                        
-                        if (!empty($resultado)) {
-                            $salida = '';
-            
-                            foreach ($resultado as $row) {
-                                $salida .= '
-                            <option value="' . $row['id_categoria'] . '">' . $row['nombre'] . '</option>'.
-                                printCategoria($con, $row['id_categoria']);
-                            }
-                            $salida .= '';
+                        if ($a == $b) {
+                            echo "selected";
                         }
-                        return $salida;
                     }
-                    echo printCategoria($con); ?>
+           
+    function printCategoria($con, $id_padre = 1)
+    {
+        $sql = 'SELECT * FROM categoria WHERE activo = "1" AND id_padre = ' . $id_padre;
+        $resultado = $con->query($sql);
+                        
+        if (!empty($resultado)) {
+            $salida = '';
+            
+
+            foreach ($resultado as $row) {
+                $salida .= '
+                            <option value="'. $row['id_categoria'] . '">' . $row['nombre'] . '</option>'.
+                  printCategoria($con, $row['id_categoria']);
+            }
+            $salida .= '';
+        }
+        return $salida;
+    }
+    echo printCategoria($con); ?>
 
                 </select>
               </div>
@@ -142,7 +150,6 @@ if (in_array('products.admin', $_SESSION['usuario']['permisos'])) {
             <th>Descripcion</th>
             <th>Disponibilidad</th>
             <th>Ranking</th>
-            <th>Nombre Imagen</th>
             <th>Imagen</th>
             <th>Destacado</th>
             <th>Activo</th>
@@ -159,15 +166,13 @@ if (in_array('products.admin', $_SESSION['usuario']['permisos'])) {
             </td>
             <td class="align-middle"><?php echo $producto['nombre']; ?>
             </td>
-            <td class="align-middle"><?php echo $producto['precio']; ?>
+            <td class="align-middle">$<?php echo $producto['precio']; ?>
             </td>
             <td class="align-middle" width="200"><?php echo $producto['descripcion']; ?>
             </td>
             <td class="align-middle"><?php echo $producto['disponibilidad']; ?>
             </td>
             <td class="align-middle"><?php echo $producto['ranking']; ?>
-            </td>
-            <td class="align-middle"><?php echo $producto['nombre_imagen']; ?>
             </td>
             <td class="align-middle"><img class="img-fluid"
                 src="../img/<?php echo $producto['nombre_imagen']; ?>"
@@ -209,15 +214,13 @@ if (in_array('products.admin', $_SESSION['usuario']['permisos'])) {
             </td>
             <td class="align-middle"><?php echo $producto['nombre']; ?>
             </td>
-            <td class="align-middle"><?php echo $producto['precio']; ?>
+            <td class="align-middle">$<?php echo $producto['precio']; ?>
             </td>
             <td class="align-middle" width="200"><?php echo $producto['descripcion']; ?>
             </td>
             <td class="align-middle"><?php echo $producto['disponibilidad']; ?>
             </td>
             <td class="align-middle"><?php echo $producto['ranking']; ?>
-            </td>
-            <td class="align-middle"><?php echo $producto['nombre_imagen']; ?>
             </td>
             <td class="align-middle"><img class="img-fluid"
                 src="../img/<?php echo $producto['nombre_imagen']; ?>"
@@ -259,15 +262,13 @@ if (in_array('products.admin', $_SESSION['usuario']['permisos'])) {
             </td>
             <td class="align-middle"><?php echo $producto['nombre'];?>
             </td>
-            <td class="align-middle"><?php echo $producto['precio'];?>
+            <td class="align-middle">$<?php echo $producto['precio'];?>
             </td>
             <td class="align-middle" width="200"><?php echo $producto['descripcion'];?>
             </td>
             <td class="align-middle"><?php echo $producto['disponibilidad'];?>
             </td>
             <td class="align-middle"><?php echo $producto['ranking'];?>
-            </td>
-            <td class="align-middle"><?php echo $producto['nombre_imagen'];?>
             </td>
             <td class="align-middle"><img class="img-fluid"
                 src="../img/<?php echo $producto['nombre_imagen']; ?>"

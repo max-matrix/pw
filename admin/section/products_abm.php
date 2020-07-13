@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $productosMenu = 'Productos';
     
@@ -13,7 +13,9 @@ if (isset($_GET['edit'])) {
 } else {
     $titulo = 'Nuevo Producto';
 }
+
 ?>
+
 
 
 <div class="container">
@@ -86,14 +88,84 @@ if (isset($_GET['edit'])) {
         <div class="form-row">
           <div class="form-group col-6">
             <label for="nombre_categoria" class="control-label">Categoria</label>
-            <input type="text" class="form-control" id="nombre_categoria" name="id_categoria" placeholder=""
-              value="<?php echo(isset($productos->id_categoria)?$productos->id_categoria:'');?>">
+            <?php
+            $categories = new Categoria($con);
+            if (!isset($productos->id_categoria)) {
+                ?>
+
+            <select class="form-control" name="id_categoria">
+              <?php foreach ($categories->getListSelect() as $category) { ?>
+              <option
+                value="<?php echo $category['id_categoria']?>">
+                <?php echo $category['nombre']?>
+              </option>
+
+              <?php } ?>
+            </select>
+            <?php
+            } else {?>
+            <select class="form-control" name="id_categoria">
+              <?php foreach ($categories->getListSelect() as $category) { ?>
+
+              <option
+                value="<?php echo $category['id_categoria'];?>"
+                <?php
+                if ($productos->id_categoria == $category['id_categoria']) {
+                    echo "selected";
+                }
+                
+                ?> >
+                <?php echo $category['nombre']?>
+              </option>
+
+              <?php } ?>
+            </select>
+            <?php
+            }?>
+
+
           </div>
 
           <div class="form-group col-6">
             <label for="nombre_marca" class="control-label">Marca</label>
-            <input type="text" class="form-control" id="nombre_marca" name="id_marca" placeholder=""
-              value="<?php echo(isset($productos->id_marca)?$productos->id_marca:'');?>">
+
+            <?php
+            $brands = new Marca($con);
+            if (!isset($productos->id_marca)) {
+                ?>
+
+            <select class="form-control" name="id_marca">
+              <?php foreach ($brands->getList() as $brand) { ?>
+              <option
+                value="<?php echo $brand['id_marca'];?>">
+                <?php echo $brand['nom_marca']?>
+              </option>
+
+              <?php } ?>
+            </select>
+            <?php
+            } else {
+                ?>
+            <select class="form-control" name="id_marca">
+              <?php foreach ($brands->getList() as $brand) { ?>
+              <option
+                value="<?php echo $brand['id_marca'];?>"
+                <?php
+                
+                if ($productos->id_marca == $brand['id_marca']) {
+                    echo "selected";
+                }
+                
+                ?>>
+                <?php echo $brand['nom_marca']?>
+              </option>
+
+              <?php } ?>
+            </select>
+            <?php
+            }?>
+
+
           </div>
         </div>
 

@@ -7,8 +7,6 @@ function printTableHead()
     <th>#</th>
     <th>Comentario</th>
     <th>ID_Producto</th>
-    <th>ID_Usuario</th>
-    <th>IP_Usuario</th>
     <th>Fecha</th>
     <th>Puntaje</th>
     <th>email</th>
@@ -29,8 +27,6 @@ function printTableBody($comentarios)
           <td class="font-weight-bold align-middle">' . $comentario['id_comentario'] . '</td>
           <td class="align-middle">' . $comentario['comentario'] . '</td>
           <td class="align-middle">' . $comentario['id_prod_com'] . '</td>
-          <td class="align-middle">' . $comentario['id_us_com'] . '</td>
-          <td class="align-middle">' . $comentario['ip_us_com'] . '</td>
           <td class="align-middle">' . $comentario['fecha_us_com'] . '</td>
           <td class="align-middle">' . $comentario['puntaje_us_com'] . '</td>
           <td class="align-middle">' . $comentario['email'] . '</td>
@@ -39,7 +35,7 @@ function printTableBody($comentarios)
             <div class="col-12">
               <div class="row justify-content-center">
                 <form action="index.php?section=commentaries_abm&id=' . $comentario['id_comentario'] . '"method="POST" class="actinact mr-2">
-                  <button type="submit" class="btn btn-sm">' . ($comentario['activo'] ? '<i class="far fa-thumbs-down btn btn-danger btn-sm"></i>':'<i class="far fa-thumbs-up btn btn-success btn-sm"></i>') . '</button>
+                  <button type="submit" class="btn btn-sm">' . ($comentario['activo'] ? '<i class="fas fa-window-close btn btn-danger btn-sm"></i>':'<i class="fas fa-check-square btn btn-success btn-sm"></i>') . '</button>
                 </form>
               </div>
             </div>

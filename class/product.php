@@ -65,7 +65,7 @@ class Product{
         $sql = 'SELECT producto.*  from producto 
         inner join categoria on producto.id_categoria = categoria.id_categoria
         inner join marca on producto.id_marca = marca.id_marca 
-        where producto.id_categoria = ' . $category. ' AND producto.activo = "1" AND marca.activo = "1"  AND categoria.activo = "1"  or categoria.id_padre = ' . $category. '  ORDER BY nombre ' .$_SESSION['orden'];
+        where producto.id_categoria = ' . $category. ' AND producto.activo = "1" AND marca.activo = "1"  AND categoria.activo = "1"  or categoria.id_padre = ' . $category. ' AND producto.activo = "1"  ORDER BY nombre ' .$_SESSION['orden'];
 
         return $this->con->query($sql);
 

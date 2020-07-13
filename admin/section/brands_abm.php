@@ -11,6 +11,12 @@
     } else {
         $titulo = 'Nueva Marca';
     }
+
+    if (isset($_GET['id'])) {
+        $id_marca = $_GET['id'];
+        $marca->modify($id_marca);
+    }
+
     ?>
 
 <div class="container">
